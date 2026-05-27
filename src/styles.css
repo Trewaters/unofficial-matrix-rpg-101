@@ -534,6 +534,46 @@ button {
   line-height: 1.5;
 }
 
+.skill-description strong {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.gear-picker-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.gear-picker-bar {
+  position: relative;
+  padding-top: 6px;
+}
+
+.gear-add-btn {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 0.8em;
+  letter-spacing: 0.04em;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.gear-add-btn:hover,
+.gear-add-btn:focus {
+  border-color: var(--line-strong);
+  color: var(--green);
+  outline: none;
+}
+
+.gear-picker-bar .skill-suggestions {
+  top: calc(100% + 2px);
+  border-top: 1px solid var(--line-strong);
+  border-radius: 6px;
+}
+
 .attribute-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

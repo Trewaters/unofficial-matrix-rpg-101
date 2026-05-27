@@ -3,6 +3,9 @@ import '@shoelace-style/shoelace/dist/themes/dark.css'
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js'
 import { animateCurrentView, setupInteractiveAnimations } from './animations.js'
 import { SKILLS, CATEGORY_ORDER } from './skills.js'
+import { FEATS } from './feats.js'
+import { REAL_WORLD_GEAR, MATRIX_GEAR, VEHICLES_ALL, CONTACT_ROLES, GearCategory } from './gear.js'
+import { PATHS, AFFILIATIONS, ORIGINS, SHIP_TYPES } from './identityData.js'
 
 setBasePath('./shoelace/assets')
 
@@ -225,6 +228,18 @@ function createLabeledInput({ label, name, value, type = 'text', placeholder = '
   `;
 }
 
+function createFeatNameField(featId: string, value: string): string {
+  return `
+    <div class="skill-name-wrapper">
+      <label class="field">
+        <span>Feat Name</span>
+        <input data-field="feat.name.${featId}" type="text" value="${escapeHtml(value)}" placeholder="Flight, Telepathy, Heal..." autocomplete="off" />
+      </label>
+      <div class="skill-suggestions" hidden data-feat-suggestions="${featId}"></div>
+    </div>
+  `
+}
+
 function createSkillNameField(skillId: string, value: string): string {
   return `
     <div class="skill-name-wrapper">
@@ -235,6 +250,40 @@ function createSkillNameField(skillId: string, value: string): string {
       <div class="skill-suggestions" hidden data-skill-suggestions="${skillId}"></div>
     </div>
   `;
+}
+
+function createSimpleSuggestField(
+  { label, name, value, placeholder = '' }:
+  { label: string; name: string; value: string; placeholder?: string }
+): string {
+  return `
+    <div class="skill-name-wrapper">
+      <label class="field">
+        <span>${label}</span>
+        <input data-field="${name}" type="text" value="${escapeHtml(value)}" placeholder="${escapeHtml(placeholder)}" autocomplete="off" />
+      </label>
+      <div class="skill-suggestions" hidden data-simple-suggestions="${name}"></div>
+    </div>
+  `
+}
+
+function createGearTextareaField(
+  { label, name, value, placeholder = '', rows = 4 }:
+  { label: string; name: string; value: string; placeholder?: string; rows?: number }
+): string {
+  const panelKey = name.split('.').pop()!
+  return `
+    <div class="gear-picker-wrapper">
+      <label class="field field-textarea">
+        <span>${label}</span>
+        <textarea data-field="${name}" rows="${rows}" placeholder="${escapeHtml(placeholder)}">${escapeHtml(value ?? '')}</textarea>
+      </label>
+      <div class="gear-picker-bar">
+        <button class="gear-add-btn" type="button" data-gear-add="${panelKey}">+ Add from list</button>
+        <div class="skill-suggestions" hidden data-gear-panel="${panelKey}"></div>
+      </div>
+    </div>
+  `
 }
 
 function createLabeledTextarea({ label, name, value, placeholder = '', rows = 4 }) {
@@ -499,11 +548,11 @@ function renderIdentityTab(character) {
         ${createLabeledInput({ label: 'Profile Name', name: 'profileName', value: character.profileName, placeholder: 'Neo, Switch, Ghost...' })}
         ${createLabeledInput({ label: 'Call Sign', name: 'callSign', value: character.callSign, placeholder: 'Operator tag or street handle' })}
         ${createLabeledInput({ label: 'Real Name', name: 'realName', value: character.realName })}
-        ${createLabeledInput({ label: 'Path', name: 'path', value: character.path, placeholder: 'Chosen path or archetype' })}
+        ${createSimpleSuggestField({ label: 'Path', name: 'path', value: character.path, placeholder: 'RSI Hacker, Mercenary, Punksmith...' })}
         ${createLabeledSelect({ label: 'Role', name: 'role', value: character.role, options: roleOptions })}
-        ${createLabeledInput({ label: 'Affiliation', name: 'affiliation', value: character.affiliation })}
-        ${createLabeledInput({ label: 'Home Ship / Crew', name: 'homeShip', value: character.homeShip, placeholder: 'Nebuchadnezzar style crew name' })}
-        ${createLabeledInput({ label: 'Origin', name: 'origin', value: character.origin, placeholder: 'Pod-born, surface-born, nomad...' })}
+        ${createSimpleSuggestField({ label: 'Affiliation', name: 'affiliation', value: character.affiliation, placeholder: 'Zion Resistance, Crystal Shard...' })}
+        ${createSimpleSuggestField({ label: 'Home Ship / Crew', name: 'homeShip', value: character.homeShip, placeholder: 'Speeder Hovercraft, Nomad Hovercraft...' })}
+        ${createSimpleSuggestField({ label: 'Origin', name: 'origin', value: character.origin, placeholder: 'Pod-born, Surface-born, Freeborn...' })}
         ${createLabeledSelect({ label: 'Choice', name: 'redPillChoice', value: character.redPillChoice, options: ['Red Pill', 'Blue Pill', 'Still Deciding'] })}
         ${createLabeledInput({ label: 'Motivation', name: 'motivation', value: character.motivation, placeholder: 'Why do they keep fighting?' })}
       </div>
@@ -615,19 +664,26 @@ function renderSkillsTab(character) {
       <div class="repeatable-list">
         ${character.matrixFeats
           .map(
-            (feat, index) => `
+            (feat, index) => {
+              const knownFeat = FEATS.find(f => f.name === feat.name)
+              const featDescHtml = knownFeat
+                ? `<strong>Rule Bender:</strong> ${escapeHtml(knownFeat.ruleBender)}<br><strong>Rule Breaker:</strong> ${escapeHtml(knownFeat.ruleBreaker)}`
+                : ''
+              return `
               <article class="repeatable-card">
                 <div class="repeatable-head">
                   <strong>Feat ${index + 1}</strong>
                   <button class="mini-button" data-remove-feat="${feat.id}">Remove</button>
                 </div>
                 <div class="field-grid two-up compact-grid">
-                  ${createLabeledInput({ label: 'Feat Name', name: `feat.name.${feat.id}`, value: feat.name, placeholder: 'Bullet Time, Heal, Sonic Blast...' })}
+                  ${createFeatNameField(feat.id, feat.name)}
                   ${createLabeledInput({ label: 'Rating', name: `feat.rating.${feat.id}`, value: feat.rating, type: 'number', min: 0, max: 6 })}
                 </div>
+                <div class="skill-description" data-feat-description="${feat.id}"${!knownFeat ? ' hidden' : ''}>${featDescHtml}</div>
                 ${createLabeledTextarea({ label: 'Feat Notes', name: `feat.notes.${feat.id}`, value: feat.notes, rows: 2, placeholder: 'Rule-bending or rule-breaking effects' })}
               </article>
-            `,
+            `
+            },
           )
           .join('')}
       </div>
@@ -640,10 +696,10 @@ function renderLoadoutTab(character) {
     <section class="sheet-card sheet-card-wide">
       <h3>Loadout And Contacts</h3>
       <div class="field-grid two-up">
-        ${createLabeledTextarea({ label: 'Real World Gear', name: 'gear.realWorld', value: character.gear.realWorld, rows: 4, placeholder: 'Weapons, medkits, tools, hovercraft assets...' })}
-        ${createLabeledTextarea({ label: 'Matrix Loadout', name: 'gear.matrixLoadout', value: character.gear.matrixLoadout, rows: 4, placeholder: 'Downloaded weapons, fake IDs, clothes, vehicles...' })}
-        ${createLabeledTextarea({ label: 'Contacts', name: 'gear.contacts', value: character.gear.contacts, rows: 3, placeholder: 'Fixers, captains, operators, informants...' })}
-        ${createLabeledTextarea({ label: 'Vehicles / Frames', name: 'gear.vehicles', value: character.gear.vehicles, rows: 3, placeholder: 'Hovercraft, bikes, APCs, sentinels...' })}
+        ${createGearTextareaField({ label: 'Real World Gear', name: 'gear.realWorld', value: character.gear.realWorld, rows: 4, placeholder: 'Weapons, medkits, tools, hovercraft assets...' })}
+        ${createGearTextareaField({ label: 'Matrix Loadout', name: 'gear.matrixLoadout', value: character.gear.matrixLoadout, rows: 4, placeholder: 'Downloaded weapons, fake IDs, clothes, vehicles...' })}
+        ${createGearTextareaField({ label: 'Contacts', name: 'gear.contacts', value: character.gear.contacts, rows: 3, placeholder: 'Fixers, captains, operators, informants...' })}
+        ${createGearTextareaField({ label: 'Vehicles / Frames', name: 'gear.vehicles', value: character.gear.vehicles, rows: 3, placeholder: 'Hovercraft, bikes, APCs, sentinels...' })}
       </div>
       ${createLabeledTextarea({ label: 'Hardline Notes', name: 'gear.hardlineNotes', value: character.gear.hardlineNotes, rows: 4, placeholder: 'Exit points, backups, dangerous zones...' })}
     </section>
@@ -718,6 +774,98 @@ function renderJackInView(character, slots) {
   `;
 }
 
+function setupSimpleSuggestions(
+  input: HTMLInputElement,
+  groups: { category: string; items: readonly string[] }[]
+): void {
+  const panel = input.closest('.skill-name-wrapper')?.querySelector<HTMLElement>('.skill-suggestions')
+  if (!panel) return
+
+  const itemBtn = (name: string): string =>
+    `<button class="skill-suggestion" data-suggest-value="${escapeHtml(name)}">
+      <span class="skill-suggestion-name">${escapeHtml(name)}</span>
+    </button>`
+
+  const showBrowse = (): void => {
+    const html: string[] = []
+    for (const group of groups) {
+      html.push(`<div class="skill-suggestion-header">${escapeHtml(group.category)}</div>`)
+      group.items.forEach(name => html.push(itemBtn(name)))
+    }
+    panel.innerHTML = html.join('')
+    panel.hidden = false
+  }
+
+  const showMatches = (term: string): void => {
+    if (!term) { showBrowse(); return }
+    const lower = term.toLowerCase()
+    const allItems = groups.flatMap(g => [...g.items])
+    const matches = allItems.filter(name => name.toLowerCase().includes(lower)).slice(0, 14)
+    if (matches.length === 0) { panel.hidden = true; return }
+    panel.innerHTML = matches.map(itemBtn).join('')
+    panel.hidden = false
+  }
+
+  input.addEventListener('input', () => showMatches(input.value.trim()))
+  input.addEventListener('focus', () => showMatches(input.value.trim()))
+  input.addEventListener('blur', () => { panel.hidden = true })
+  input.addEventListener('keydown', (e) => { if (e.key === 'Escape') panel.hidden = true })
+
+  panel.addEventListener('mousedown', (e) => {
+    const btn = (e.target as Element).closest<HTMLElement>('.skill-suggestion')
+    if (!btn) return
+    e.preventDefault()
+    input.value = btn.dataset.suggestValue!
+    handleFieldUpdate(input)
+    panel.hidden = true
+  })
+}
+
+function setupGearPicker(
+  button: HTMLButtonElement,
+  textarea: HTMLTextAreaElement,
+  categories: GearCategory[]
+): void {
+  const panelKey = button.dataset.gearAdd!
+  const bar = button.parentElement
+  const panel = bar?.querySelector<HTMLElement>(`[data-gear-panel="${panelKey}"]`)
+  if (!panel || !bar) return
+
+  const itemBtn = (name: string): string =>
+    `<button class="skill-suggestion" data-gear-item="${escapeHtml(name)}">
+      <span class="skill-suggestion-name">${escapeHtml(name)}</span>
+    </button>`
+
+  const buildPanel = (): void => {
+    const html: string[] = []
+    for (const cat of categories) {
+      html.push(`<div class="skill-suggestion-header">${escapeHtml(cat.category)}</div>`)
+      cat.items.forEach(name => html.push(itemBtn(name)))
+    }
+    panel.innerHTML = html.join('')
+  }
+
+  button.addEventListener('click', () => {
+    if (!panel.hidden) { panel.hidden = true; return }
+    buildPanel()
+    panel.hidden = false
+  })
+
+  button.addEventListener('blur', () => { panel.hidden = true })
+
+  panel.addEventListener('mousedown', (e) => {
+    const btn = (e.target as Element).closest<HTMLElement>('.skill-suggestion')
+    if (!btn) return
+    e.preventDefault()
+    const item = btn.dataset.gearItem!
+    const current = textarea.value
+    textarea.value = current ? `${current}\n${item}` : item
+    handleFieldUpdate(textarea)
+    panel.hidden = true
+    button.focus()
+  })
+}
+
 function setupSkillInputSuggestions(input: HTMLInputElement, skillId: string): void {
   const panel = input.closest('.skill-name-wrapper')?.querySelector<HTMLElement>('[data-skill-suggestions]')
   if (!panel) return
@@ -781,6 +929,61 @@ function setupSkillInputSuggestions(input: HTMLInputElement, skillId: string): v
       descEl.textContent = btn.dataset.skillDesc
       descEl.hidden = false
     }
+
+    panel.hidden = true
+  })
+}
+
+function setupFeatInputSuggestions(input: HTMLInputElement, featId: string): void {
+  const panel = input.closest('.skill-name-wrapper')?.querySelector<HTMLElement>('[data-feat-suggestions]')
+  if (!panel) return
+
+  const descEl = document.querySelector<HTMLElement>(`[data-feat-description="${featId}"]`)
+
+  const featBtn = (f: { name: string }): string =>
+    `<button class="skill-suggestion" data-feat-name="${escapeHtml(f.name)}">
+      <span class="skill-suggestion-name">${escapeHtml(f.name)}</span>
+      <span class="skill-suggestion-meta">CyberZen</span>
+    </button>`
+
+  const setDesc = (f: { ruleBender: string; ruleBreaker: string }): void => {
+    if (!descEl) return
+    descEl.innerHTML = `<strong>Rule Bender:</strong> ${escapeHtml(f.ruleBender)}<br><strong>Rule Breaker:</strong> ${escapeHtml(f.ruleBreaker)}`
+    descEl.hidden = false
+  }
+
+  const showBrowse = (): void => {
+    panel.innerHTML = '<div class="skill-suggestion-header">Matrix Feats</div>' + FEATS.map(featBtn).join('')
+    panel.hidden = false
+  }
+
+  const showMatches = (term: string): void => {
+    if (!term) { showBrowse(); return }
+    const lower = term.toLowerCase()
+    const matches = FEATS.filter(f => f.name.toLowerCase().includes(lower)).slice(0, 12)
+    if (matches.length === 0) { panel.hidden = true; return }
+    const exact = FEATS.find(f => f.name.toLowerCase() === lower)
+    if (exact) setDesc(exact)
+    panel.innerHTML = matches.map(featBtn).join('')
+    panel.hidden = false
+  }
+
+  input.addEventListener('input', () => showMatches(input.value.trim()))
+  input.addEventListener('focus', () => showMatches(input.value.trim()))
+  input.addEventListener('blur', () => { panel.hidden = true })
+  input.addEventListener('keydown', (e) => { if (e.key === 'Escape') panel.hidden = true })
+
+  panel.addEventListener('mousedown', (e) => {
+    const btn = (e.target as Element).closest<HTMLElement>('.skill-suggestion')
+    if (!btn) return
+    e.preventDefault()
+
+    const featName = btn.dataset.featName!
+    input.value = featName
+    handleFieldUpdate(input)
+
+    const found = FEATS.find(f => f.name === featName)
+    if (found) setDesc(found)
 
     panel.hidden = true
   })
@@ -910,6 +1113,38 @@ function bindEvents() {
     const skillId = input.dataset.field!.split('.')[2]
     setupSkillInputSuggestions(input, skillId)
   });
+
+  document.querySelectorAll<HTMLInputElement>('input[data-field*="feat.name"]').forEach((input) => {
+    const featId = input.dataset.field!.split('.')[2]
+    setupFeatInputSuggestions(input, featId)
+  });
+
+  const pathInput = document.querySelector<HTMLInputElement>('[data-field="path"]')
+  if (pathInput) setupSimpleSuggestions(pathInput, [{ category: 'Paths', items: PATHS }])
+
+  const affiliationInput = document.querySelector<HTMLInputElement>('[data-field="affiliation"]')
+  if (affiliationInput) setupSimpleSuggestions(affiliationInput, [{ category: 'Affiliations', items: AFFILIATIONS }])
+
+  const originInput = document.querySelector<HTMLInputElement>('[data-field="origin"]')
+  if (originInput) setupSimpleSuggestions(originInput, [{ category: 'Origins', items: ORIGINS }])
+
+  const homeShipInput = document.querySelector<HTMLInputElement>('[data-field="homeShip"]')
+  if (homeShipInput) setupSimpleSuggestions(homeShipInput, [{ category: 'Ship Types', items: SHIP_TYPES }])
+
+  const gearPickerMap: Record<string, GearCategory[]> = {
+    realWorld: [...REAL_WORLD_GEAR],
+    matrixLoadout: [...MATRIX_GEAR],
+    vehicles: [...VEHICLES_ALL],
+    contacts: [{ category: 'Contact Types', items: CONTACT_ROLES }],
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('[data-gear-add]').forEach((button) => {
+    const panelKey = button.dataset.gearAdd!
+    const wrapper = button.closest('.gear-picker-wrapper')
+    const textarea = wrapper?.querySelector<HTMLTextAreaElement>(`[data-field="gear.${panelKey}"]`)
+    const categories = gearPickerMap[panelKey]
+    if (textarea && categories) setupGearPicker(button, textarea, categories)
+  })
 
   document.querySelector('[data-action="add-feat"]')?.addEventListener('click', () => {
     updateSelectedCharacter((character) => {
