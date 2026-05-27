@@ -1,279 +1,239 @@
-/**
- * Animation utilities for Matrix RPG app using motion.dev
- * Handles view transitions, element reveals, and interactive elements
- */
-
 import { animate, stagger } from 'motion'
 
-/**
- * Animate view transitions with a Matrix-themed effect
- * Fades out current view and brings in new view with scale/translate
- */
+// ── Existing entrance animations ─────────────────────────────────────────────
+
 export function animateViewTransition() {
   const viewShell = document.querySelector('.view-shell')
   if (!viewShell) return
-
-  // Fade in and scale animation
   animate(
     viewShell,
-    {
-      opacity: [0, 1],
-      transform: ['scale(0.95) translateY(10px)', 'scale(1) translateY(0)'],
-    },
-    {
-      duration: 0.5,
-      easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-    },
+    { opacity: [0, 1], transform: ['scale(0.95) translateY(10px)', 'scale(1) translateY(0)'] },
+    { duration: 0.5, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' },
   )
 }
 
-/**
- * Animate hero section elements with staggered entrance
- */
 export function animateHeroElements() {
   const heroPanel = document.querySelector('.hero-panel')
   if (!heroPanel) return
-
   const copy = heroPanel.querySelector('.hero-copy')
   const cta = heroPanel.querySelector('.hero-cta-row')
-
-  if (copy) {
-    animate(
-      copy,
-      { opacity: [0, 1], transform: ['translateX(-20px)', 'translateX(0)'] },
-      { duration: 0.6, delay: 0.1, easing: 'ease-out' },
-    )
-  }
-
-  if (cta) {
-    animate(
-      cta,
-      { opacity: [0, 1], transform: ['translateY(20px)', 'translateY(0)'] },
-      { duration: 0.5, delay: 0.3, easing: 'ease-out' },
-    )
-  }
+  if (copy) animate(copy, { opacity: [0, 1], transform: ['translateX(-20px)', 'translateX(0)'] }, { duration: 0.6, delay: 0.1, easing: 'ease-out' })
+  if (cta) animate(cta, { opacity: [0, 1], transform: ['translateY(20px)', 'translateY(0)'] }, { duration: 0.5, delay: 0.3, easing: 'ease-out' })
 }
 
-/**
- * Animate hero grid sections with staggered reveal
- */
 export function animateHeroGrid() {
   const sections = document.querySelectorAll('.hero-grid > section')
   if (!sections.length) return
-
-  animate(
-    sections,
-    { opacity: [0, 1], transform: ['scale(0.9)', 'scale(1)'] },
-    {
-      duration: 0.5,
-      delay: stagger(0.1, { start: 0.2 }),
-      easing: 'ease-out',
-    },
-  )
+  animate(sections, { opacity: [0, 1], transform: ['scale(0.9)', 'scale(1)'] }, { duration: 0.5, delay: stagger(0.1, { start: 0.2 }), easing: 'ease-out' })
 }
 
-/**
- * Animate timeline cards with staggered entrance from left
- */
 export function animateTimelineCards() {
   const cards = document.querySelectorAll('.timeline-card')
   if (!cards.length) return
-
-  animate(
-    cards,
-    { opacity: [0, 1], transform: ['translateX(-30px)', 'translateX(0)'] },
-    {
-      duration: 0.5,
-      delay: stagger(0.15, { start: 0.2 }),
-      easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-    },
-  )
+  animate(cards, { opacity: [0, 1], transform: ['translateX(-30px)', 'translateX(0)'] }, { duration: 0.5, delay: stagger(0.15, { start: 0.2 }), easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' })
 }
 
-/**
- * Animate the action banner with scale and fade
- */
 export function animateActionBanner() {
   const banner = document.querySelector('.action-banner')
   if (!banner) return
-
-  animate(
-    banner,
-    { opacity: [0, 1], transform: ['scale(0.95)', 'scale(1)'] },
-    {
-      duration: 0.6,
-      delay: 0.4,
-      easing: 'ease-out',
-    },
-  )
+  animate(banner, { opacity: [0, 1], transform: ['scale(0.95)', 'scale(1)'] }, { duration: 0.6, delay: 0.4, easing: 'ease-out' })
 }
 
-/**
- * Animate roster cards with staggered reveal
- */
 export function animateRosterCards() {
   const cards = document.querySelectorAll('.roster-card')
   if (!cards.length) return
-
-  animate(
-    cards,
-    { opacity: [0, 1], transform: ['translateY(10px)', 'translateY(0)'] },
-    {
-      duration: 0.4,
-      delay: stagger(0.05, { start: 0.1 }),
-      easing: 'ease-out',
-    },
-  )
+  animate(cards, { opacity: [0, 1], transform: ['translateY(10px)', 'translateY(0)'] }, { duration: 0.4, delay: stagger(0.05, { start: 0.1 }), easing: 'ease-out' })
 }
 
-/**
- * Animate sheet cards with staggered entrance
- */
 export function animateSheetCards() {
   const cards = document.querySelectorAll('.sheet-card')
   if (!cards.length) return
-
-  animate(
-    cards,
-    { opacity: [0, 1], transform: ['translateY(20px)', 'translateY(0)'] },
-    {
-      duration: 0.5,
-      delay: stagger(0.08, { start: 0.15 }),
-      easing: 'ease-out',
-    },
-  )
+  animate(cards, { opacity: [0, 1], transform: ['translateY(20px)', 'translateY(0)'] }, { duration: 0.5, delay: stagger(0.08, { start: 0.15 }), easing: 'ease-out' })
 }
 
-/**
- * Animate sheet tabs with fade and scale
- */
 export function animateSheetTabs() {
   const tabs = document.querySelectorAll('.sheet-tab')
   if (!tabs.length) return
-
-  animate(
-    tabs,
-    { opacity: [0, 1], scale: [0.95, 1] },
-    {
-      duration: 0.3,
-      delay: stagger(0.05),
-      easing: 'ease-out',
-    },
-  )
+  animate(tabs, { opacity: [0, 1], scale: [0.95, 1] }, { duration: 0.3, delay: stagger(0.05), easing: 'ease-out' })
 }
 
-/**
- * Add interactive hover animations to buttons
- */
 export function setupButtonAnimations() {
-  const buttons = document.querySelectorAll(
-    '.pill-button, .ghost-button, .solid-button, .danger-button, .route-link, .sheet-tab',
-  )
-
+  const buttons = document.querySelectorAll('.pill-button, .ghost-button, .solid-button, .danger-button, .route-link, .sheet-tab')
   buttons.forEach((button) => {
-    button.addEventListener('mouseenter', () => {
-      animate(button, { scale: [1, 1.05] }, { duration: 0.2, easing: 'ease-out' })
-    })
-
-    button.addEventListener('mouseleave', () => {
-      animate(button, { scale: [1.05, 1] }, { duration: 0.2, easing: 'ease-out' })
-    })
+    button.addEventListener('mouseenter', () => animate(button, { scale: [1, 1.05] }, { duration: 0.2, easing: 'ease-out' }))
+    button.addEventListener('mouseleave', () => animate(button, { scale: [1.05, 1] }, { duration: 0.2, easing: 'ease-out' }))
   })
 }
 
-/**
- * Animate individual cards when hovered (roster, sheet cards, etc)
- */
 export function setupCardAnimations() {
   const cards = document.querySelectorAll('.roster-card, .sheet-card, .timeline-card, .hero-panel')
-
   cards.forEach((card) => {
-    card.addEventListener('mouseenter', () => {
-      animate(card, { borderColor: 'var(--line-strong)' }, { duration: 0.2 })
-    })
+    card.addEventListener('mouseenter', () => animate(card, { borderColor: 'var(--line-strong)' }, { duration: 0.2 }))
+    card.addEventListener('mouseleave', () => animate(card, { borderColor: 'var(--line)' }, { duration: 0.2 }))
+  })
+}
 
-    card.addEventListener('mouseleave', () => {
-      animate(card, { borderColor: 'var(--line)' }, { duration: 0.2 })
-    })
+export function animatePulse(element: Element, duration = 0.6) {
+  if (!element) return
+  animate(element, { opacity: [1, 0.7, 1], transform: ['scale(1)', 'scale(1.02)', 'scale(1)'] }, { duration, repeat: 1, easing: 'ease-in-out' })
+}
+
+export function animateGlitch(element: Element, intensity = 5) {
+  if (!element) return
+  const frames: { transform: string; opacity: number }[] = []
+  for (let i = 0; i < intensity; i++) {
+    frames.push({ transform: `translateX(${(Math.random() - 0.5) * 8}px)`, opacity: Math.random() > 0.3 ? 1 : 0.9 })
+  }
+  frames.push({ transform: 'translateX(0)', opacity: 1 })
+  animate(element, frames, { duration: 0.3, easing: 'ease-in-out' })
+}
+
+// ── Matrix-themed animations ─────────────────────────────────────────────────
+
+const MATRIX_CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789@#$%^&|<>[]ABCDEF'
+
+/**
+ * Classic Matrix decode — cycles random katakana/symbols before revealing real text.
+ */
+export function animateTextScramble(element: HTMLElement, duration = 900) {
+  const original = element.textContent || ''
+  const start = performance.now()
+
+  const tick = (now: number) => {
+    const progress = Math.min((now - start) / duration, 1)
+    const resolved = Math.floor(progress * original.length)
+
+    element.textContent = original
+      .split('')
+      .map((char, i) => {
+        if (char === ' ' || char === '\n') return char
+        if (i < resolved) return char
+        return MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)]
+      })
+      .join('')
+
+    if (progress < 1) requestAnimationFrame(tick)
+    else element.textContent = original
+  }
+
+  requestAnimationFrame(tick)
+}
+
+/**
+ * Clip-path scanline wipe from top + green border flash.
+ * Replaces plain fade-up for sheet cards.
+ */
+export function animateGlitchReveal(elements: Element | Element[] | NodeListOf<Element>, delayOffset = 0) {
+  const els = elements instanceof Element ? [elements] : Array.from(elements as NodeListOf<Element>)
+  if (!els.length) return
+
+  els.forEach((el, i) => {
+    const delay = delayOffset + i * 0.07
+
+    animate(
+      el,
+      { clipPath: ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'], opacity: [0, 1] },
+      { duration: 0.38, delay, easing: [0.22, 1, 0.36, 1] },
+    )
+
+    animate(
+      el,
+      { borderColor: ['rgba(0,255,65,0.8)', 'var(--line)'] },
+      { duration: 0.8, delay: delay + 0.05, easing: 'ease-out' },
+    )
   })
 }
 
 /**
- * Orchestrate all animations for the current view
- * Intelligently detects which elements are present and animates them
+ * Phone screen boot flicker — called when crew powers on their field phone.
  */
+export function animatePhoneBootUp(screenEl: HTMLElement) {
+  animate(
+    screenEl,
+    {
+      opacity: [0, 0.5, 0.1, 1, 0.7, 1],
+      filter: ['brightness(4) contrast(2)', 'brightness(0.3)', 'brightness(3)', 'brightness(0.8)', 'brightness(1)'],
+    },
+    { duration: 0.55, easing: 'ease-in-out' },
+  )
+}
+
+/**
+ * Zion Mesh connects — green pulse sweep on the connection banner.
+ */
+export function animateConnectionFlash(bannerEl: HTMLElement) {
+  animate(
+    bannerEl,
+    { opacity: [0, 1], backgroundColor: ['rgba(0,255,65,0.22)', 'rgba(0,0,0,0)'] },
+    { duration: 1.1, easing: 'ease-out' },
+  )
+}
+
+/**
+ * New message arrival — slides in from the left with a green flash.
+ */
+export function animateNewMessage(el: HTMLElement) {
+  animate(
+    el,
+    {
+      opacity: [0, 1],
+      transform: ['translateX(-12px)', 'translateX(0)'],
+      backgroundColor: ['rgba(0,255,65,0.18)', 'rgba(0,0,0,0)'],
+    },
+    { duration: 0.4, easing: [0.34, 1.56, 0.64, 1] },
+  )
+}
+
+/**
+ * Red pill / blue pill glow on hover — stronger than the generic button scale.
+ */
+function setupPillButtonAnimations() {
+  const red = document.querySelector('.pill-button.red-pill') as HTMLElement | null
+  const blue = document.querySelector('.pill-button.blue-pill') as HTMLElement | null
+
+  if (red) {
+    red.addEventListener('mouseenter', () => animate(red, { boxShadow: '0 0 28px rgba(220,38,38,0.75)', scale: 1.07 }, { duration: 0.25 }))
+    red.addEventListener('mouseleave', () => animate(red, { boxShadow: '0 0 0px rgba(220,38,38,0)', scale: 1 }, { duration: 0.25 }))
+  }
+
+  if (blue) {
+    blue.addEventListener('mouseenter', () => animate(blue, { boxShadow: '0 0 28px rgba(37,99,235,0.75)', scale: 1.07 }, { duration: 0.25 }))
+    blue.addEventListener('mouseleave', () => animate(blue, { boxShadow: '0 0 0px rgba(37,99,235,0)', scale: 1 }, { duration: 0.25 }))
+  }
+}
+
+// ── Orchestration ─────────────────────────────────────────────────────────────
+
 export function animateCurrentView() {
-  // Always animate the view transition
   animateViewTransition()
 
-  // Determine which view elements are present and animate them
   if (document.querySelector('.hero-panel.hero-view')) {
-    // Home view
     animateHeroElements()
     setTimeout(animateHeroGrid, 200)
+    // Matrix decode on the main headline — starts mid-fade-in for layered effect
+    const h1 = document.querySelector('.hero-copy h1') as HTMLElement | null
+    if (h1) setTimeout(() => animateTextScramble(h1, 900), 150)
   }
 
   if (document.querySelector('.learn-view')) {
-    // Learn view
     animateTimelineCards()
     setTimeout(animateActionBanner, 300)
+    // Decode the learn view headline too
+    const h2 = document.querySelector('.learn-view h2') as HTMLElement | null
+    if (h2) setTimeout(() => animateTextScramble(h2, 700), 200)
   }
 
   if (document.querySelector('.jack-in-view')) {
-    // Jack In (builder) view
     animateSheetTabs()
-    setTimeout(animateSheetCards, 100)
+    // Glitch reveal instead of plain fade-up
+    setTimeout(() => animateGlitchReveal(document.querySelectorAll('.sheet-card')), 100)
   }
 
-  // Always animate roster if present
   setTimeout(animateRosterCards, 50)
 }
 
-/**
- * Setup all interactive element animations (hover effects, etc)
- */
 export function setupInteractiveAnimations() {
   setupButtonAnimations()
   setupCardAnimations()
-}
-
-/**
- * Pulse animation for attention-grabbing elements
- */
-export function animatePulse(element, duration = 0.6) {
-  if (!element) return
-
-  animate(
-    element,
-    {
-      opacity: [1, 0.7, 1],
-      transform: ['scale(1)', 'scale(1.02)', 'scale(1)'],
-    },
-    {
-      duration,
-      repeat: 1,
-      easing: 'ease-in-out',
-    },
-  )
-}
-
-/**
- * Glitch animation for error states or dramatic effects
- */
-export function animateGlitch(element, intensity = 5) {
-  if (!element) return
-
-  const glitchFrames = []
-  for (let i = 0; i < intensity; i++) {
-    glitchFrames.push({
-      transform: `translateX(${(Math.random() - 0.5) * 8}px)`,
-      opacity: Math.random() > 0.3 ? 1 : 0.9,
-    })
-  }
-  glitchFrames.push({ transform: 'translateX(0)', opacity: 1 })
-
-  animate(element, glitchFrames, {
-    duration: 0.3,
-    easing: 'ease-in-out',
-  })
+  setupPillButtonAnimations()
 }

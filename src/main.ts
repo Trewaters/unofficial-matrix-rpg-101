@@ -1,7 +1,7 @@
 import './styles.css'
 import '@shoelace-style/shoelace/dist/themes/dark.css'
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js'
-import { animateCurrentView, setupInteractiveAnimations } from './animations.js'
+import { animateCurrentView, setupInteractiveAnimations, animateConnectionFlash, animatePhoneBootUp, animateNewMessage } from './animations.js'
 import { SKILLS, CATEGORY_ORDER } from './skills.js'
 import { FEATS } from './feats.js'
 import { REAL_WORLD_GEAR, MATRIX_GEAR, VEHICLES_ALL, CONTACT_ROLES, GearCategory } from './gear.js'
@@ -401,7 +401,7 @@ window.addEventListener('hashchange', () => {
   const route = getRouteFromHash();
   if (route !== state.route) {
     state.route = route;
-    render();
+    render(true);
   }
 });
 
@@ -424,8 +424,15 @@ function scheduleRender(scrollPhone = false) {
 if (FIREBASE_ENABLED && fbDb) {
   // Watch connection state
   onValue(fbRef(fbDb, '.info/connected'), (snap) => {
+    const wasConnected = state.firebaseConnected
     state.firebaseConnected = snap.val() === true
     render()
+    if (state.firebaseConnected && !wasConnected) {
+      requestAnimationFrame(() => {
+        const banner = document.querySelector('.comms-conn-banner') as HTMLElement | null
+        if (banner) animateConnectionFlash(banner)
+      })
+    }
   })
 
   // Listen for all messages — fires for existing ones on connect, then new ones live
@@ -502,7 +509,7 @@ function setRoute(route, options = {}) {
     window.location.hash = route;
   }
 
-  render();
+  render(true);
 }
 
 function setSheetTab(tab) {
@@ -516,7 +523,7 @@ function setSheetTab(tab) {
     registerSession(getSelectedCharacter())
   }
 
-  render();
+  render(true);
 }
 
 function updateSelectedCharacter(updater, shouldRender = true) {
@@ -1844,7 +1851,7 @@ function renderCommsTab(character: any): string {
   `
 }
 
-function render() {
+function render(shouldAnimate = false) {
   const character = getSelectedCharacter();
   const slots = computeDownloadSlots(character);
 
@@ -1872,9 +1879,7 @@ function render() {
   `;
 
   bindEvents();
-  
-  // Trigger animations after DOM is rendered
-  animateCurrentView();
+  if (shouldAnimate) animateCurrentView();
   setupInteractiveAnimations();
 }
 
@@ -2130,7 +2135,10 @@ function bindEvents() {
     render()
     if (state.phoneOn) {
       const screen = document.getElementById('phone-screen')
-      if (screen) screen.scrollTop = screen.scrollHeight
+      if (screen) {
+        screen.scrollTop = screen.scrollHeight
+        animatePhoneBootUp(screen as HTMLElement)
+      }
     }
   })
 
@@ -2147,6 +2155,10 @@ function bindEvents() {
     if (msgEl) msgEl.value = ''
     const countEl = document.getElementById('op-count')
     if (countEl) countEl.textContent = '0 / 501'
+    requestAnimationFrame(() => {
+      const first = document.querySelector('.op-log .op-log-entry') as HTMLElement | null
+      if (first) animateNewMessage(first)
+    })
   })
 
   document.querySelector('[data-action="send-crew-reply"]')?.addEventListener('click', () => {
@@ -2159,6 +2171,10 @@ function bindEvents() {
     if (msgEl) msgEl.value = ''
     const countEl = document.getElementById('crew-reply-count')
     if (countEl) countEl.textContent = '0 / 501'
+    requestAnimationFrame(() => {
+      const first = document.querySelector('.crew-log .op-log-entry') as HTMLElement | null
+      if (first) animateNewMessage(first)
+    })
   })
 
   document.querySelector('[data-action="clear-message-log"]')?.addEventListener('click', () => {
@@ -2244,4 +2260,4 @@ function handleFieldUpdate(element) {
 }
 
 // Initialize the app
-render();
+render(true);
