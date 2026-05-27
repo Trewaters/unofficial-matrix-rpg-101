@@ -290,9 +290,6 @@ function renderHomeView(character) {
         <section class="hero-copy">
           <p class="eyebrow">Wake up. Choose your path.</p>
           <h1>Start in the construct. Learn the world. Then jack in.</h1>
-          <p class="hero-text">
-            The old version was a single long page because everything lived inside one render template. This version breaks the experience into distinct views so players get a cleaner first impression and a less overwhelming sheet builder.
-          </p>
           <div class="hero-cta-row">
             <button class="pill-button red-pill" data-route="jack-in" data-sheet-tab="identity">Take The Red Pill</button>
             <button class="pill-button blue-pill" data-route="learn">Take The Blue Pill</button>
