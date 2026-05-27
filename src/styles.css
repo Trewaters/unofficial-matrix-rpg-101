@@ -535,15 +535,37 @@ button {
     border-radius: 20px;
   }
 
+  .builder-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .save-rail {
+    position: static;
+  }
+
   .site-header,
   .hero-cta-row,
   .download-summary,
   .route-nav,
   .builder-hero,
-  .action-banner,
-  .sheet-toolbar {
+  .action-banner {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .sheet-toolbar {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .sheet-tab-bar {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    flex: 1;
+    min-width: 0;
   }
 
   .field-grid.two-up,
@@ -558,10 +580,16 @@ button {
   .solid-button,
   .danger-button,
   .import-label,
-  .route-link,
-  .sheet-tab {
+  .route-link {
     width: 100%;
     text-align: center;
+  }
+
+  .sheet-tab {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 }
 

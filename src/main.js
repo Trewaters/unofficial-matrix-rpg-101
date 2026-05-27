@@ -10,8 +10,47 @@ const damageLevels = ['None', 'Light', 'Moderate', 'Serious', 'Critical', 'Incap
 const roleOptions = ['RSI Hacker', 'Operator', 'Pilot', 'Captain', 'Crew', 'Nomad', 'Surface Human'];
 const downloadOptions = ['None', 'Temporary', 'Permanent'];
 
+// Suggested skills for Matrix RPG gameplay
+const suggestedSkills = [
+  { name: 'Martial Arts', attribute: 'Agility', category: 'Combat' },
+  { name: 'Handguns', attribute: 'Agility', category: 'Combat' },
+  { name: 'Heavy Weapons', attribute: 'Strength', category: 'Combat' },
+  { name: 'Melee Weapons', attribute: 'Strength', category: 'Combat' },
+  { name: 'Stealth', attribute: 'Agility', category: 'Infiltration' },
+  { name: 'Lockpicking', attribute: 'Agility', category: 'Infiltration' },
+  { name: 'Hacking', attribute: 'Focus', category: 'Matrix' },
+  { name: 'Programming', attribute: 'Focus', category: 'Matrix' },
+  { name: 'Exploit Protocols', attribute: 'Focus', category: 'Matrix' },
+  { name: 'Intrusion Countermeasures', attribute: 'Focus', category: 'Matrix' },
+  { name: 'Perception', attribute: 'Common Sense', category: 'Awareness' },
+  { name: 'Investigation', attribute: 'Common Sense', category: 'Awareness' },
+  { name: 'Persuasion', attribute: 'Common Sense', category: 'Social' },
+  { name: 'Deception', attribute: 'Common Sense', category: 'Social' },
+  { name: 'Psychology', attribute: 'Focus', category: 'Knowledge' },
+  { name: 'Survival', attribute: 'Endurance', category: 'Physical' },
+  { name: 'Piloting', attribute: 'Agility', category: 'Vehicles' },
+  { name: 'Navigation', attribute: 'Common Sense', category: 'Knowledge' },
+  { name: 'Repair', attribute: 'Focus', category: 'Technical' },
+  { name: 'Medicine', attribute: 'Focus', category: 'Medical' },
+];
+
 function uid() {
   return `char-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
+}
+
+/**
+ * Filters suggested skills by search term and returns matching skills.
+ * Includes both name and category matching.
+ *
+ * @param {string} search - The search term
+ * @returns {Array} Array of matching skills
+ */
+function filterSuggestedSkills(search) {
+  if (!search.trim()) return suggestedSkills;
+  const lower = search.toLowerCase();
+  return suggestedSkills.filter((skill) =>
+    skill.name.toLowerCase().includes(lower) || skill.category.toLowerCase().includes(lower)
+  );
 }
 
 function createSkill() {
@@ -694,6 +733,50 @@ function renderJackInView(character, slots) {
   `;
 }
 
+/**
+ * Renders the skill autocomplete modal.
+ * Displays suggested skills with search and allows free-form input.
+ *
+ * @returns {string} HTML markup for the autocomplete modal
+ */
+function renderSkillAutocompleteModal() {
+  const suggestions = filterSuggestedSkills('');
+  return `
+    <div id="skill-autocomplete-modal" class="autocomplete-modal autocomplete-overlay">
+      <div class="autocomplete-container">
+        <div class="autocomplete-header">
+          <h3>Add a Skill</h3>
+          <button class="mini-button" data-action="close-autocomplete">✕</button>
+        </div>
+        <div class="autocomplete-search-wrapper">
+          <input
+            type="text"
+            id="skill-search-input"
+            class="autocomplete-input"
+            placeholder="Search skills or enter custom..."
+            autocomplete="off"
+          />
+        </div>
+        <div class="autocomplete-results" id="skill-suggestions">
+          ${suggestions
+            .map(
+              (skill) => `
+              <button class="autocomplete-item" data-skill-name="${escapeHtml(skill.name)}" data-skill-attr="${escapeHtml(skill.attribute)}">
+                <strong>${escapeHtml(skill.name)}</strong>
+                <span class="autocomplete-meta">${escapeHtml(skill.attribute)} • ${escapeHtml(skill.category)}</span>
+              </button>
+            `,
+            )
+            .join('')}
+        </div>
+        <div class="autocomplete-footer">
+          <button class="solid-button" id="add-custom-skill-btn">Add Custom Skill</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function render() {
   const character = getSelectedCharacter();
   const slots = computeDownloadSlots(character);
@@ -718,6 +801,7 @@ function render() {
       <main class="view-shell" data-view="${viewClass}">
         ${viewMarkup}
       </main>
+      ${renderSkillAutocompleteModal()}
     </div>
   `;
 
@@ -726,6 +810,137 @@ function render() {
   // Trigger animations after DOM is rendered
   animateCurrentView();
   setupInteractiveAnimations();
+}
+
+/**
+ * Shows the skill autocomplete modal by making it visible.
+ */
+function showSkillAutocomplete() {
+  const modal = document.getElementById('skill-autocomplete-modal');
+  if (modal) {
+    modal.classList.add('active');
+    setTimeout(() => {
+      const input = document.getElementById('skill-search-input');
+      if (input) {
+        input.focus();
+      }
+    }, 50);
+  }
+}
+
+/**
+ * Hides the skill autocomplete modal.
+ */
+function hideSkillAutocomplete() {
+  const modal = document.getElementById('skill-autocomplete-modal');
+  if (modal) {
+    modal.classList.remove('active');
+  }
+}
+
+/**
+ * Updates autocomplete suggestions based on search term.
+ *
+ * @param {string} searchTerm - The search term
+ */
+function updateAutocompleteResults(searchTerm) {
+  const suggestions = filterSuggestedSkills(searchTerm);
+  const resultsContainer = document.getElementById('skill-suggestions');
+  if (resultsContainer) {
+    resultsContainer.innerHTML = suggestions
+      .map(
+        (skill) => `
+        <button class="autocomplete-item" data-skill-name="${escapeHtml(skill.name)}" data-skill-attr="${escapeHtml(skill.attribute)}">
+          <strong>${escapeHtml(skill.name)}</strong>
+          <span class="autocomplete-meta">${escapeHtml(skill.attribute)} • ${escapeHtml(skill.category)}</span>
+        </button>
+      `,
+      )
+      .join('');
+    
+    // Re-attach listeners to the newly created buttons
+    resultsContainer.querySelectorAll('.autocomplete-item').forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        addSkillFromSelection(button.dataset.skillName, button.dataset.skillAttr);
+      });
+    });
+  }
+}
+
+/**
+ * Adds a skill with the given name and attribute to the current character.
+ * Closes the autocomplete modal after adding.
+ *
+ * @param {string} skillName - The name of the skill
+ * @param {string} skillAttribute - The default attribute for the skill
+ */
+function addSkillFromSelection(skillName, skillAttribute) {
+  updateSelectedCharacter((character) => {
+    const newSkill = createSkill();
+    newSkill.name = skillName;
+    newSkill.attribute = skillAttribute || 'Agility';
+    character.skills.push(newSkill);
+    return character;
+  });
+  hideSkillAutocomplete();
+}
+
+/**
+ * Sets up all event listeners for the autocomplete modal and interactions.
+ */
+function setupAutocompleteHandlers() {
+  // Close button
+  document.querySelector('[data-action="close-autocomplete"]')?.addEventListener('click', hideSkillAutocomplete);
+
+  // Search input
+  const searchInput = document.getElementById('skill-search-input');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      updateAutocompleteResults(e.target.value);
+    });
+    searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const value = e.target.value.trim();
+        if (value) {
+          addSkillFromSelection(value, 'Agility');
+        }
+      }
+    });
+  }
+
+  // Skill suggestion buttons
+  document.querySelectorAll('.autocomplete-item').forEach((button) => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      addSkillFromSelection(button.dataset.skillName, button.dataset.skillAttr);
+    });
+  });
+
+  // Custom skill button
+  const customBtn = document.getElementById('add-custom-skill-btn');
+  if (customBtn) {
+    customBtn.addEventListener('click', () => {
+      const input = document.getElementById('skill-search-input');
+      const value = input?.value?.trim();
+      if (value) {
+        addSkillFromSelection(value, 'Agility');
+      } else {
+        alert('Please enter a skill name.');
+      }
+    });
+  }
+
+  // Close modal when clicking outside
+  const modal = document.getElementById('skill-autocomplete-modal');
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        hideSkillAutocomplete();
+      }
+    });
+  }
 }
 
 function bindEvents() {
@@ -808,11 +1023,11 @@ function bindEvents() {
   });
 
   document.querySelector('[data-action="add-skill"]')?.addEventListener('click', () => {
-    updateSelectedCharacter((character) => {
-      character.skills.push(createSkill());
-      return character;
-    });
+    showSkillAutocomplete();
   });
+
+  // Autocomplete modal event handlers
+  setupAutocompleteHandlers();
 
   document.querySelector('[data-action="add-feat"]')?.addEventListener('click', () => {
     updateSelectedCharacter((character) => {
