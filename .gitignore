@@ -52,5 +52,3 @@ ehthumbs.db
 # Temporary files
 *.tmp
 .turbo/
-
-firebase-config.ts
