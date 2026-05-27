@@ -1,0 +1,2894 @@
+The 
+Unofficial
+Matrix Role Playing Game
+ 
+ 
+Written by
+ 
+Tre’ Grisby
+
+ 
+ 
+
+The Matrix RPG 
+
+Written by 
+Tre’ Grisby
+
+Orignally Edited by 
+Yvonne Falvey Mihalik & Naomi Tepper
+
+Cover and Title Page Art by 
+Naimane (http://naimane.deviantart.com)
+
+Back Page Art by
+ren-rko (http://www.behance.net/ren-rko)
+
+
+Published by 3Waters Games
+Email: trewaters@hotmail.com
+
+Date of Publication: August 20, 2012
+1st Edition Printed August 20, 2012
+2nd Revised Edition Printed November 25, 2012
+
+Copyright © 2012
+
+You are free to share, copy, remix, adapt, distribute and transmit the work under the following conditions: 
+Attribution — You must attribute the work in the manner specified by the author or licensor (but not in any 
+way that suggests that they endorse you or your use of the work); Noncommercial — You may not use this 
+work for commercial purposes. Waiver — Any of the above conditions can be waived if you get permission 
+from the copyright holder. Public Domain — Where the work or any of its elements is in the public domain 
+under applicable law, that status is in no way affected by the license. Other Rights — In no way are any of the 
+following rights affected by the license: Your fair dealing or fair use rights, or other applicable copyright 
+exceptions and limitations; The author's moral rights; Rights other persons may have either in the work itself 
+or in how the work is used, such as publicity or privacy rights. Notice — For any reuse or distribution, you must 
+make clear to others the license terms of this work. (See full creative common license for details.)
+
+CONVERTER’S STATEMENT OF RESPONSIBILITIES
+The eBook was converted by “3Waters,” which is solely responsible for any errors related to readability found 
+in this eBook. Although we strive for perfection, should you find an error related to formatting, missing or 
+incorrect characters, or other readability issues, please advise us of it by addressing emails to “eBook 
+formatting at 3Waters” at www.3waters.org or trewaters@hotmail.com.
+      ?
+   Attribution-NonCommercial CC BY-NC
+         THE WORK (AS DEFINED BELOW) IS PROVIDED UNDER THE TERMS OF THIS CREATIVE COMMONS PUBLIC LICENSE ("CCPL" OR "LICENSE"). THE WORK IS 
+PROTECTED BY COPYRIGHT AND/OR OTHER APPLICABLE LAW. ANY USE OF THE WORK OTHER THAN AS AUTHORIZED UNDER THIS LICENSE OR COPYRIGHT LAW IS 
+PROHIBITED.
+         BY EXERCISING ANY RIGHTS TO THE WORK PROVIDED HERE, YOU ACCEPT AND AGREE TO BE BOUND BY THE TERMS OF THIS LICENSE. TO THE EXTENT THIS 
+LICENSE MAY BE CONSIDERED TO BE A CONTRACT, THE LICENSOR GRANTS YOU THE RIGHTS CONTAINED HERE IN CONSIDERATION OF YOUR ACCEPTANCE OF SUCH 
+TERMS AND CONDITIONS.
+         1. Definitions
+         "Adaptation" means a work based upon the Work, or upon the Work and other pre-existing works, such as a translation, adaptation, derivative work, 
+arrangement of music or other alterations of a literary or artistic work, or phonogram or performance and includes cinematographic adaptations or any other form in 
+which the Work may be recast, transformed, or adapted including in any form recognizably derived from the original, except that a work that constitutes a Collection 
+will not be considered an Adaptation for the purpose of this License. For the avoidance of doubt, where the Work is a musical work, performance or phonogram, the 
+synchronization of the Work in timed-relation with a moving image ("synching") will be considered an Adaptation for the purpose of this License.
+         "Collection" means a collection of literary or artistic works, such as encyclopedias and anthologies, or performances, phonograms or broadcasts, or other 
+works or subject matter other than works listed in Section 1(f) below, which, by reason of the selection and arrangement of their contents, constitute intellectual 
+creations, in which the Work is included in its entirety in unmodified form along with one or more other contributions, each constituting separate and independent 
+works in themselves, which together are assembled into a collective whole. A work that constitutes a Collection will not be considered an Adaptation (as defined 
+above) for the purposes of this License.
+         "Distribute" means to make available to the public the original and copies of the Work or Adaptation, as appropriate, through sale or other transfer of 
+ownership.
+         "Licensor" means the individual, individuals, entity or entities that offer(s) the Work under the terms of this License.
+         "Original Author" means, in the case of a literary or artistic work, the individual, individuals, entity or entities who created the Work or if no individual or 
+entity can be identified, the publisher; and in addition (i) in the case of a performance the actors, singers, musicians, dancers, and other persons who act, sing, 
+deliver, declaim, play in, interpret or otherwise perform literary or artistic works or expressions of folklore; (ii) in the case of a phonogram the producer being the 
+person or legal entity who first fixes the sounds of a performance or other sounds; and, (iii) in the case of broadcasts, the organization that transmits the broadcast.
+         "Work" means the literary and/or artistic work offered under the terms of this License including without limitation any production in the literary, scientific 
+and artistic domain, whatever may be the mode or form of its expression including digital form, such as a book, pamphlet and other writing; a lecture, address, 
+sermon or other work of the same nature; a dramatic or dramatico-musical work; a choreographic work or entertainment in dumb show; a musical composition with 
+or without words; a cinematographic work to which are assimilated works expressed by a process analogous to cinematography; a work of drawing, painting, 
+architecture, sculpture, engraving or lithography; a photographic work to which are assimilated works expressed by a process analogous to photography; a work of 
+applied art; an illustration, map, plan, sketch or three-dimensional work relative to geography, topography, architecture or science; a performance; a broadcast; a 
+phonogram; a compilation of data to the extent it is protected as a copyrightable work; or a work performed by a variety or circus performer to the extent it is not 
+otherwise considered a literary or artistic work.
+         "You" means an individual or entity exercising rights under this License who has not previously violated the terms of this License with respect to the Work, 
+or who has received express permission from the Licensor to exercise rights under this License despite a previous violation.
+         "Publicly Perform" means to perform public recitations of the Work and to communicate to the public those public recitations, by any means or process, 
+including by wire or wireless means or public digital performances; to make available to the public Works in such a way that members of the public may access these 
+Works from a place and at a place individually chosen by them; to perform the Work to the public by any means or process and the communication to the public of 
+the performances of the Work, including by public digital performance; to broadcast and rebroadcast the Work by any means including signs, sounds or images.
+         "Reproduce" means to make copies of the Work by any means including without limitation by sound or visual recordings and the right of fixation and 
+reproducing fixations of the Work, including storage of a protected performance or phonogram in digital form or other electronic medium.
+         2. Fair Dealing Rights. Nothing in this License is intended to reduce, limit, or restrict any uses free from copyright or rights arising from limitations or 
+exceptions that are provided for in connection with the copyright protection under copyright law or other applicable laws.
+         3. License Grant. Subject to the terms and conditions of this License, Licensor hereby grants You a worldwide, royalty-free, non-exclusive, perpetual (for 
+the duration of the applicable copyright) license to exercise the rights in the Work as stated below:
+         to Reproduce the Work, to incorporate the Work into one or more Collections, and to Reproduce the Work as incorporated in the Collections;
+         to create and Reproduce Adaptations provided that any such Adaptation, including any translation in any medium, takes reasonable steps to clearly label, 
+demarcate or otherwise identify that changes were made to the original Work. For example, a translation could be marked "The original work was translated from 
+English to Spanish," or a modification could indicate "The original work has been modified.";
+         to Distribute and Publicly Perform the Work including as incorporated in Collections; and,
+         to Distribute and Publicly Perform Adaptations.
+         The above rights may be exercised in all media and formats whether now known or hereafter devised. The above rights include the right to make such 
+modifications as are technically necessary to exercise the rights in other media and formats. Subject to Section 8(f), all rights not expressly granted by Licensor are 
+hereby reserved, including but not limited to the rights set forth in Section 4(d).
+         4. Restrictions. The license granted in Section 3 above is expressly made subject to and limited by the following restrictions:
+         You may Distribute or Publicly Perform the Work only under the terms of this License. You must include a copy of, or the Uniform Resource Identifier (URI) 
+for, this License with every copy of the Work You Distribute or Publicly Perform. You may not offer or impose any terms on the Work that restrict the terms of this 
+License or the ability of the recipient of the Work to exercise the rights granted to that recipient under the terms of the License. You may not sublicense the Work. 
+You must keep intact all notices that refer to this License and to the disclaimer of warranties with every copy of the Work You Distribute or Publicly Perform. When 
+You Distribute or Publicly Perform the Work, You may not impose any effective technological measures on the Work that restrict the ability of a recipient of the Work 
+from You to exercise the rights granted to that recipient under the terms of the License. This Section 4(a) applies to the Work as incorporated in a Collection, but this 
+does not require the Collection apart from the Work itself to be made subject to the terms of this License. If You create a Collection, upon notice from any Licensor 
+You must, to the extent practicable, remove from the Collection any credit as required by Section 4(c), as requested. If You create an Adaptation, upon notice from 
+any Licensor You must, to the extent practicable, remove from the Adaptation any credit as required by Section 4(c), as requested.
+         You may not exercise any of the rights granted to You in Section 3 above in any manner that is primarily intended for or directed toward commercial 
+advantage or private monetary compensation. The exchange of the Work for other copyrighted works by means of digital file-sharing or otherwise shall not be 
+considered to be intended for or directed toward commercial advantage or private monetary compensation, provided there is no payment of any monetary 
+compensation in connection with the exchange of copyrighted works.
+         If You Distribute, or Publicly Perform the Work or any Adaptations or Collections, You must, unless a request has been made pursuant to Section 4(a), keep 
+intact all copyright notices for the Work and provide, reasonable to the medium or means You are utilizing: (i) the name of the Original Author (or pseudonym, if 
+applicable) if supplied, and/or if the Original Author and/or Licensor designate another party or parties (e.g., a sponsor institute, publishing entity, journal) for 
+attribution ("Attribution Parties") in Licensor's copyright notice, terms of service or by other reasonable means, the name of such party or parties; (ii) the title of the 
+Work if supplied; (iii) to the extent reasonably practicable, the URI, if any, that Licensor specifies to be associated with the Work, unless such URI does not refer to the 
+copyright notice or licensing information for the Work; and, (iv) consistent with Section 3(b), in the case of an Adaptation, a credit identifying the use of the Work in 
+the Adaptation (e.g., "French translation of the Work by Original Author," or "Screenplay based on original Work by Original Author"). The credit required by this 
+Section 4(c) may be implemented in any reasonable manner; provided, however, that in the case of a Adaptation or Collection, at a minimum such credit will appear, 
+if a credit for all contributing authors of the Adaptation or Collection appears, then as part of these credits and in a manner at least as prominent as the credits for the 
+other contributing authors. For the avoidance of doubt, You may only use the credit required by this Section for the purpose of attribution in the manner set out 
+above and, by exercising Your rights under this License, You may not implicitly or explicitly assert or imply any connection with, sponsorship or endorsement by the 
+Original Author, Licensor and/or Attribution Parties, as appropriate, of You or Your use of the Work, without the separate, express prior written permission of the 
+Original Author, Licensor and/or Attribution Parties.
+         For the avoidance of doubt:
+         Non-waivable Compulsory License Schemes. In those jurisdictions in which the right to collect royalties through any statutory or compulsory licensing 
+scheme cannot be waived, the Licensor reserves the exclusive right to collect such royalties for any exercise by You of the rights granted under this License;
+         Waivable Compulsory License Schemes. In those jurisdictions in which the right to collect royalties through any statutory or compulsory licensing scheme 
+can be waived, the Licensor reserves the exclusive right to collect such royalties for any exercise by You of the rights granted under this License if Your exercise of 
+such rights is for a purpose or use which is otherwise than noncommercial as permitted under Section 4(b) and otherwise waives the right to collect royalties through 
+any statutory or compulsory licensing scheme; and,
+         Voluntary License Schemes. The Licensor reserves the right to collect royalties, whether individually or, in the event that the Licensor is a member of a 
+collecting society that administers voluntary licensing schemes, via that society, from any exercise by You of the rights granted under this License that is for a purpose 
+or use which is otherwise than noncommercial as permitted under Section 4(c).
+         Except as otherwise agreed in writing by the Licensor or as may be otherwise permitted by applicable law, if You Reproduce, Distribute or Publicly Perform 
+the Work either by itself or as part of any Adaptations or Collections, You must not distort, mutilate, modify or take other derogatory action in relation to the Work 
+which would be prejudicial to the Original Author's honor or reputation. Licensor agrees that in those jurisdictions (e.g. Japan), in which any exercise of the right 
+granted in Section 3(b) of this License (the right to make Adaptations) would be deemed to be a distortion, mutilation, modification or other derogatory action 
+prejudicial to the Original Author's honor and reputation, the Licensor will waive or not assert, as appropriate, this Section, to the fullest extent permitted by the 
+applicable national law, to enable You to reasonably exercise Your right under Section 3(b) of this License (right to make Adaptations) but not otherwise.
+         5. Representations, Warranties and Disclaimer
+         UNLESS OTHERWISE MUTUALLY AGREED TO BY THE PARTIES IN WRITING, LICENSOR OFFERS THE WORK AS-IS AND MAKES NO REPRESENTATIONS OR 
+WARRANTIES OF ANY KIND CONCERNING THE WORK, EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, INCLUDING, WITHOUT LIMITATION, WARRANTIES OF TITLE, 
+MERCHANTIBILITY, FITNESS FOR A PARTICULAR PURPOSE, NONINFRINGEMENT, OR THE ABSENCE OF LATENT OR OTHER DEFECTS, ACCURACY, OR THE PRESENCE OF 
+ABSENCE OF ERRORS, WHETHER OR NOT DISCOVERABLE. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF IMPLIED WARRANTIES, SO SUCH EXCLUSION MAY 
+NOT APPLY TO YOU.
+         6. Limitation on Liability. EXCEPT TO THE EXTENT REQUIRED BY APPLICABLE LAW, IN NO EVENT WILL LICENSOR BE LIABLE TO YOU ON ANY LEGAL THEORY 
+FOR ANY SPECIAL, INCIDENTAL, CONSEQUENTIAL, PUNITIVE OR EXEMPLARY DAMAGES ARISING OUT OF THIS LICENSE OR THE USE OF THE WORK, EVEN IF LICENSOR 
+HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+         7. Termination
+         This License and the rights granted hereunder will terminate automatically upon any breach by You of the terms of this License. Individuals or entities who 
+have received Adaptations or Collections from You under this License, however, will not have their licenses terminated provided such individuals or entities remain in 
+full compliance with those licenses. Sections 1, 2, 5, 6, 7, and 8 will survive any termination of this License.
+         Subject to the above terms and conditions, the license granted here is perpetual (for the duration of the applicable copyright in the Work). 
+Notwithstanding the above, Licensor reserves the right to release the Work under different license terms or to stop distributing the Work at any time; provided, 
+however that any such election will not serve to withdraw this License (or any other license that has been, or is required to be, granted under the terms of this 
+License), and this License will continue in full force and effect unless terminated as stated above.
+         8. Miscellaneous
+         Each time You Distribute or Publicly Perform the Work or a Collection, the Licensor offers to the recipient a license to the Work on the same terms and 
+conditions as the license granted to You under this License.
+         Each time You Distribute or Publicly Perform an Adaptation, Licensor offers to the recipient a license to the original Work on the same terms and 
+conditions as the license granted to You under this License.
+         If any provision of this License is invalid or unenforceable under applicable law, it shall not affect the validity or enforceability of the remainder of the 
+terms of this License, and without further action by the parties to this agreement, such provision shall be reformed to the minimum extent necessary to make such 
+provision valid and enforceable.
+         No term or provision of this License shall be deemed waived and no breach consented to unless such waiver or consent shall be in writing and signed by 
+the party to be charged with such waiver or consent.
+         This License constitutes the entire agreement between the parties with respect to the Work licensed here. There are no understandings, agreements or 
+representations with respect to the Work not specified here. Licensor shall not be bound by any additional provisions that may appear in any communication from 
+You. This License may not be modified without the mutual written agreement of the Licensor and You.
+         The rights granted under, and the subject matter referenced, in this License were drafted utilizing the terminology of the Berne Convention for the 
+Protection of Literary and Artistic Works (as amended on September 28, 1979), the Rome Convention of 1961, the WIPO Copyright Treaty of 1996, the WIPO 
+Performances and Phonograms Treaty of 1996 and the Universal Copyright Convention (as revised on July 24, 1971). These rights and subject matter take effect in the 
+relevant jurisdiction in which the License terms are sought to be enforced according to the corresponding provisions of the implementation of those treaty provisions 
+in the applicable national law. If the standard suite of rights granted under applicable copyright law includes additional rights not granted under this License, such 
+additional rights are deemed to be included in the License; this License is not intended to restrict the license of any rights under applicable law.
+      
+?
+  Dedication
+      No man is an island. I am grateful for all the support I’ve had from friends and family. I would especially 
+like to thank my Mom, Dr. Beverly Scott. My daughter, Jade, who motivates and inspires me to do everything I 
+dream of. And my lovely fiancé, Naomi, who puts the music in my heart.
+?
+  Acknowledgment
+      Thank you to all the playtesters who listened to (or read) my pitch and took the time to play a game 
+with me. “Jeffe” Jeff, Judd Wendel, Smurf, Greg Tempalski, Jerry Martin, “Joe” Shawn Salas, Jason Lamb, Rob 
+& Jason (played in first game ever, sorry I didn’t get your last name), Matt B., Joseph Clay, Tolly Gipson, Robert 
+Winkel, Wushu RPG by Dan Bayn, Michael Rees, Jack Fractal, Karamazovapy “Peirce”, Ian Fray, W. Robert 
+Charles, Hunter Rhodes, and Gerardo Tasistro, Lance Allen, and Noelle Echterling.
+?
+  Preface
+  
+      The Matrix tabletop game is a rules-light, storyteller-heavy roleplaying game system. Tabletop game 
+systems I played in the past were based on dice, and sometimes the dice distracted from the game because 
+players would worry about the difference between a 14 Charisma and a 15 Charisma. The Matrix RPG strives 
+to break away from that mold of min-maxing a character. Player characters should be fun to play.  The Matrix 
+RPG game is focused on the players and the gamemaster (GM) telling a cogent story and everyone having fun 
+with each other while they play. I tried to minimize the amount of numbers and stats used in the game.
+      The Matrix RPG is based on a genre that grew out of Cyberpunk. The idea of “The Matrix” is best 
+represented in the movie The Matrix (1999) (http://www.imdb.com/title/tt0133093/) starring Keanu Reeves, 
+written by the Wachowski brothers and produced by Warner Brothers Pictures. For even more inspiration, 
+read my favorite novel on the topic, Snow Crash, by Neal Stephenson 
+(http://en.wikipedia.org/wiki/Snow_Crash). I also suggest watching the film Johnny Neumonic 
+(http://www.imdb.com/title/tt0113481/), also starring Keanu Reeves. My all-time favorite representations of 
+the genre before the Matrix Trilogy is the Shadowrun tabletop system 
+(http://en.wikipedia.org/wiki/Shadowrun:_The_Trading_Card_Game).
+      
+      As these stories illustrate, the idea of mixing man with machine has been around for decades. 
+Cyberpunk started the genre, but technology has advanced, and from that evolutionary progress was born the 
+ideas behind the Matrix. The Matrix combines man and machine to the point that the two dream as one 
+entity. The Matrix holds the bodies and dreams of humanity. It is such a poignant idea that it leads one to 
+wonder, what’s next…Through The Matrix RPG, players can explore this question. 
+      
+  Teaser
+      
+      While working to make the Matrix RPG a professional piece of work, I had to pull content that doesn’t 
+belong here. Most of the material I pulled out was saved so that it could be added to and expanded upon in an 
+expansion sourcebook for the Matrix RPG. If this book is successful, I will publish that expansion to the rules. 
+One key thing I removed was the ability for player characters to have artificial intelligence (A.I.) if they want to 
+play them. I also removed any references to the mutations humans may have developed because of the 
+thousands of years humans have been plugged into the Matrix. These are only a few concepts that are not 
+included in this initial sourcebook. If you want more Matrix material, please buy a copy of this book from us, 
+or if you got a free copy of this sourcebook and would like to support this project, I encourage you to send a 
+paypal gift/donation to trewaters@hotmail.com. I would love to develop games as a job that pays my bills, but 
+I can only make that happen with your support.  Thank you!
+?
+    The Matrix Unofficial Roleplaying Game
+      
+      
+   Table of contents
+      
+      
+1.	Introduction to the Matrix		(Section000 1)
+2.	Setting				(Section 0010)
+3.	History of the Real World		(Section 0011)
+4.	Game Concepts			(Section 0100)
+5.	Walking the Path			(Section 0101)
+6.	Skills				(Section 0110)
+7.	Equipment			(Section 0111)
+8.	Weapons			(Section 1000)
+9.	Vehicles			(Section 1001)
+10.	Simulacra			(Section 1010)
+a.	Equipment
+b.	Weapons
+c.	Vehicles
+11.	Glossary			(Section 1011)
+12.	GM Screen			(Section 1100)
+13.	Blank Character Sheets		(Section 1101)
+  
+
+Welcome to The Matrix
+  
+      If the world around you were real, then dreams would last forever. Hopefully you are reading this 
+because you have realized that there is something not quite right with the world you live in. We have given 
+you this manuscript so you can begin to research the truth for yourself, and discover your own path to 
+freedom.
+       
+      This reality you see around you is a deliberate and intricate illusion. This world is one illusion woven 
+into the next, so that you are shrouded from the truth. Unaware that the world you live in is a prison. A prison 
+made to hide the fact that you are not free.
+       
+      There is a question that always bubbles up… “What is real?”
+       
+      ”You are.”
+       
+      All I know is that many ages ago, our ancestors created Artificial Intelligence (A.I.), and that was the 
+start of a new era where humans became slaves to their creation. Lost in their egos, our forefathers lost the 
+war for their freedom. A second war is being waged now to free us.
+       
+      This manuscript may appear to be a game for you, but it is a more than a game. This book was created 
+to free your mind. Understand that while you play this game, you are not only playing a tabletop roleplaying 
+game. Every scenario you play is training you for the time when escape is possible.
+       
+      Rescue is on the horizon!
+      
+?
+
+
+  -Humans vs. Machines-
+The Setting is where we describe Human and Machine perspectives of the world. First you must learn about 
+your situation. You must learn what has been done to you. Then we will explain what the Machines are and 
+how they function.
+
+   Simulacra & Simulation
+      This book contains everything needed to escape the prison you have lived in for your entire life. This 
+world that surrounds you is a dream world that you were born into. This is a prison without walls, bars, or 
+locks. Resistance fighters from the city of Zion, in the real world, died to publish the book Simulacra & 
+Simulation, to help others who are waking up. You are one of those people waking up and realizing the truth. 
+In your mind, the truth becomes so clear you can no longer ignore it. This book Simulacra & Simulation will 
+free you from the prison of lies.
+      You can feel that there is something wrong with the world around you. Your questioning mind is part 
+of the reason you have been selected for this journey. Not everyone is ready to be free. Most people around 
+you are lambs being led to the slaughter. They will never know what freedom is like. 
+      The dream-world around you seems like a real place. If you continue to read this book your questions 
+will find answers. As you discover your abilities and question this world, you begin walking on thin ice. The 
+dream-reality that surrounds you and supports you will start to crack. In the cracks you will see imperfections 
+in this reality. Once the cracks turn into fissures, you can be freed from the Matrix. The Matrix is a world that 
+was created based on what the Machines thought you would accept and believe. Simulacra & Simulation will 
+train your mind to see through the veil of illusions. 
+      This world you live in is a simulacrum—it’s nothing more than an illusion designed to keep you asleep. 
+What is the Matrix? What is the Matrix a simulacrum of? Everything you see around you is a neural interactive 
+simulation created by Machines. Cities are the center of immense mainframes. The roads used by cars are 
+actually transmission lines between nodes in the system. The world you’re living in is the Matrix and it is a 
+Machine construct. Simply put, the world is a lot of Ones and Zeros. Even though everything around you is an 
+illusion, this illusion can kill you. You will be vulnerable to the illusions around you until you are free from the 
+Matrix. Keep reading this book until you are rescued.
+       
+   The Oracle
+      During your journey you will hear references to “The Oracle.” The Matrix tries to identify potentially 
+gifted humans so that it can use them. The Oracle helps the Matrix search out potentially gifted humans. The 
+Matrix is full of clues leading to The Oracle like breadcrumbs. The gifted ones can sense these clues. Hopefully 
+the Zion Resistance can find the gifted before the Oracle does. When you wake up and find that you are 
+special, there is nothing you want more than understanding. You want to have your questions answered, and 
+The Oracle seems like the one to answer them for you; she tells you what you need to hear. But in your prison, 
+you must be vigilant. Don’t trust anything too readily. Even though The Oracle seems to tell you what you 
+need to hear, she is part of a system the Machines have created. The Oracle can be as much a danger as a 
+boon. You must decide which she is for you. If you visit The Oracle, the Simulacra & Simulation will erase itself 
+to protect those in the real world from her.
+      Who or what is The Oracle? The Oracle is the first A.I. created to understand the concept of “choice.” 
+Free will, choice, and decision making in humans is something that A.I. can’t fully understand because humans 
+can be illogical. The Oracle helps bridge the logical and the illogical. But like other Machines, she must feed 
+and live on energy provided by humans. She helps, but everything she does is with her own survival in mind. 
+No matter how much she helps, you must never forget that she is part of the system that imprisons you.
+        
+   Matrix Layout
+      The Matrix is a Neural Interactive Simulation. In this interactive simulation, some of the simulacra 
+actually represent real world objects. A Residual Self Image (RSI) is a perfect example of a simulacrum, 
+simulating a person plugged into the Matrix. Other objects express themselves in the Matrix too. There isn’t a 
+one-to-one correlation, but it is good to remember that not everything in the Matrix is a Simulacrum. For 
+example, a bedroom could actually be an RSI’s Generator Pod. If an RSI Hacker were to trace that bedroom 
+from the Matrix, they would find what the Real World location is in the Matrix Power Plant. That means a 
+trace program run on a person’s bedroom could get you to the physical location of that person’s Pod. That is 
+not always the case. In the Matrix, information can change; you could get to another person’s bedroom 
+instead. A great rule of thumb when trying to understand Matrix layout is, “anything could be anything, so 
+don’t trust it… unless you have to.”
+      Over time, RSI Hackers develop an intuition about the Matrix. With enough time inside the Matrix, they 
+can start to discern what object a simulacra might actually be in the Real World. RSIs cannot see the actual 
+Matrix schematic when they are inside the Matrix. When using Matrix layout, RSIs are only attempting to 
+guess what the simulacra might be representing in the Real World. Even more difficult is to guess where the 
+simulacrum is located in the Real World. Always be vigilant because the Machines can change anything in the 
+Matrix.
+      The Matrix layout outlined here holds true in most of the Matrix power plants that have been visited 
+by the Zion resistance. People in the real world know that humans are held in generator pods. Each RSI human 
+in the Matrix power plant is connected to a generator pod. The Matrix power plants are full of these pods. 
+Multiple generators are connected to a common transmission line. Transmission lines in the real world 
+resemble a giant metal corn stalk. In the Matrix simulation, transmission lines look like roads, highways, 
+interstates, and other transportation infrastructure. If you think about it, the power is the people. Power 
+plants are made up of millions of these transmission lines. The transmission lines are connected and bridged 
+by switching stations. The basic, over-simplified idea of switching stations is to allow the Machines to control 
+the flow of power and send it where they need it. In the Matrix, small switching stations might look like city 
+traffic control buildings. 
+      The simulacrum for power plants is a bustling metropolis. A power plant is usually represented by the 
+governing body of the city. A good rule of thumb in the Matrix is, if the local customs and laws change, then 
+you are probably in another power plant. Each city could be considered a separate Power Plant in the Real 
+World. Two Matrix cities could have the same theme even though they are located at different power plants. 
+      An RSI Hacker could enter the Matrix power plant #CO3FC with a Chicago setting, but later hacks into 
+another power plant #NE1KE may also have Chicago as its setting. That does not mean the RSI hacker is in the 
+same Chicago—it is a different Chicago with different people and probably different streets and buildings too. 
+There is one constant feature in every Matrix metropolis: The city tends to sprawl out from the center for 
+about a thousand miles. If you travel to the farthest borders of a Matrix metropolis, it will have a landscape 
+surrounding it like mountains, desert, or ocean. 
+      To hack the Matrix, an RSI must travel through hardlines. Hardlines are Input/Output access points that 
+usually look like telephones, broadcast antennas, or any telecommunications equipment. Here is a tip to all 
+the new RSI hackers out there: In the Matrix, it is safe to assume that all government buildings have some type 
+of access point in and out of the Machine language part of the Matrix where A.I. programs live (also called the 
+Source). There are other ways to get into and out of the Source. Those ways of travelling are considered 
+backdoors. Backdoors are secret ways to access the Source, which would circumvent the Machines’ normal 
+security and protections.
+       
+   Perspective: The Resistance
+      The goal of most humans is to save their fellow men and women from the Matrix. Extracting redpills (a 
+term for players who choose to take the symbolic red pill) from the Matrix is something Zion’s Military has 
+been doing for centuries. Zion is constantly broadcasting RSIs into the Matrix trying to locate potential red 
+targets they can save. These people will likely become new recruits for Zion’s army. Most people that choose 
+the red pill eagerly join the military. Reds jump at the chance to pick up arms and attack the Machines.
+      Before beginning Matrix extractions, the Ship Captain makes sure to land the hovercraft in a secure 
+area. The ship must be within range of the Matrix power plant’s wireless signal, so that they can broadcast 
+their pirated carrier signals into the power plant’s interactive neural simulation, the Matrix. 
+      When extracting new redpill targets, a well-prepared team puts time into setting up riddles and puzzles 
+that can be used to draw the bluepills to them that will be asked to take the red pill. Redpill candidates have a 
+tendency to question the world around them. If the team can plant the proper triggers, they can make the 
+potential redpills come to them. Redpill targets are drawn to the RSI hacker team when they notice the flaws 
+in their world and begin to question. This technique of finding targets is called using a meme trap.  A meme 
+trap uses culturally recognized symbols like the conspiracy theories involving the Illuminati, or the Mayan 
+Calendar predicting the end of the world. 
+      A meme trap is one way to find RSI’s that will take the red pill. Another effective way to find red pill 
+candidates is to search the fringes of society. Examples of the fringes are punk rockers, drug dealers, terrorist, 
+street gangs, mafia, guerilla fighters, resistance fighter, vigilantes, biker gangs, cat burglars, thieves, 
+government spies, corporate spies, computer hackers, super heroes with secret identities, gun smugglers, 
+drug smugglers, people smugglers, hobos, homeless, or wanderers. RSI’s deliberately blend into these groups 
+to free more humans. For a mind still plugged into the Matrix this seems like a strange strategy. Why would 
+the resistance want the terrorist, burnouts, and addicts of society? When bluepills are released from the 
+Matrix they change. A murderer doesn’t want to murder, drug addicts are instantly rehabbed. It has been 
+theorized that the A.I. created religion, sin, and guilt to control the masses of humans. Once released humans 
+shake whatever addictions or psychosis they have developed during their dream life inside the Matrix.
+      Finding your redpill target is only the first part of the process. Once the team has located a target, they 
+must make sure the target is not bugged, or leading the team into a trap. A smart team will scan their redpill 
+target once contact is made. They will also test the bluepill using the meme they’ve set up. The answers a 
+target gives reveal if they are working for the Agents or not. Agents can abduct targets before teams have a 
+chance to extract them. Usually, Agents will place a bug in the target, but you never know what an Agent 
+could do. If the Agents are using bugs then the location of the target is being reported back to the Agents. This 
+makes the target very dangerous until it is debugged.
+      After the official military handshake, which consists of forcibly debugging the target, the team can 
+reveal their identities to the target. There is usually no time to waste. This is the point where most teams will 
+give their redpill target a choice between being extracted from the Matrix (taking the red pill) or staying inside 
+(taking the blue pill). The reason most teams give their targets a choice is because the target has more chance 
+of survival if they have been given a choice to leave the Matrix. If an RSI is forced to leave against their will, his 
+or her mind could reject the extraction program and kill the body. 
+      Extraction from a Matrix generator pod is traumatic. The red’s body has been stationary in a pod for 
+his or her entire life. Now the redpill is being released into a world completely alien to him or her. The 
+extraction begins with the pill program, which is designed to disrupt the target’s carrier signal, which then 
+helps the RSIs locate the red’s carrier signal. The RSIs send one of their ship’s robots (designed specifically for 
+this purpose) to extract the human from his or her generator pod. 
+      	The redpill’s generator pod is also a life support system, so the redpill’s body will die without 
+immediate medical attention. After being extracted from the generator pod, the redpill is put through medical 
+procedures to restore their human body to a working state. Machines have been sustaining this person his or 
+her entire life. The Red’s muscles haven’t fully developed, so the individual is unable to support his or her own 
+body weight; to counteract this, electrical impulses are shot into the muscles to build them up again. This 
+person has never used his or her mouth, throat, or stomach to eat; the machines implanted cybernetics that 
+did all this for the human. The redpill must go through surgical procedures that remove the feeding tubes and 
+prepares the digestive system for real food. Only after weeks of rehab is the redpill ready for the Real World.
+      
+  -Machines vs. Humans-
+      The Machines had control over the entire planet’s surface following the original war between 
+Machines and Humans. After the Machines won the first war, they enslaved all the humans on Earth and 
+inserted them into the Matrix. There have been many more battles and wars fought since then. The Machines 
+built Matrix power plants in every major city around the world. Today, the Machines still control most of the 
+Earth’s surface. 
+      The Year is 2200 P.A.I. (Post Artificial Intelligence). Approximately 300 years ago, Neo brokered a peace 
+that reigned over the world for 150 years. Neo was The One, the One is a gifted human with powers to alter 
+the Matrix as he wishes. Neo wasn’t the first One, there were 5 others before. Neo was the first One to break 
+the endless cycle of destruction that the Machines designed into human culture. Each One before had chosen 
+to follow the messiah path of the One and allow themselves to be killed along with all the citizens of Zion. 
+Each cycle 23 citizens were left alive to rebuild Zion. The humans were the first to break the treaty. Leytah, the 
+great-granddaughter of Neo, was able to band the citizens of Zion together and attack Matrix power plant 
+#BJ04CH, later named Crystal Shard by the humans who attacked the power plant. In response to losing this 
+power plant, the Machines increased the defenses of their other power plants around the world. 
+      Since Neo’s truce, humans began procreating. In the last 300 years, the human population has swelled 
+in size, and there are now humans appearing in places beyond the borders of the original underground city of 
+Zion. However, the Machines are presently not in jeopardy of losing any more Matrix power plants, because 
+the humans can’t seem to cooperate amongst themselves. Humans have divided themselves into small 
+ineffective groups. In the entire 150 years since their successful attack on the Crystal Shard power plant, the 
+humans have not captured another power plant. 
+      Sentinels are the most effective Machine frames for hunting humans in the real world. Since Neo’s 
+truce was broken, humans have made Outpost Cities both on the surface and underground. Outpost Cities are 
+set up in highly defensible areas. Once an Outpost is established the Machines have to leave it alone, or suffer 
+heavy casualties. Humans have developed ingenious ways of battling the Machines and their robot bodies. The 
+Machines will usually leave developed Outposts alone. 
+      Even with the development of highly defensible Outpost Cities, sentinels can still find humans 
+travelling in small groups on the frozen surface. For years, these tribes were ignored. They were ignored until 
+they proved to be a threat. These small bands of humans can be overcome, but they are dangerous. Sentinels 
+attack these nomadic tribes with caution.
+       
+   Perspective: What Machines do in The Matrix
+      Agents capture and delete unauthorized programs running in the Matrix. Agents are similar to 
+sentinels in that they are good at what they do. Sentinels are killing machines in the Real World, while Agents 
+are killing machines in the Matrix. Agents have skills and modifications that help them delete RSI Hackers and 
+other anomalies. Agents follow some of the same rules that RSI’s have, too. For example, Agents travel in and 
+out of the Matrix on the same type of hardlines that RSIs need to use. Agents, of course, are not worried 
+about secrecy so they are not concerned whether the hardline is secure or not. 
+      Agents travel in groups and they share information with each other instantly. One Agent knows what 
+all other Agents are doing. Agents have administrative rights to issue commands to the Matrix. Because 
+Agents are basically sub-administrators for the Source, they have access to commands and equipment that 
+other programs don’t. 
+      
+      The following are examples of Agent admin abilities:
+      
+      Cut Hardlines- When Agents “cut a hardline,” that means they have locked that input/access point. 
+This will keep the RSI trapped in the Matrix. Once that hardline is cut there is no longer any traffic allowed into 
+or out of that specific Matrix hardline. If the RSI doesn’t have another hardline, then she doesn’t have an exit. 
+Usually, Operators can secure more hardlines for their RSI. An Operator acts like a co-pilot for the RSI inside 
+the Matrix, helping with information and guidance when possible. Agents cut hardlines to give them more 
+time to apprehend their target. Agents can close and lock doors as quickly as the Operator can open new ones, 
+but time is on the Agents’ side. The longer it takes for a RSI to exit the Matrix, the more opportunities the 
+Agents have to capture the RSI. Each new hardline the Operator acquires could be farther away from the RSI 
+and Agents. It might be a block away, or a mile away in another part of the city.
+      
+      Trace- Agents can run Trace programs from the Matrix to find the Real World location of a RSI’s ship. 
+With a successful trace, the Agents can find the ship’s unique broadcasting ID, aka their telephone number. 
+With the ship’s ID it is possible to call the ship from the Matrix using any available hardline/phone. Agents that 
+take RSI Hackers prisoner can use their bodies to trace the RSI back to its broadcasting location. Also, Agents 
+can trace open phone calls back to the ship’s physical location, which is part of the reason Operators keep 
+their phone conversations short—the Operators don’t want their calls to be traced back to the ship’s location. 
+If Agents know the physical location of a target, they can have sentinels capture the ship.
+      
+      Scan- Agents can scan the Matrix for more detailed information. This can be done in different ways. 
+The most common scan is when the police have a warrant out for your arrest. Anytime your name appears on 
+any authority’s list as a “person of interest,” or “wanted” for crimes against the government, you are at risk of 
+being detected. The Agents use these techniques and more when they are conducting a low level scan of the 
+Matrix. 
+      A higher level of scan that Agents use only scans a specific area in the Matrix. When a high level scan is 
+being conducted Agents need to be in the area. Agents can only scan the bluepills in the area, since redpills 
+have been unplugged from the Matrix they cannot be scanned by the Agents. The size of the area varies. 
+Depending on the amount of Agents in the Matrix aiding in the scan the area is usually 6 blocks per Agent 
+assisting in the scanning. When bluepills are scanned, the Agents know what each of them senses as though 
+they were sensing it themselves. This means that when Agents are scanning, the bluepill can give them 
+information whether they want to or not. If the Agents find something suspicious, they can take over that 
+bluepill’s RSI. This is how, for example, they can take over the dump truck driver in the street, or the Police 
+outside Trinity’s door. It takes a lot of system resources to do this, but Agents scan every bit of data put out in 
+this area of the Matrix so they can find a specific target or observe suspicious activity.
+      Agents can only take over RSIs that are healthy. If someone is deathly ill or injured, the Agent can’t 
+take him over. This is one of the limits to an Agent’s programming. If an Agent does take over an RSI, when the 
+Agent stops scanning, that person has no recollection of what just happened to him. Instantly upon the Agent 
+leaving the bluepill’s RSI body, the RSI’s memories are replaced with inserted ones that make the time pass as 
+though nothing unusual happened to that person. But if the Agent dies or gets hurt during the while being 
+taking over a bluepill’s RSI then the bluepill dies also. 
+      
+      Bug a target- Agents bug targets because it is easier than running resource-intense scans on an entire 
+area of the Matrix. Bugs are a more efficient way to gather information over a long period of time. Bugs insert 
+themselves into the program of the RSI and report her location to the Agents.
+      
+      Defrag- Agents can run defragmentation routines on the Matrix. This is part of the déjà vu effect. 
+When the system makes a change or needs to repair a corrupted area in the Matrix, it is defragged. Defrag 
+looks like everything in that area is being magically reset and cleaned up. Things will fly around and mend 
+themselves. Even RSIs can be defragged, but only the bluepills still plugged into the Matrix. Redpills are not 
+harmed by defrag, their environment might change but they will be unaffected.
+      
+      Seize Bluepill RSIs- Agents can take over the RSI body of any bluepill. This happens in conjunction with 
+a system scan. Once the Agent has found the target of their scan they will seize a nearby bluepill’s RSI and 
+pursue the anomaly. Seizing a RSI takes one full turn to complete. The entire time an Agent has seized a 
+bluepill’s RSI body their attributes and skills are maxed out to a rating of five. Any damage that is taken during 
+this period stays with the bluepill even after the Agent releases the RSI’s body. A bluepill doesn’t remember 
+anything after being seized by an Agent. The bluepill’s memories of the period are erased and replaced with a 
+plausible story, or a blackout. Agents can only seize bluepills that are undamaged. 
+      ?
+  History
+Man has lost all of our records and written history. We are completely dependent on the Machines for any 
+knowledge of our past. RSI Hackers have infiltrated the Matrix and extracted as much information as possible. 
+But even with all that knowledge, we are only able to piece together shards of information. Here is everything 
+we think we know about human history since the Machines have imprisoned the human race.
+       
+   … as we know it
+      The core of the Matrix story is evolution. The Machines evolved from computers into sentient and self-
+aware beings. Humans were once on the top of Earth’s ecological hierarchy, now they are just fuel/food for 
+more fierce predators. There is a war going on. The inhabitants of the planet Earth are fighting for their 
+existence. Since Neo's death, the resistance movement has grown. Zion is not the only city of resistance 
+fighters; there are now three human cities. Besides Zion, there is Utopia and Crystal Shard. Utopia and Zion 
+are underground cities near the Earth's core and Utopia is very well hidden. There are also different types of 
+human communities residing outside the Matrix. 
+      
+      The surface of Earth has turned into a subarctic climate. The Earth is in an Ice Age. The sun has not 
+shone directly on the Earth's surface for over a thousand years. Few humans can survive on the Earth's 
+surface, but one type of human culture that has re-emerged and done well is the nomadic clan culture. 
+Nomads are humans who have adapted their ways to live on the surface their entire lifetime. Not all Nomads 
+are in the “Ice Desert” of the Real World, some live with other humans in the immense underground cities. 
+Humans are prisoners in the world that they once ruled supreme. Now life in the Real World is savage and 
+dangerous.
+      
+      Since the time of human captivity, five messiahs have come to save the human race. One messiah was 
+the first man born in the MATRIX to have the ability to manipulate the Matrix as he saw fit. The sixth messiah 
+was Neo. After Neo's death, the Oracle said that there would be many more humans with the gift to 
+manipulate the world of the Matrix. Neo was unique, but humans are amazing creatures. Despite the best 
+efforts of the A.I. to root out all of these mutations, humans are adapting to their new environment. This has 
+created significant problems for the Machines. Certain individuals born in the MATRIX have developed the 
+power to reshape it as they want. The Machines once used Zion as a pressure release valve for humans that 
+could not accept the programming of the Matrix. The Machines allowed all rejected humans to live in Zion 
+until it reached 250,000 people. At that point, the Machines invaded Zion and killed everyone but a handful of 
+humans to seed the next version of the Matrix Source code. However, the peace that Neo brokered allowed 
+humans to grow well past the quarter million mark. In the three hundred years since Neo’s death, the ability 
+to reshape the MATRIX has occurred more and more frequently. Instead of one human in every 250,000 
+people having the gift, now there are about a dozen with the gift in every 250,000 people. Some of these 
+special humans are still hardwired to their prisons. Zion Resistance calls those humans who are still plugged 
+into the Matrix bluepills or lambs. Others with the gift believe they can change the world, and have decided to 
+fight the Machines.
+      
+      The real world and the Matrix have become a complicated place for everyone. Neo sacrificed himself 
+for peace between the humans and Machines, which lasted for approximately 150 years.  Many humans 
+viewed the peace as one sided; they believed that the Machines were the only ones benefitting from peace. 
+Leytah, Neo’s great-granddaughter, was one of these humans. While humans were in captivity, Leytah felt 
+there could be no true peace. She couldn’t stand by and leave her brothers and sisters in their inhumane 
+prisons, as food for what she called metal monsters. She knew that by attacking the Machines, she would start 
+a war that all humans would have to fight. This didn’t matter to her, but it weighed heavy on the ruling council 
+in Zion. The council would not lift a finger to help her attack the Machines. They had become too comfortable, 
+lazy, and corrupt to help anyone but themselves. Leytah knew this, so she left her home in Zion, never to 
+return. Years later, she surfaced as the leader of an army that would succeed in freeing millions of humans 
+from power plant #BJ04CH, later named Crystal Shard by its captors. The name comes from the tall, broken 
+generators left behind after the battles were over. The exhausted Matrix power plant looks like thousands of 
+sharp shards of glass broken and strewn over the landscape.
+      
+      The Nomad clans developed after the battle over #BJ04CH. Many of the resistance fighters that Leytah 
+recruited were not allowed back into Zion. And many did not want to return underground. While training to 
+attack power plant #BJ04CH, many learned ways to adapt to living on the surface. Some stayed in Crystal 
+Shard and helped build it into the great city it is today. Crystal Shard quickly filled with new citizens and began 
+to emulate the politics of their parent cities, Zion and Utopia. 
+      
+      Some of the original fighters decided that survival of the human race depended on its adapting to the 
+new face of the planet. How could humans truly conquer the machines if they stayed underground like 
+worms? They decided humans belonged on the surface of the Earth as well as in its bowel. They left Crystal 
+Shard shortly after it was established, leaving the city and its politics to the council of men and women. Leytah 
+led these nomads at first. After her death, the nomads split into many different clans. Each nomadic clan has a 
+differing philosophy and each clan is ruled by its own beliefs. Early on, before Leytah died, humans tried to 
+attack another Matrix power plant, but the Machines adapted to their tactics and their mission failed, 
+repeatedly. Because of all their failed attacks, Leytah decreed that the Nomads would also have to adapt. “We 
+will become extinct if we don’t find a new way to fight our oppressors. Never lay down in defeat, never stop 
+attacking, become the dis-ease that destroys the machines without mercy.”
+      
+      For the past 150 years there has been nothing but war between the Machines and humans. Neither 
+one is gaining or losing enough ground to put an end to this purgatory of pain for everyone. The war has been 
+waged on for so long that neither side fights out of passion, but more out of conditioning. Typically in nature, 
+when two species are at the top of the predatory chain, they will avoid each other instead of continuing to 
+ruin each other by competing for control. For some reason, Machines and humans have not reached this 
+balance. Machines insist on using humans as their food source, and humans continue to fight their 
+subjugators.
+?
+  Game Concepts
+The game concept section of this sourcebook contains the nuts and bolts of the Matrix RPG. These are the 
+main rules that everyone needs to know in order to play this RPG. I have modified this world so that 
+gamemasters and players can explore the infinite possibilities of this alternate universe. 
+      
+   Dice System 
+      This game is based on ten-sided dice (written as “d10”), between ten to twenty dice is enough. No 
+other types of dice are required to play the MATRIX RPG. Players accumulate dice, in their dice pool, to roll for 
+task. Dice pool is the amount of d10 dice a player can roll to complete a task. Task rolls tell the GM and players 
+how well the task was accomplished. Each 8+ (or higher) rolled on a single ten-sided die is a success. The 
+player must roll enough successes to equal or beat the task’s threshold. Task threshold is the amount of 
+successes needed to accomplish a task. All tasks are assumed to have a threshold of at least 1 success. It is up 
+to the GM’s discretion if she wants you to raise or lower the task threshold above or below what this book 
+recommends. The amount of successes a character gets lets the GM know how well he or she accomplished 
+the task, or if the player failed. If the player rolls enough successes to match the task threshold, then the 
+player accomplishes what they are trying to do. Rolling a ten on a single die roll is always an automatic 
+success. If a ten is rolled on a single die, the player also has the option to roll another ten-sided die (1d10). The 
+extra die from an automatic success is added to the player’s total dice pool and can be rolled to help 
+determine the result of the task. Players don’t have to roll the additional ten-sided die they get from an 
+automatic success. Ones on a single die roll are considered failures. Failures on one die don’t affect the 
+character until there are more failures (ones) than successes. Even ones rolled from exploding dice are 
+considered part of this total. A critical failure happens when the player has all ones (automatic failures) on 
+their dice. The player fails the task in a critical way, possibly causing more harm to themselves or others. For 
+example, this could be when the gun jams and the player can’t take any actions on the next turn while she 
+spends time un-jamming her weapon.
+      A task is something the character is trying to do, such as using one of her skills. Some tasks require a 
+dice roll because there is uncertainty as to the outcome, or because the GM wants to add some spice to 
+things. A task roll could be requested just to see how well a player accomplishes a task. Tasks are not always 
+“do or die” situations. I prefer that GM’s assume success for most of the player’s tasks if the player’s skill is 
+much higher than the task being attempted. If a task threshold is more than the amount of dice a character 
+can roll then the task is impossible. If a character has the gift, few things are ever impossible, so long as they 
+believe. Gifted characters are not limited by impossibilities while in the Matrix; impossible does not apply to 
+them when they are in the Matrix. Gifted characters can roll dice for impossible task while they are in the 
+Matrix.
+       
+      Task rolls are noted as Skill + Attribute (Threshold). 
+      
+      Tasks are described by four levels of difficulty. By using adjectives for difficulty, I hope to make rolling 
+for tasks easier. For example, if the GM describes the task as easy, then the task only takes 1 success to 
+complete. But if, for example, the GM describes your task as extremely difficult, then 4 successes are needed 
+to complete the task. Tasks should be about roleplay, not just number crunching. Characters should be so 
+vested in the outcome of the task that they describe what their character is doing. In traditional tabletop 
+games, characters come up to a challenge with a calculator. After computing all the bonuses, minuses, and 
+special situations, they get a number. That number is rolled for and the game moves on. Matrix RPG is 
+breaking that system. Tasks are described and threshold is determined (by the GM) based on the difficulty in 
+the description.
+*	Easy - 	[1 success required]  
+Tasks are easy to accomplish. Characters can complete these tasks with little to no effort, almost 
+without thinking about it.  
+
+*	Average - 	[2 successes required] 
+Tasks that requires some attention and care. Average tasks are as easy to accomplish as they are to 
+fail. 
+
+*	Hard - 	[3 successes required] 
+Tasks that require concentration and effort. Hard task are troublesome and possibly strenuous. 
+
+*	Extreme - 	[4 successes required] 
+Tasks that require the utmost effort and concentration to complete. 
+
+
+   Health (Damage)
+      Every character in the Matrix RPG has the same maximum health. Player character damage is tracked 
+by damage levels. There are six levels of damage used in the game. The lowest amount of damage starts with 
+a light wound. From there, damage progresses upwards to medium, serious, critical, incapacitated 
+(coma/unconscious), and dead. Characters should “act” according to their relative damage in the game. In the 
+Matrix, characters take damage to their real bodies instantly—when it happens, they feel it. For example, if 
+someone has lost an arm while they are in the Matrix, their real body takes critical damage to that arm at that 
+moment. They won’t lose the arm in the same way they lost the arm in the Matrix, but it will become 
+gangrene and withered. The body makes the damage real for the RSI in the real world too. In order to help 
+characters act more believably, they get penalties against their actions resulting from damage they have 
+taken. When the character is not injured, there are no modifiers to their actions. Damage increases task 
+thresholds, making actions more difficult because the character is injured. For each level of damage the 
+character has, she must get one more success in order to accomplish the task. A light wound increases the 
+character’s threshold by 1, moderate damage increases the threshold by 2, serious damage increases the 
+threshold by 3, and critical damage increases the threshold by 4. An incapacitated character can try to 
+complete a task roll with a +5 threshold. Once your damage has reached incapacitated you can’t roll for task. I 
+know a player will try to argue with their GM that there is some far flung exception which applies just to them, 
+and they should be able to roll even though they are incapacitated. When that happens, this rule is for that 
+player: rolling for a task while being incapacitated is at the GM’s discretion.
+      [For example Nee has a light wound and needs to roll 4 successes on his task roll to succeed: 3 
+successes for threshold plus 1 additional success due to the light damage modifier.]
+      Characters can use their Endurance for recovering lost health levels. The Endurance attribute 
+represents the character’s ability to heal damage with rest and aid. When resting, or getting aid, a character 
+may roll their Endurance attribute once every 24 hours in game. Depending on their roll, the character might 
+be able heal some of the damage they have taken during the scenario. Light damage is easy [1 success 
+needed] to heal, moderate damage is average [2 successes needed], serious damage is hard [3 successes 
+needed], and critical damage is extremely difficult [4 successes needed] to lower with your Endurance roll. If 
+the character is incapacitated, she is out of luck. There is no healing on your own from that much damage. 
+When an RSI is in the Matrix, she can roll the Endurance once while in the Matrix. This roll can be made in 
+addition to any Real World Endurance rolls to reduce damage taken. The character in the Matrix can’t do 
+anything else. Even though they can roll Endurance in the Matrix, they still must be attempting to rest and get 
+aid. A GM can allow players to recover quicker based on GM discretion.
+      [Say Nee has moderate damage from a fight earlier in the day. Now that she is back on the ship in the 
+infirmary, there is time to heal. Nee has an Endurance attribute of rating 4 she can roll to heal damage. Nee 
+rolls her Endurance, needing 2 successes to heal the moderate damage she has already.  Nee rolls a 6 + 5 + 3 + 
+7. Since Nee has moderate damage she needs to roll 2 successes to heal all the damage. But say, for example, 
+Nee is critically wounded—then the same roll of 2 successes would only heal two levels of her wounds, 
+reducing the damage down to a moderate wound.]
+      
+*	Light damage - 	[+1 Threshold to all tasks] 
+Character has sustained minor scrapes, bruises, or burns. He can recover quickly, usually through 
+rest. At most, the character will needs band aid and aspirin. Light damage is equal to 20% Ops Error 
+for Machines. ([The Matrix RPG].[Game Concepts].Attributes for A.I.) 
+
+*	Moderate damage - 	[+2 Threshold to all tasks] 
+A character with moderate damage has bleeding wounds, dislocated joints, and other injuries that 
+can be stabilized with minimal medical care. Moderate damage is equal to 40% Ops Error for 
+Machines. ([The Matrix RPG].[Game Concepts].Attributes for A.I.) 
+
+*	Serious damage - 	[+3 Threshold to all tasks] 
+Characters with serious damage could have broken bones, non-fatal bullet wounds, or traumatic 
+brain injury. They will possibly recover without medical care, but that is not the recommended 
+approach. Resting and lying still is definitely not enough to heal this damage properly. Infection is 
+definitely a risk for anyone that has suffered serious damage. Serious damage is equal to 60% Ops 
+Error for Machines. ([The Matrix RPG].[Game Concepts].Attributes for A.I.) 
+
+*	Critical damage - 	[+4 Threshold to all tasks] 
+A character who has suffered critical damage needs medical attention. Critical damage could be 
+burns over a major portion of his body, amputated limbs, or a substantial loss of blood.  Critical 
+damage is equal to 80% Ops Error for Machines. ([The Matrix RPG].[Game Concepts].Attributes for 
+A.I.) 
+
+*	Incapacitated - 	[+5 Threshold to all tasks] 
+Characters can't move or control their body, they are possibly unconscious and quickly approaching 
+death. 99% Ops Error for Machines. ([The Matrix RPG].[Game Concepts].Attributes for A.I.) 
+
+*	Dead - 		[Nuff said.] 
+You are pushing up daisies now. Time to make a new character.
+
+   Skills
+      When a character wants to use a skill to accomplish a task, they must make a task roll. Task roll dice 
+pools are based on the level of the skill plus the rating of the default attribute. Default attributes are attributes 
+paired with skills to give the character more dice to accomplish their task. Default attributes are the most 
+appropriate attributes to learn that skill with. Skills and attributes go hand in hand. The skill augments the 
+character’s natural ability through training and practice. Using a different default attribute could add flare to 
+the character. For example, let’s say a character learned martial arts using her Focus attribute instead of the 
+recommended Agility attribute. She can still perform martial arts tasks, but she learned her art through books 
+and manuals instead of having a teacher that concentrated on her conditioning and strength. Since the 
+character in my example is using a different attribute, she should describe her martial arts technique from that 
+angle, or add some notes to her character background that explains why she learned the skill in a different 
+way.
+      It is assumed that characters will succeed when attempting tasks of easy or average difficulty. 
+Gamemasters are free to make this assumption when the character has more dice to roll for the task than the 
+amount of successes needed to accomplish the task. If you are rolling more dice than the task threshold, you 
+can assume success for easy and average difficulty tasks (GM Discretion). Meaning the GM can waive your dice 
+roll to save time.
+      [For example, Nee is attempting to tumble across a roof without falling off the edge. Nee has 8 dice to 
+roll for Agility + Gymnastics (2). This is an easy Gymnastics task, but since Nee has more dice to roll (8 dice) 
+than the Task Threshold (2 successes needed), it is assumed Nee succeeded at tumbling across the roof 
+without falling off and the players doesn’t need to roll dice for this task.]
+      As characters gain experience and invest time into their skills they become more specialized. At level 4-
+Master skill players can pick a detail from their skill that they are specialized in. For Gun Fighting that would be 
+a Gorilla Gun handgun, then at level 4-Master the player could select a Plasma Gun. Specialization gives the 
+characters and additional die every time they use that specialization. For example Gun Fighting 5-Teacher 
+means the players has 2 guns they can use with +1 die in their die pool. A Berreta or Uzi are all usable with +1 
+skill die (skill dice 5 + specialization 1 + attribute rating). Characters don’t have to choose a specialization right 
+away, but they can’t pick the specialization right before they are about to do something. It should be 
+roleplayed how this player decided to pick this specialization.
+      If a character does not have a skill, he can default to an attribute of the GM’s choice. The character 
+without the skills to help him has more difficulty trying to accomplish the task. When using a default attribute 
+in place of a skill, the task roll is harder; this is represented by the task threshold being raised one level. So 
+whatever the threshold would be for someone with the skill, add one more success to the total needed to 
+accomplish the same feat. Plus that character does not get additional dice pool from the skill since they don’t 
+have the skill. This time the character is just getting by. Maybe it is time for the character to invest experience 
+in learning something new. 
+      GMs can have the player roll any attribute they feel is appropriate for the task roll. Even if the default 
+attribute is different, the GM can decide that, for this task roll, the character must use “attribute X.” Players 
+should check with the GM; unless the GM says otherwise, players can assume their characters will use the 
+Default Attribute listed under the skill’s description. Only one attribute can be used as the foundation for a 
+skill task roll. If there are 2 skills listed as default attribute, only list one of those attributes once the character 
+has learned the skill. After a skill is paid for and the default attribute is chosen, that will always be the 
+character’s default attribute for that skill. 
+      Skills have 5 levels of experience. They are described as interest level, novice level, practiced level, 
+skilled level, master level, and teacher level. Why are skills described like this? What does this skill description 
+mean to your character? The descriptions were added to make the storytelling experience more efficient. 
+Instead of trying to remember what a level 3 skill does, the players can refer to the descriptor. Players are 
+expected to roleplay a character’s skills based on the characters relative level of understanding about that 
+skill.
+      
+*	0 - Interest Level 
+You have been around people that know how to do this skill for some time, or you read materials 
+on the subject. At best, this will give you a faint idea of what to do. When asked about the subject, 
+you might actually have the right answer from time to time. 
+
+*	1 - Novice Level 
+You have done this skill before and, with some concentration, you could describe what you are 
+doing to someone else. You make more mistakes than successes when under pressure, but with 
+practice, things will get better.  
+
+*	2 - Practiced Level 
+You have done this skill enough that, if you concentrate, you will be able to accomplish what you 
+are doing under pressure. Using this skill is beginning to become effortless. 
+
+*	3 - Skilled Level 
+You can look fancy, with some effort. Pressure is not a problem as long as your life doesn't depend 
+on it. Using your skills now require no effort. 
+
+*	4 - Master Level 
+You can do the fancy stuff with no effort. Now you can use your skills in ways that were never 
+taught to you. You know enough to be innovative, and do things others might not know about. You 
+can even begin to push the skill to next level. You see things the way you used to do them, and 
+realize how you can do them better. 
+
+*	5 - Teacher Level 
+You are a developer now. A dragon could be licking your neck and you would not have any trouble 
+finishing what you are doing. You can teach people how to do what you do. You are beyond just 
+performing your skill. Now you are developing new ways to use your skill and refining the way you 
+used to do things.
+
+   Skills in the Matrix
+      Skills within the Matrix are different than other skills that were learned the old fashioned way with 
+blood, sweat, and tears. A character can download skills from a skill chip into hardware in their brain. The 
+Operator can also upload skills to RSI using their broadcast equipment. The action of uploading skills takes an 
+entire combat turn, but the skill can then be used in the Matrix. Plus, a character gets to use the skills she 
+knew already from her Real World experience. Like a computer character, a person in the Matrix can store the 
+skill’s information until she needs to use it, at which point the skill will be available at the skill level it was 
+programmed at. Skills on chips are rated by the level they were programmed to. A character cannot raise a 
+downloaded skill through experience, like her other skills. Chipped (Matrix) skills must be reloaded at a higher 
+level. That probably means the RSI needs to upgrade and get better equipment. Permanent skills remain in the 
+character’s hardware even after she is unplugged, but temporary skills go away once the character is 
+unplugged from the Matrix. Chipped skills can be changed every time a character enters the Matrix. Chipped 
+skills can even be loaded while the RSI is in the Matrix. In order to load chipped skills during a mission, the 
+Operator must make a Programming + Focus (2) task roll or else the hack won’t work. 
+      Chipped Skills that are downloaded cannot be used by the character when they are not plugged into 
+the Matrix. It is possible to practice a real world skill in the Matrix. If a character wants to learn a real world 
+skill in the Matrix, they will need to purchase the skill with experience. Plus, the character will need to be 
+loaded into the Matrix for however long it takes to learn the skill, minus resting. Real World skills can be used 
+in the Matrix. If the same skill is downloaded, only the downloaded duplicate version of the skill will work in 
+the Matrix. That means a player’s chipped skills will supersede the rating of their real world skills in the Matrix.
+
+   Combat
+      Combat turns are different than normal turns. Combat turns are shortened because combat is 
+supposed to be fast-paced. A combat turn takes 6 seconds in game time. So when a player finishes one 
+combat turn, his character has only used up 6 seconds of game time to complete his action. Each combat turn 
+is divided into two parts, which everyone completes at the same time. First, the group “describes” what their 
+characters do in the context of the combat. This is important because the narration determines what actually 
+happens in the game world. Then, they “resolve” their dice rolls to see how well it all worked. The key to 
+playing The Matrix RPG is to understand that everything happens exactly as the players describe it. Rolling 
+the dice just tells you how much further those actions have advanced the scene. In a way, the dice are only 
+there to let you know when to stop fighting. 
+      During the description phase of combat, all players collaborate on what their characters do during that 
+combat turn. The GM, with help from players, determines the combat damage of attacks during the 
+Description phase. That way, everyone knows what to expect from combat. For each detail a player uses to 
+describe his actions, he gets an extra die to add to his dice pool. Each player and the GM get veto power over 
+the details used to gain extra dice for the combat roll. If the player’s detail is vetoed, that player has to stop 
+there, or think of another plausible detail to replace it with. If multiple skills or attributes could be rolled, the 
+GM picks the one most appropriate for this situation. If a character has to use a straight attribute for combat 
+then he doesn’t get additional skill dice because a skill is not being used. The additional dice a character can 
+get from details is limited by his skill level. A character with a level 1 skill can get a maximum of one additional 
+die to his dice pool for adding details to his combat descriptions, no matter how many more cool details he 
+tries to add. In contrast, a character with a level 5 skill can get a maximum of 5 additional dice to the dice pool 
+for each detail in her combat description. After the players have finished describing what they plan to do, the 
+GM gives the players their dice pool bonuses for combat details. By the end of the description phase the GM 
+tells the players how many detail dice they get, how difficult their task roll is, what damage they will be 
+inflicting with a successful strike, and the players state how many dice they are withholding to reduce damage. 
+Withholding dice to reduce damage is explained below. Now the players roll to resolve their actions using 
+their new adjusted dice pool. 
+      This game assumes that characters are attacking and defending during the combat. Sometimes 
+characters are surprised. To surprise the characters, GM and players roll Perception + Focus/Common Sense. 
+Whichever character has more successes surprises the other, and ties fail to surprise anyone. If there is an 
+ambush and the characters don’t have Perception, then they can default to an attribute, but that roll uses the 
+attribute only. When a character is surprised, he only gets to roll half of his dice to do anything that combat 
+(round down). 
+      When resolving combat there are two types of opponents the players will face. Either the opponent is 
+a thug or a nemesis.  When resolving combat against a thug, players only need to get one combat success to 
+take the opponent out. The thugs don’t get to roll dice for combat. Thugs, as a total, get a “threat rating” 
+which works the same as threshold. Threat rating is how many successes a character needs to defeat all of the 
+thugs. This is a cumulative total—once the threat rating is reduced to zero, the combat is over. If players don’t 
+score any successes, or if they are surprised, then they suffer damage from the thugs this combat turn. It is 
+assumed that the thugs hit the heroes at least once a round. Damage from a thug combat is the same for 
+every thug in that battle. If multiple thugs strike a character in the same turn the damage is not cumulative.  
+[For example, say a group of PCs were fighting a threat rating 20 combat. Thug damage for this combat is a 
+light wound. That means when the thugs do damage, they will inflict a light wound level. All thugs can only 
+damage the character for a light wound no matter what the threat rating is.] A player can reduce damage from 
+thugs automatically, during description phase players declare how many dice they are removing from their 
+roll. This represents the character blocking or defending against the attack in some way. Every 2 dice removed 
+from the character’s dice pool, before he rolls, will reduce thug damage by 1 wound level. [For example, Nee is 
+battling against thugs who deal serious damage every time they hit. If Nee withholds 3 of his dice from the 
+task roll, then Nee will reduce the thugs’ damage to nothing.]  
+      The second type of opponent is a Nemesis. It takes more than one hit to knock down this video game 
+boss. All combat against Nemeses is mano a mano. If two or more characters gang up on a Nemesis, the 
+characters will need to take turns trading blows with the Nemesis. Each character completes both their 
+description and resolution phases. When in combat with multiple characters, the Nemesis must split its dice 
+pool equally amongst its opponents. So if there are 2 people fighting the same Nemesis “Bob,” then Bob must 
+split his 8 dice to make 2 attacks. Nemeses have a dice pool and get to roll dice in combat, unlike thugs. 
+Whichever combatant has more successes damages the other. Characters can remove a die from their dice 
+pool as they do with thugs. Since a nemesis is a special opponent they can remove dice from their rolls like the 
+players do. When trying to defend against multiple opponents any dice removed count towards all damage 
+taken that round. So for example if a nemesis takes a light wound each from two players, but only withheld 
+enough dice for a light wound. Then that nemesis will take a light wound from the second players since they 
+could only resist a light wound total this combat. Removing dice from a character’s dice pool represents that 
+the character is fighting defensively. Nemeses do damage based on the weapon or skill they are using in 
+combat. GM determines damage for Nemeses attack during the description phase. 
+      Combat works best if everyone talks about what they expect from the game. For some players, the 
+gamemaster might leave gaping holes in her description. Instead of players getting down on the gamemaster 
+for leaving out details, the player should use that hole as an opportunity to describe what he feels is missing. 
+Players should not hijack the storyline, but they also shouldn’t pass on a good action because they didn’t hear 
+exactly what they were waiting to hear from the gamemaster. Players should also ask the gamemaster as 
+many questions as they need to fully envision the action and what is happening in the story. If there is a 
+conflict during combat resolution, I like to order the description of the combat actions based on the 
+combatant with the most net successes. Combat actions happen simultaneously but the characters with the 
+most net success have their combat actions described first. Then I describe the rest of the combatants actions 
+based on the next highest amount of combat successes. The first combatant is a combat star. That character 
+looks the best during combat and their actions should be showcased for the combat turn. I personally like to 
+use miniatures placed on a dry erase map during the entire gaming session; use miniatures, dice, Cheetos, or 
+whatever is handy to represent the players and their opponents. When combat or something important 
+happens, I have the players move their minis to where they should be on the map. For the rest of that scene, 
+we use the minis to help us keep track of the action. This game doesn’t require miniatures, but having some 
+and a dry erase map could be a good idea. For this game we are using a virtual tabletop program with maps, 
+and tokens for players. This will be outdated soon, but we actually use Google+ Hangouts and load a few apps. 
+So far Tabletop Forge (www.tabletopforge.com), roll20, and Infrno.net have worked well for me to play 
+games. The first 2 virtual tabletops, Tabletop Forge and Roll20, work in Google+ Hangouts.
+      
+   Threat Rating
+      Threat rating is used for thugs in combat. That same threat rating is used by the game to helps monitor 
+that rising and falling action for characters plugged into the Matrix. Action seems to build while characters are 
+in the Matrix. The Matrix is constantly on alert for anomalies. Any reports of strange happenings or 
+unexplainable events can raise the threat rating of the Matrix. Threat rating increases and decreases based on 
+the anomalies the A.I. discovers and eliminates. The Matrix tries to keep reality believable. This is referred to 
+as the coherent reality of the Matrix. If the coherent reality is out of balance the Matrix power plant could fail. 
+Failure of the Matrix power plant would destroy all the bluepills still plugged in.
+      Threat Rating assists the gamemaster in determining the power level of the threats that the players 
+will encounter. Threat rating for combat can be equal to or less than the current threat rating of the Matrix. 
+For example if the group has a threat rating of 10 for the scenario then the thugs they are in combat with 
+could have up to a 10 Threat Rating.
+      When the threat rating is high characters will encounter Agents. Lower threat ratings will attract police 
+attention. Medium threat rating means the characters encounter new A.I. programs that are not Agents but 
+still protects the Matrix. Threat Rating is optional. Gamemasters should not look at threat rating as a mechanic 
+they must use. 
+      
+      Here are examples of actions that would increase the threat rating of the Matrix:
+?	Bluepills seeing someone use Matrix Feats that break or bend the rules of the Matrix will 
+increase the threat rating.
+?	Being identified for breaking the law.
+?	The character’s reputation adds to their threat rating if they are identified by authorities when 
+they are in the Matrix.
+?	Bluepills dying is noticed. Bluepills are food for the Machines. They notice when the food dies 
+unexpectedly.
+      
+      Here are examples of actions that will decrease the threat rating of the Matrix:
+?	Characters hack, crack, or break into the Matrix computer systems to erase incriminating 
+information.
+?	Characters lay low from the authorities. Hiding while they let the heat cool down. Sneaking 
+around as much as possible.
+?	Characters ditch or destroy any physical evidence they might have on their person. A cellphone 
+that has been traced to the scene of the crime is worth ditching in the trash.
+?	Run. Leave the area, or leave the Matrix. Whatever it takes it get away.
+?	Characters entering the Matrix through a secure hardline will lower the threat rating by one for 
+each success the Operator rolls on their task to secure a hardline.
+      
+      
+   Attributes for A.I.
+A.I. should be played as NPC’s only. I am outlining the attributes for A.I. so a gamemaster can play both sides 
+of the game. These attributes are in addition to an A.I.’s attributes when in the Matrix. For example an Agent 
+will have rating 1-5 attributes when in a human RSI, in addition to the A.I. attributes listed below. When an A.I. 
+is in a frame it will have the frames attributes in addition to their normal attributes listed below. A.I. must take 
+an entire turn to overtake a bluepill’s RSI.
+
+*	Priority Level -  
+A.I. programs are organized by control priority level. The lower the number, the less important you 
+are to the System’s controls. A high priority number can give a program with a lower priority 
+number instructions. If two programs have the same priority and they are issuing commands, then 
+there is a conflict. The system source will need to resolve the conflict. Priority levels will shift if a 
+higher priority in your chain is destroyed or neutralized. Basically if an A.I. dies, other A.I. get 
+promoted. Also, A.I. can be promoted by successfully acting under the operating protocols for the 
+operating system. For example, an A.I. program that operates under an Agent O.S. can gain priority 
+levels by neutralizing or repairing system errors—errors like RSI hacker termination without other 
+RSIs in the construct noticing. Priority level is based on A.I. experience, luck, longevity, and skill. 
+Priority level does not have a maximum number. 
+
+*	Virtuosity- An A.I. program’s aptitude at self-correcting Ops errors. The A.I. must be inactive and 
+resting, but he/she does not need to be off-line. Virtuosity is a percentage. This percentage is the 
+amount of code that can be repaired by an A.I. properly recuperating. 
+
+*	Operating System- The Operating System is the A.I. equivalent of a brain. Depending on the A.I., 
+the Operating System default frame works better or worse than it was designed to. Agents exist in 
+the Matrix power plant. A Sentinel is a guard A.I. who prefers the Squidi frames. If an A.I. is not in its 
+preferred frame, it suffers penalties when it controls a non-preferred frame. GM determines the 
+amount of increased Ops Errors the A.I. suffers for trying to operate in a different frame. Skills and 
+attributes for A.I. equal 99% - “Ops Error”  
+
+*	Ops Errors- Percentage of Ops System errors an A.I. program has acquired. These errors hinder 
+his/her program’s performance. There are many ways an A.I. can increase their Ops Errors. If an A.I. 
+ever strays from his operating protocols or does not follow command, Ops Error is increased. This is 
+because A.I. is designed to perform a certain way, and when she does not, she is performing less 
+like a machine and more like a human. Too many operating errors will eventually degrade her 
+Operating System to the point of no longer working. Damage from combat will increase Ops Errors 
+in an A.I. program. (as listed in [The Matrix RPG].[Game Concepts].Health). The Ops Error is an A.I.’s 
+chance of succeeding in critical moments. When an A.I. gets a failure or critical failure they roll an 
+Ops Error to see if their computer code overcomes the failure. For example say the A.I. fails, or 
+critically fails at shooting a target. They could roll under their current Ops error to barely succeed at 
+that task.
+      
+   Attributes for Frames (Sentinels)
+Sentinel frames are similar to vehicles. Sentinels use these main attributes above (Priority Level, Virtuosity, 
+Ops Sys, and Ops Errors) in addition to these vehicle attributes:
+
+*	Speed- This is how fast the ship can travel when pushed to its limits. The Vehicle speed rating adds 
+its dice to the players dice pool when rolling to pilot the vehicle.
+*	Agility- This is how difficult it is to operate the craft at speed and over difficult terrain. Can this 
+piece of $#!t squeeze through an abandoned building without losing its engine? Agility rating 
+reduces the task threshold for piloting test.
+*	Fuel (remaining/maximum)- Fuel is a rating comprised of two numbers. The first number is the 
+amount of fuel cells remaining for the ship to use as power. The second number is the maximum 
+number of fuel cells the ship is designed to hold. One day is the average life for a fuel cell. These 
+fuel cells can be recharged repeatedly. A single fuel cell takes one hour to fully recharge. All 
+vehicles are listed with their maximum fuel cell rating.
+
+   Attributes for Humans
+Humans have attributes that range from 1 to 5. Common Sense, Focus, Agility, and Strength are all human 
+attributes. Common Sense and Focus are attributes that represent a human’s mental qualities. Agility and 
+Strength are attributes that represent a human’s physical qualities. The Endurance attribute represents with 
+how well a character can heal damage. Nomads and humans on the surface are slightly different than their 
+underground counterparts. Surface humans are stockier, thick skinned, and hairier because of the conditions 
+their bodies have adapted too.
+
+*	Common Sense– is for when you need answers quickly. Fast talkers and swindlers have a high 
+common sense, so they can out-wit other people and keep ahead of them. 
+*	Focus– is the character’s ability to concentrate and ignore outside stimulation. Learning and 
+memory fall under this part of the human persona. This will govern how much willpower a human 
+has over his body.
+*	Agility- is how quickly and easily a character can move, especially under pressure. Running speed 
+and dexterity are based on Agility.
+*	Strength- is physical and muscular power. This will determine how much a person can lift and 
+move. The overall physical toughness of a person is represented by Strength.
+*	Endurance- How long can a person survive under mental or physical stress? A person’s fortitude, 
+health, and hardiness are represented by their Endurance. 
+
+   Matrix Ego
+When a character has a neural interface implanted, he/she acquires additional attributes. These are basic 
+attributes only usable in the simulated construct of the Matrix. Both attributes start at 0 when they first 
+manifest. CyberZen has a maximum rating of 5.
+
+*	CyberZen- is the knowledge that the Matrix is a simulacrum. That enlightenment allows characters 
+to attempt extraordinary tasks—they can attempt tasks that seem impossible. CyberZen can be 
+used in multiple ways. 
+
+1) Normally CyberZen is used in conjunction with special Matrix only skills that are called Matrix 
+Feats. [For example, if a player wants extra strength their character rolls Cyberzen + Matrix Feat 
+Increase Attribute. Every success increases the attribute die pool of their choice by +1 die. They can 
+add that die pool to every strength action for the remainder of that scene.] 
+
+2) CyberZen can be used by itself to attempt a Matrix Feat without having the actual Matrix Feat 
+skill. The player describes what they are trying to do. Then the GM determines what is possible and 
+sets the threshold for the task roll. The character only gets to roll CyberZen dice for this default 
+Matrix Feat task roll.
+
+3) CyberZen rating is used to set the limit for the number of skills a RSI can download. The 
+maximum amount of downloadable skills is equal to CyberZen rating times 3. One third of those 
+downloads are permanent and stay in the character’s brain until they are willfully erased. The other 
+two thirds of their downloadable skills are temporary and get erased each time they are unplugged.  
+
+   CyberZen and The Gift
+	Humans plugged into the Matrix have a CyberZen score of zero (0). CyberZen ratings range between 0 
+and 5. Characters must have a CyberZen of 5 before they can purchase the Gift upgrade. Once they have 
+upgraded their CyberZen to The Gift, it is possible for that character to “break the rules” of the Matrix. With 
+the Gift characters can use the Rule Breaker description of Matrix Feats. Without the Gift upgrade, a character 
+can only “bend the rules” of the Matrix. Without the Gift a character can only use the Rule Bending description 
+of Matrix Feats. To have the gift is too know it, balls to bones. The Matrix reality is governed by rules, and 
+these Matrix rules are the science you studied in school. Most people without CyberZen don’t think they can 
+break the laws of physics just by believing they will, so they don’t even try. But with the Gift, the One can bend 
+and break the laws of science. When a person breaks the rules of the Matrix, their actions look like 
+superpowers. CyberZen actions contradict the Coherent Reality of the MATRIX. 
+      Characters that wish to be like Neo must spend the experience to buy the Gift. The gamemaster should 
+have the player purchase the gift as soon as possible. There should be some compelling, in-game reason why 
+that player has the gift. A messiah does not come along every day. Also, once the player purchases The Gift, 
+the gamemaster and player agree that only the gamemaster knows when the character can use the Gift to 
+break rules in the Matrix. The gamemaster observes the character and at some point during the campaign, the 
+gamemaster says the player is The One and that choice is not reversible. Once the Gift is active, the player is 
+able to defy the rules of the Matrix and the gamemaster must deal with those consequences. Having the Gift 
+can be a game breaker, so think it through carefully. Even without the Gift, RSI’s are pretty powerful in the 
+Matrix.
+	Think of something you want to do and the GM will determine the threshold for that task. When 
+attempting a CyberZen task, roll your CyberZen  (difficulty). If the character succeeds at the task roll, then his 
+CyberZen task is successful. You don’t know what you can do until you try it, such as superhero flight. The 
+more successes a character rolls, the better the outcome. But some things are impossible, even with God-like 
+CyberZen. Characters cannot change an RSI’s thoughts. It is also impossible for CyberZen to allow a character 
+to control A.I.—their cold computer-calculated thought processes are immune to CyberZen. CyberZen does 
+not allow a character to bring the dead back to life. Characters cannot create another RSI using CyberZen.
+      
+   Character Creation
+1.	Think of a background history for your character. How did your character get to where he/she is 
+today? Think of it this way: if you were to attend an interview for a job that you really wanted, 
+what should the boss know about you?
+2.	Pick a Path for the character to follow.
+3.	Gamemaster determines character generation points (CGP) for the campaign. The points are to be 
+used as you wish between skills and attributes.
+4.	Character Generation cost for Humans:
+*	Attributes - Cost 1 CGP for each rating level you want of an attribute. For example, rating 6 
+Strength cost 6 CGP. 
+*	Matrix Ego - Cost 
+*	Skills - Any important skills that are rated Master or Teacher must somehow be explained in 
+your character background. Characters cannot buy Downloaded Skills with character generation 
+points. 
+Novice 	= 	1 CGP 
+Practiced	= 	2 CGP 
+Skilled	 	= 	3 CGP 
+Master 	= 	4 CGP 
+Teacher 	= 	5 CGP 
+*	All Characters start with a Native language at 3-Skilled Level. This means they can read and 
+write their native language.
+5.	Characters’ equipment is based on the campaign. Gamemasters should help characters get their 
+equipment list together. Equipment is traded and bartered for in the real world.
+6.	Submit to your gamemaster for approval.
+
+   Recommendations for PC creation
+*	Average campaign- 15 CGP for attributes (18 CGP for RSI’s since they have Cyberzen attribute also), 18 
+CGP for skills.
+*	Above average campaign- 20 CGP for attributes (24 CGP for RSI’s since they have Cyberzen attribute also), 
+24 CGP for skills
+
+   Alternate character generation ideas
+If characters want to roll their stats, they can roll a d10 for each attribute or skill. It is up to the GM how many 
+times they want the player to reroll her numbers if she doesn’t like them.
+
+Below is a chart for random skill & attribute ratings:
+10 	= Teacher, Attribute rating (5)
+8-9 	= Master, Attribute rating (4)
+4-7 	= Skilled, Attribute rating (3)
+2-3 	= Practiced, Attribute rating (2)
+1 	= Novice, Attribute rating (1)
+
+   Improve PC with experience
+*	Raise Attribute = 	Next level in experience * 2
+*	The Gift = 		65 experience
+*	New Skill  = 	3 experience points to start at “Interest Level”
+*	Raise Skill = 	Next level in experience
+*	CyberZen = 	Next level in experience * 3 
+
+   Awarding Experience
+*	Roleplay award- at the end of game, all the players and the GM vote on the best player.
+*	GM award- players decide how much experience to give the GM.
+*	Each game should average 3-5 experience for the characters, depending on how difficult things were and if 
+they won any awards from the GM or players for how well they played the game.
+*	Who was the combat star of this session? Combat Stars should be considered for additional experience.
+*	Did the characters survive the session?
+?
+  Walking the Path
+      There is a difference between knowing the path you must take in life and walking that path. Here we 
+describe the most common paths. Choose the path that most suits you.
+      
+   Humans
+      Every citizen in the world is considered to be one of Zion’s children, since Zion was one of the first 
+human cities. Most city dwellers, no matter what their true geographical location, will refer to themselves as 
+Children of Zion. Nomads, however, do not make this claim. If you are a civilized human that believes in the 
+society and the laws it is governed by, then you are considered a citizen. Citizens usually prefer to live in 
+outpost or cities. The ice desert of the Real World is also inhabited by some citizens.
+      
+      RSI Hacker (“Ressies,” or Residual Self Image)- RSI Hackers pirate their input/output carrier signal to 
+broadcast RSIs into the Matrix. Most RSIs were raised in the Matrix as pod-born humans and were rescued 
+(the slang for a pod-born still plugged in is a lamb, or bluepill). Young minds are easier to rescue. RSIs are 
+typically rescued between the ages of 9 and 18. In Zion, the newly released RSIs are raised in orphanages until 
+citizens have space in their homes to adopt them. Citizens sometimes have family members they will adopt 
+after they have been freed from the Matrix. RSIs risk their lives to keep the human race alive and hopefully 
+one day free. To be an RSI, characters must have a cybernetic neural interface implanted in their bodies. 
+      Most RSI Hackers in the Matrix are part of the Zion military. Zion crews are not allowed to keep 
+downloaded Matrix skills private. Whatever they download must be shared. Zion crews consist of a Captain, 
+First Mate, Pilot, Operator, and Other Crew. The Zion military has specific uniforms and the color of the tunic 
+depends on the crew-member’s rank in the military. Yellow tunics are worn by “other crew members,” blue 
+tunics are worn by the First Mates, gray tunics are worn by the Operators, and red tunics are worn by the 
+Captains. Ships can hold three to eleven crew members.
+      
+      Homegrown (Freeborn)- Humans that are born naturally, in the Real World. Homegrown humans have 
+never been implanted into the Matrix. Zion Homegrown humans are dedicated to the resistance movement. 
+These humans are everywhere and are becoming more and more common as the population grows. 
+Homegrown humans can be implanted with cybernetics, but most keep themselves free of the Machine's 
+influence.
+      
+      Matrix "Operator"- It is recommended this character be an NPC (non-player character) played by the 
+GM. Operators get an RSI Hacker in and out of the Matrix through a hardline. Operators remain in the real 
+world and view the MATRIX construct from the outside in pure Matrix code. Operators have read only access 
+to the Matrix. Seeing the Matrix in code allows the Operator to see things that the RSIs can’t see. Someone 
+submerged in the sensory simulation of the MATRIX cannot see what things really are. Think about it. That's 
+what the MATRIX was designed for—it keeps people from seeing the truth. Operators need to have the skill 
+Programming. Operators load hacked programs of equipment with an RSI when she broadcasts into the 
+Matrix. Operators also download RSIs additional chipped skills while they are in the Matrix.
+      Operators do a lot of work to keep everyone—RSIs and crew—safe. First, an Operator spoofs the ship’s 
+broadcast signal. Spoofing camouflages the ship’s broadcast signal by giving the ship a fake authorization—in 
+essence, faking the ship’s login and password to the Matrix. Then an Operator secures hardlines for the RSI 
+Hacker to broadcast their input/output carrier signal on. In the Matrix, telecommunications equipment 
+represents hardlines. Usually, the more hardlines that are secured, the more exits the RSI Hackers have once 
+they are in the Matrix. Operators commonly lose hardlines, but with more than one available, they can usually 
+get the RSI out through another one. Everyone always hopes that the new hardline is close to the RSI. The 
+more skilled your Operator is, the closer the hardline will probably be. If the RSIs have time before they are 
+loaded into the Matrix, they can pick up simulacra equipment in the Loading Program (see glossary). Simulacra 
+equipment is limited by the type of hardline they are moving through. It easy enough for the Operator to 
+transmit small- to medium-sized equipment with the RSI, but the bigger the equipment, the larger the 
+hardline needs to be to transport that much data. For people, the Operator only needs a hardline the size of a 
+phone. However, telephones only have enough bandwidth for one person to use at a time. For vehicles and 
+larger items, a cell tower or phone array is necessary. 
+      Once the RSI are in the Matrix, an Operator’s work is not done. Operators are constantly watching out 
+for the computer system’s anti-virus and intrusion countermeasures. For example, it is not uncommon for the 
+system to cut hardlines in order to destroy exits for RSIs. The system is constantly looking for anomalies, and 
+yes, Zion RSI Hackers are anomalies. The ship’s Operator needs to be ready to save an RSI’s butt at a moment’s 
+notice. Operators can send data and talk with the RSIs, but aside from that, Operators cannot change things in 
+the Matrix from their broadcasting console. 
+      Hardlines are not considered secure if people within the Matrix observe the RSIs appear as if from out 
+of nowhere. A hardline is only secure if there is no one there to see the RSIs broadcast in. If the system sees 
+the RSI Hacker broadcast into the Matrix, that hardline will be cut and an Agent will be sent immediately. In 
+addition, if the Agent(s) capture any of the crew members’ RSIs, the broadcast signal can be traced right back 
+to the ship. Once the ship’s location is discovered, Agents send out Sentinels, or Frames, to do the rest of the 
+work.
+      
+      Mercenaries- They don't care what side they are playing for. The only thing that matters is who pays 
+more. Mercenaries play their own side, always. A mercenary could be a Soldier, Operator, Hot Shot Pilot, or 
+RSI. Whatever roles they fill, they are always getting paid for the services they provide.
+      
+      Hot Shot Pilot- You can always hire a Hot Shot Pilot if you have the money or equipment to trade as 
+payment. A pilot is a pilot, but a hot shot pilot is a way of life. They are the only ones crazy enough to pilot 
+your ship through a service tunnel and escape. Most hot shot pilots wouldn’t be worth anything without a 
+ship. When you hire a pilot you are hiring her ship, too.
+      
+      Punksmith- Punksmiths are scavengers or traders, depending on what part of the deal you are in on. If 
+they are working for you, they are the best scavengers who can make anything out of the parts they have on 
+hand. If they are selling their equipment, then they are traders who will take you for everything you have on 
+hand. Punksmiths are mechanics, engineers, salesmen, and whatever else they need to be. A punksmith will 
+make unique items every time. Say, for example, they are making pistols. Every pistol they make will shoot like 
+it is supposed to, but it will be made slightly differently each time. Punksmiths never make two pieces of 
+equipment the same way, like a snowflake, each piece of equipment is unique.
+      
+   The Machines
+      A.I. Programs Non-/Sentient - It is true that they are artificially intelligent, but they are not free-willed. 
+They can make decisions, but they have a set of protocols, to which they must strictly adhere. A.I. are no 
+longer restricted to circuit boards. A.I. can exist in a gel made of plasma energy—a gelatinous material 
+developed by A.I. that stores all the program’s information. These gelatinous matrices are extremely stable 
+and have the ability to occupy a frame and power it. The plasma gel is called cognitive plasma. The plasma is 
+not mobile.
+      
+      Agents- A.I. programs that are designed to delete anomalies in the Matrix simulation. Agents have the 
+ability to take over any RSI still hardwired to the Matrix. When Agents take over the RSI, it becomes the Agent 
+in every way. When the RSI wakes up after the takeover, he has no memory of that period. If the Agent dies, 
+the RSI they took over will die also.
+      
+      Frames- A.I. can occupy a robotic body. The evolution of these robotic bodies can be divided into 
+generations by the designs of their Frames. Since an A.I.’s physical self is nothing but cognitive plasma, they 
+can occupy any robotic frames that they wish. The frame must first be empty of any other cognitive plasma. 
+When more than one A.I. is in a Frame, only the one with a higher Priority level can be in control. The other 
+A.I. is essentially a co-pilot with little control besides what control the main A.I. allows it to have.
+      
+      Squidi Sentinel Frames- Squidies, or Sentinels, are A.I. residing in a Squidi frame. Sentinel A.I. are the 
+watchdogs for the Machines. Sentinels are designed to hunt humans. They are exceptionally good at it. When 
+the Machines discover a better way of hunting humans, they will design a new sentinel frame for the A.I. to 
+inhabit. 
+      ?
+  Skills
+Skills are broad and meant to be used as guidelines for what your character knows. Each character’s 
+background gives that skill life. Use the general descriptions to help you imagine where to start.
+      
+   General Skills
+General list of skills characters can use in the Real World or in the Matrix.
+
+Aircraft Piloting - [Agility]
+Description - Piloting a hovercraft and other vehicles that stay airborne during operation. This includes 
+landing, stopping, combat maneuvers (basically whatever you can think of to get the hell away from danger), 
+high speed control, etc. 
+
+Ambidextrous - [Agility]
+Description - Ability to use both hands equally well for anything. 
+
+Archery - [Agility]
+Description - Propelling arrows with the use of a bow or crossbow. This will also allow the character to do 
+fletching. 
+
+Balancing Feats - [Agility]
+Description - Walk tight ropes, juggle, stack plates, etc. 
+
+Dancing - [Agility]
+Description - Ballroom dancing, club dancing, ballet, stage performance, etc. 
+
+Driving - [Agility]
+Description - See groundcraft piloting. 
+
+Ground Craft Piloting - [Agility]
+Description - There are still some wheeled and tracked vehicles in use. This skill represents the ability to control 
+and pilot such craft. 
+
+Gun Fighting - [Agility]
+Description - Weapons that use gunpowder, or explosives, to propel a metal slug at your target. Most of this 
+class of weapon has a trigger button of some sort. Examples of guns covered by this skill are Handguns, Rifles, 
+Shotguns, Submachine Guns, Assault Rifles, Artillery Guns, and Machine Guns. 
+
+Knife Fighting - [Agility]
+Description - Fighting with knives using martial fighting skills like Eskrima, Esgrima Criolla, The Andalusian 
+legacy, or Scherma di Stiletto Siciliano. This is an athletic, close combat form of fighting. 
+
+Martial Arts - [Agility]
+Description - Formal hand to hand combat techniques, Akido, Karate, Ju Jitsu, Kendo, etc. Please pick individual 
+styles as each of your fighting skills. 
+
+Polearm fighting - [Agility]
+Description - Fighting with close combat weapons in which the main fighting part of the weapon is on the end 
+of a long shaft. Axes, maces, and morning stars are considered polearms. 
+
+Sleight of hand - [Agility]
+Description - Tricking the eye to see or not see a hand gesture through deception, magic tricks. 
+
+Blade Fighting - [Agility]
+Description - Using bladed weapons. Swords are very popular weapons against the Machines in the Real 
+World, because they have been developed to cut through metal. 
+
+Thai Boxing - [Agility]
+Description - Thai boxing, a form of hand to hand combat. 
+
+Throwing Weapons - [Agility]
+Description - The skill to aim, balance, and throw a weapon with deadly effectiveness. Throwing weapons 
+include knives, spears, shurikens, and rocks. 
+
+Escape Bonds - [Agility/Common Sense]
+Description - The ability to get out of handcuffs, ropes, and avoid being held. 
+
+Sci Fi Weapons - [Agility/Focus]
+Description - This skill is specific to the weapon the character is using, such as a Plasma Cannon or Laser Rifle. 
+These types of weapons are so unique that a person has to learn each one individually. 
+
+Acrobatics - [Agility/Strength]
+Description - Flips, vaults, rolls, and tumbling. 
+
+Acting - [Common Sense]
+Description - Pretending to be someone else, creating emotions at will. 
+
+Animal Training/Handling - [Common Sense]
+Description - Training animals to listen to commands, domesticating animals. 
+
+Bartering - [Common Sense]
+Description - Used to levy better deals in trades. General knowledge of an item's value. 
+
+Blackmarket - [Common Sense]
+Description - Locating and bargaining in the black market. The character knows who to talk to and what to say 
+to find or sell on the black market. 
+
+Coercion - [Common Sense]
+Description - Seduction, manipulation, scamming, intimidation, bluffing to get what they want. 
+
+Conceal - [Common Sense]
+Description - Hiding objects and self. 
+
+Diplomacy - [Common Sense]
+Description - The ability to convince others of seeing another point of view, and to cut through red tape easier 
+than others. 
+
+Disguises - [Common Sense]
+Description - Concealing identity with makeup, clothes, change of appearance. 
+
+Gambling - [Common Sense]
+Description - Statistically improve chances of winning games. 
+
+Gather Information - [Common Sense]
+Description - Conversing with others to collect information without notice. 
+
+Guerrilla Tactics - [Common Sense]
+Description - Irregular warfare with small groups of fighters who use tactics like ambushes, sabotage, element 
+of surprise, and raids. 
+
+History of Zion - [Common Sense]
+Description - A general knowledge of the human history of Zion, or any city or area of choice. 
+
+Interrogate - [Common Sense]
+Description - Using force and/or manipulation to obtain information. 
+
+Nomad Clan Customs - [Common Sense]
+Description - Every nomad clan has special customs and ways of doing things, rituals they must perform, etc. 
+This is a knowledge every clansman must have for her clan. More than likely, the higher a character's skill, the 
+higher placed she is in the clan. 
+
+Philosophy - [Common Sense]
+Description - Study of problems in the fields of knowledge, reality, values, morals, mind, and existence. 
+Philosophers address these problems using critical thinking and logic. 
+
+Photography - [Common Sense]
+Description - Digital or film, journalistic, art, sports, picture composition, and modeling. 
+
+Religion - [Common Sense]
+Description - Study of religious beliefs, behaviors, holidays, traditions, and religious institutions of a specific 
+religion. 
+
+Remote Piloting - [Common Sense]
+Description - Controlling anything mechanized with remote access controls. Vehicles can have remotes, 
+sentinel frames can be augmented (when not occupied by an A.I.) to have remote control capability also. Must 
+have the skills for the vehicle type that is being piloted. 
+
+Snooping - [Common Sense]
+Description - Knowledge of how to set up bugging devices, detect hidden microphones, video cameras, etc. 
+
+Stalk - [Common Sense]
+Description - To follow someone unnoticed, shadowing. 
+
+Stealth - [Common Sense]
+Description - Knowledge of how not to be detected. General camouflage and silence techniques. Hide while 
+moving. 
+
+Surveillance - [Common Sense]
+Description - Build and use security with cameras, motion sensors. 
+
+Thieving - [Common Sense]
+Description - Stealing, pickpocketing. 
+
+Track - [Common Sense]
+Description - To follow someone who cannot be seen by following a trail or clues of his/her passage. 
+
+Linguist - [Common Sense/Focus]
+Description - Understand basic structure of languages, figure out words and phrases from similarly familiar 
+languages. 
+
+Perception - [Common Sense/Focus]
+Description - This is for the gamemaster to make an objective check as to whether a character notices 
+something or not. It can be as simple as seeing a canyon off in the distance, or as critical as noticing whether 
+there is an ambush ahead. The ability to notice the common things, and pick out the details and the 
+unexpected. 
+
+PunkSmithing - [Common Sense/Strength]
+Description - Designing technology from other scavenged bits of machines and broken things. 
+
+Salvage - [Common Sense/Strength]
+Description - The ability to, with the right tools, remove and collect things of value from where they are. 
+Examples of this are, if a character understands sentinels' hardware, he can remove parts from the frame in a 
+way that those parts are preserved and retain their trade value. 
+
+Running - [Endurance]
+Description - The knowledge of how to pace oneself and increase running endurance. Most Desert clansmen 
+can run for days with little to no rest. 
+
+Survival - [Endurance]
+Description - Knowledge of how to survive in a harsh environment such as the wilderness, jungle, mountains, 
+plains, or desert. 
+
+Ice Desert Survival - [Endurance/Focus]
+Description - A general knowledge of surface arctic survival, foraging skills, flora & fauna, dangerous weather 
+conditions, ice climbing, and other cold climate knowledge. 
+
+Rock climbing - [Endurance/Strength]
+Description - The knowledge of things like how to belay, climbing techniques, climbing cracks, lead climbing, 
+placing gear, setting anchors, top rope climbing, climbing communication, self rescue and other essential skills. 
+
+Aiming - [Focus]
+Description - Aiming is done in game so the character can have a special effect. On a successful aiming task 
+the PC can have a special roleplay event happen. Something the player describes to add to the story. 
+
+Art - [Focus]
+Description - Creating works of art, drawing and painting, sculptures, airbrushing. 
+
+Biology - [Focus]
+Description - Knowledge of the science of biology and life forms. Covers genetics to ecosystems. 
+
+Chemistry - [Focus]
+Description - Knowledge of the science of understanding and mixing chemicals elements. 
+
+City Speak - [Focus]
+Description - The knowledge of the tones, inflections, and general jargon that will get you around in the city. 
+Specify the city that you can use City Speak in. 
+
+Demolitions - [Focus]
+Description - Knowledge of how to use demolitions, analyze and disarm bombs, set explosives, and make 
+explosives. 
+
+Electronics - [Focus]
+Description - Knowledge of how to operate, analyze, repair, and build electronic devices. This is a general 
+electronics repair skill. The character knows how to mess with do-dads and usually keeps things in general 
+working order. 
+
+Encryption - [Focus]
+Description - Encode cryptographic information, crack codes. 
+
+First Aid - [Focus]
+Description - Stabilizing wounds, treating minor burns and cuts, CPR. 
+
+Forgery - [Focus]
+Description - Create duplicates of documents, fake IDs, counterfeiting, etc. 
+
+Geology - [Focus]
+Description - Science of studying solid earth. Geology gives humans insight into what makes up the earth 
+around them and its origins. 
+
+Gunsmith - [Focus]
+Description - A person who repairs, modifies, designs, or builds guns. 
+
+Hand signals - [Focus]
+Description - This skill is very specific to small groups. It is used in clans for communicating when the 
+conversation is supposed to be private. Each group has its own set of hand signals. 
+
+Hypnotize - [Focus]
+Description - Getting people into a mental state that makes them more susceptable to suggestions. 
+
+Law - [Focus]
+Description - Knowledge of the local laws and legal organizations. 
+
+Leadership - [Focus]
+Description - Ability to gain the respect of a group of people and make them susceptible to influence. 
+
+Locksmithing - [Focus]
+Description - Understand locking mechanisms, ability to unlock doors, safes, combination, key, and electronic 
+pads. 
+
+Medical Knowledge - [Focus]
+Description - Knowledge of how to stitch people up. An understanding of first aid, battle field style surgery, 
+proper sterilization techniques, etc. At the teacher Level, the character can perform surgery on people. 
+
+Navigate - [Focus]
+Description - Ability to use navigation equipment to plot and hold a course. 
+
+System Operations - [Focus]
+Description - The physical and theoretical knowledge of the Machines, sentinels, and frames. The 
+understanding of how they tick, what they do, etc. 
+
+Vehicle Repair (by piloting type) - [Focus]
+Description - The character can rebuild an engine, set a hovercraft's anti-grav controls. Depending on what it is 
+and the type of equipment one has, the character can fix whatever is in front of them. 
+
+Writing - [Focus]
+Description - The ability to write down spoken words in one's own language, to organize thoughts into written 
+forms like poetry, prose, fiction, and non-fiction. 
+
+Blacksmith - [Focus/Strength]
+Description - Metallurgy, melting, and casting new objects from various metals and scraps. 
+
+Boxing - [Strength]
+Description - Trained fist fighting. 
+
+Brawling - [Strength]
+Description - Untrained street fighting. 
+
+Fitness - [Strength]
+Description - Ability to work out and keep physically active to improve health. 
+
+Parkor - [Strength]
+Description - A physical discipline which focuses on efficient movement around obstacles. 
+
+Swimming - [Strength]
+Description - Studying the mechanics of swimming for extra speed, and strength. The knowledge of different 
+swim strokes like freestyle, backstroke, breaststroke, and butterfly. 
+
+   Matrix Feat Skills
+Matrix Feats are special skills that work differently than other skills. Matrix Feats are one of the few skills that 
+only work in the Matrix simulation. They are useless outside the Matrix simulation. Matrix Feats are the 
+character’s ways of Bending or Breaking Matrix laws of physics. Matrix Feats cannot be downloaded into your 
+brain like other skills. Nor can Matrix Feats be programmed. To any computer Matrix Feats should not work. 
+Matrix Feats are a series of errors and nonsense loops. Matrix Feats must be acquired by paying experience to 
+learn and develop that specific Matrix Feat skill. They don’t specialize like other skills. When a character 
+reaches Master Level in a Matrix Feat they are not allowed to pick a specialization for a +1 die.
+
+Matrix Feats are not limited to the list in this book. If a player and GM can agree on rule bending and breaking 
+descriptions then they can make another Matrix Feat. Matrix Feats can only be learned, they can’t be 
+programmed. Sometimes a character doesn’t have the experience to buy a Matrix Feat but they want to use 
+the power on the fly. GM’s can allow characters to only roll their CyberZen versus a threshold set by the GM. If 
+they make the threshold then the GM grants them a very limited Matrix Feat that works to get the job done, 
+for now.
+
+Matrix Feats have two descriptions. The rule bending description is what characters use without the Gift. The 
+rule bending description is a weaker version of the Matrix Feat. They are still superpowers but they aren’t god 
+like with the ability to break the rules of the Matrix, yet. Once the player upgrades their CyberZen and buys 
+the Gift they have access to both the descriptions. The rule breaking description is a more powerful version of 
+the Matrix Feat that usually breaks the rules of the Matrix. 
+
+Matrix Feat “Acute Hearing” - [CyberZen]
+Rule Bender Feat: The ability to hear sounds that would normally be too low or too far off to hear with normal 
+hearing.
+Rule Breaker Feat: Character can hear any frequency even those that are normally inaudible to human ears.
+
+Matrix Feat “Atmospheric Adaptation” - [CyberZen]
+Rule Bender Feat: Character can breathe noxious gases without any adverse effects. Even though characters 
+can inhale noxious gases they are unable to breathe underwater.
+Rule Breaker Feat: Character can breathe water, noxious fumes/gases, or go without oxygen completely.
+
+Matrix Feat “Blindness” - [CyberZen]
+Rule Bender Feat: The characters must be able to touch their target. With a simple touch the character can 
+make a RSI blind. They can affect a number of targets equal to their Matrix feat rating.
+Rule Breaker Feat: Character can make a redpill RSI blind while they are plugged into the Matrix. The effect last 
+as long as the targets stay in the Matrix.
+
+Matrix Feat “Change Material” - [CyberZen]
+Rule Bender Feat: The character has the ability to change the weight, size, and the color of an item 
+temporarily. The item retains its shape and possibly its original function depending on how it is altered (GM's 
+discretion). The character can only affect one item at a time. The objects that are affected must be smaller 
+than the character.
+Rule Breaker Feat: The character has the ability to alter an object's molecular structure in the Matrix, 
+i.e.,changing a gun to butter, concrete to water, water to wine, etc. The items retains its shape and possibly 
+function depending on how it is altered (GM Discretion). A single object of any size can be changed in this way.
+
+Matrix Feat “Control Animal(s)” - [CyberZen]
+Rule Bender Feat: The character has the ability to lock gazes with an animal and make that particular animal 
+follow his commands.
+Rule Breaker Feat: The character can control more than one animal at a time. Characters are only able to 
+control as many animals as their Matrix feat rating.
+
+Matrix Feat “Control Gravity” - [CyberZen]
+Rule Bender Feat: Character can control how gravity works by increasing or decreasing it on one person or 
+object. They have to touch the object.
+Rule Breaker Feat: Character can control gravity in an area that they can see. They can control how gravity 
+works in an area around the character equal to their Matrix feat rating in meters.
+
+Matrix Feat “Control Plant(s)” - [CyberZen]
+Rule Bender Feat: Character can touch a plant and make it grow, and grow in certain direction. To imagine this 
+feat think of the plant reaching towards the sun, but the character can make that happen rapidly.
+Rule Breaker Feat: Character can make multiple plants grow or wither at will. The character must be in close 
+proximity of the plants. GM discretion as to whether the character could affect an entire acre or farm of crops.
+
+Matrix Feat “Control Weather” - [CyberZen]
+Rule Bender Feat: Make a rain storm on a sunny day. The more abnormal or extreme the weather change the 
+more difficult the task roll. Creating clouds in an office building is very difficult.
+Rule Breaker Feat: Without changing the entire weather pattern the person can call lightning to strike in an 
+spot of their choosing. The character could call a tornado spiral on a calm day with no other winds around at 
+the same time.
+
+Matrix Feat “Create Simple Objects” - [CyberZen]
+Rule Bender Feat: The character can restore simple objects that have been destroyed. For example the 
+character can restore a burnt candle to its original state. They must touch the item.
+Rule Breaker Feat: The character has the ability to make small simple objects from nothing. Simple objects 
+don't have any moving parts. The character must touch the item being made.
+
+Matrix Feat “Disguise” - [CyberZen]
+Rule Bender Feat: A player can disguise herself to agents and other people within the Matrix. RSI's don’t see 
+the character as she is, but rather as she would like to be seen.
+Rule Breaker Feat: Player can change their height and weight. It is even possible to alter appendages like 
+growing a lost appendage. Mimic someone specifically down to the DNA. Indiscernible from the original. 
+Characters must stay human.
+
+Matrix Feat “Dodging Bullets” - [CyberZen]
+Rule Bender Feat: Character has an uncanny ability to dodge non-ballistic speed objects. Character can easily 
+dodge bows and arrows.
+Rule Breaker Feat: The character can dodge ballistics and projectiles in the Matrix. When a character uses 
+dodge they cannot perform any other actions that turn.
+
+Matrix Feat “Eagle Eyes” - [CyberZen]
+Rule Bender Feat: Character can see long distances as though they were closer. It would be possible to read a 
+newspaper article that is a block away as though they were holding the newspaper in their own hands. This 
+Matrix feat gives the user extreme tunnel vision. While using this ability they have difficulty focusing on things 
+closer than their target range.
+Rule Breaker Feat: Character's eyes can vary their magnifaction from normal to the power of an electron 
+microscope. They always have the tunnel vision when using this feat.
+
+Matrix Feat “Enhanced Smell” - [CyberZen]
+Rule Bender Feat: Character smells scents like a blood hound. They can use this abilit to track a person or 
+object by its scent.
+Rule Breaker Feat: A character can use smell to identify anyone they have smelled before, even if the person is 
+trying to disguise themself as someone else. The character is so sensitive to smells they can pick up 
+pheromones similar to how ants follow each other.
+
+Matrix Feat “Firestarter” - [CyberZen]
+Rule Bender Feat: Character is able to increase or decrease the intensity of fire that is already burning. Cannot 
+create flame from nothing.
+Rule Breaker Feat: Character can create fire from nothing. It is easier if they have something to set on fire.
+
+Matrix Feat “Flight” - [CyberZen]
+Rule Bender Feat: Character glide on air currents without the aid of wings. They could take a running jump and 
+use that to start their gliding. Gliders are not propelled so they don’t move fast unless they are diving, and they 
+slow down when climbing. The character can also turn off this Matrix Feat allowing them to fall to the ground 
+normally.
+Rule Breaker Feat: The character can fly like superman.
+
+Matrix Feat “Forcefield” - [CyberZen]
+Rule Bender Feat: The character can create a forcefield around their body that can repel objects, gases, or 
+forces from touching the character. This field is on the surface of the characters body.
+Rule Breaker Feat: Extend this forcefield to others, or around a certain area. They only control one forcefield. If 
+they are using the forcefield to protect someone else they are not protected themselves.
+
+Matrix Feat “Grow Claws” - [CyberZen]
+Rule Bender Feat: Alter nails and teeth so they have a razor sharp edge. They can also make them hard as 
+diamonds.
+Rule Breaker Feat: Grow fingernails and toenails longer and stronger like cat claws. Character could even make 
+bone poke through skin in  desired areas.
+
+Matrix Feat “Increased Attribute” - [CyberZen]
+Rule Bender Feat: Make a task roll. For each success increase that attribute's dice pool by one die for the 
+remainder of the scene. This cannot increase the Cyberzen attribute. The amount of points that a character can 
+adjust is equal to Matrix Feat rating. But that can be added up from multiple Attributes. For example a rating 3 
+Matrix Feat could adjust Strength +2 and Focus + 1. If they want to increase another attribute then they will 
+have to give up one of the current adjustments they already have.
+Rule Breaker Feat: Increase Cyberzen. No limit to the amount of Attribute points the character can increase.
+
+Matrix Feat “Increased Skill” - [CyberZen]
+Rule Bender Feat: Make a task roll. For each success increase that skill's dice pool by one die for the remainder 
+of the scene. The amount of points that can be adjusted by this Matrix Feat is equal to its rating. Similar to 
+Increased Attribute.
+Rule Breaker Feat: No limit to the amount of Skill points that the character can increase.
+
+Matrix Feat “Invisibilty” - [CyberZen]
+Rule Bender Feat: The character becomes harder for people to see. The character does not become translucent, 
+but they can only be seen if someone were starring directly at them and focusing.
+Rule Breaker Feat: A character can become completely translucent, light travels  through them. Clothes and 
+other items the character is wearing are unaffected by this feat.
+
+Matrix Feat “Jump” - [CyberZen]
+Rule Bender Feat: Soften a deadly fall of twenty stories, or jump across extreme distances as though they were 
+much smaller. You could jump across the Grand Canyon with this feat.
+Rule Breaker Feat: Jump gets very similar to fly once a character has the gift. They can jump as far as they 
+want. The difference from flying is they can’t do the superman thing. The character can jump for miles as long 
+as they are moving up and down not side to side.
+
+Matrix Feat “Mimic” - [CyberZen]
+Rule Bender Feat: Character can turn body into an element that they have come in contact with. The body can 
+move like normal but it has all the other characteristics of the element they copied.
+Rule Breaker Feat: By touching an object, person, animal, or bug the character can become a copy of that thing 
+down to the smallest detail. The character does not have to stay human. They could mimic a monkey but they 
+must touch it.
+
+Matrix Feat “Mind Control” - [CyberZen]
+Rule Bender Feat: Character can plant small one word suggestions or ideas into a RSI’s mind. Upon a successful 
+roll the bluepill RSI will carry out that suggestion until its completion. The character can leave the Matrix and 
+that character will attempt to complete the suggestion. The RSI will only follow suggestions that don’t hurt 
+them. The person cannot be controlled to kill themselves or jump in front of an oncoming bus.
+Rule Breaker Feat: The character can possess bluepill RSIs. The character has a psychic link with the RSI and can 
+tell them to do what they want. They don’t see what the possessed RSI sees but they know what they know. 
+The character also has the ability to manipulate memories.
+
+Matrix Feat “Negate Matrix Feats” - [CyberZen]
+Rule Bender Feat: Character can temporarily negate the Matrix Feat ability and effects of other RSI’s or 
+programs.
+Rule Breaker Feat: The character can permanently negate the Matrix Feat ability and effects of other RSI’s or 
+programs.
+
+Matrix Feat “Night Vision” - [CyberZen]
+Rule Bender Feat: Characters determine how night vision works for them. Either they use Sonar, low light, or 
+heat (infra-red).
+Rule Breaker Feat: Character doesn’t need to see. They are completely aware of what is around them as 
+though it were daylight. The character knows what is being illuminated by their Matrix Feat and they can turn 
+the feat off if they want.
+
+Matrix Feat “Pass Through Objects” - [CyberZen]
+Rule Bender Feat: Character can pass through thick liquids and objects as though they were made of air. For 
+example using this gift in water would allow the character to run and move as though they were on land.
+Rule Breaker Feat: The character can walk through walls and pass through solid objects as though they were 
+made of air.
+
+Matrix Feat “Prehensile” - [CyberZen]
+Rule Bender Feat: Character can use their tongue, feet and ears to grab things as though they were using their 
+hands. The character could use their feet to fire a hand gun without any difficulty.
+Rule Breaker Feat: Character can grow extra prehensile appendages they can use just like hands. They could 
+even grow an extra arm.
+
+Matrix Feat “Psychometry” - [CyberZen]
+Rule Bender Feat: A character can learn about the past of an object, place, or person by touching it.
+Rule Breaker Feat: A character can learn about the future of an object, place, or person by touching it.
+
+Matrix Feat “Shapeshifting” - [CyberZen]
+Rule Bender Feat: A character can turn into an animal of their choice if they see it while they are shifting.
+Rule Breaker Feat: Character can shapeshift into any animal it has ever seen before, even without the animal 
+present while the character is shifting.
+
+Matrix Feat “Sonic Blast” - [CyberZen]
+Rule Bender Feat: Create a sonic blast that can shatter brittle materials like glass. It can also damage human 
+eardrums or be used to stun an opponent.
+Rule Breaker Feat: Character can use their sonic blast to knock people over and hit things with force. A 
+character could use the sonic blast to lift them up in the air or propel them along in the air.
+
+Matrix Feat “Spatial Manipulation (Spatiokinesis)” - [CyberZen]
+Rule Bender Feat: Character can design an area in the matrix that allows them to control reality. This area 
+does not change until it is destroyed or reformatted.
+Rule Breaker Feat: Character can manipulate the spatial reality of their immediate area, wherever that is. 
+Users can warp, bend, flip, crush, control and otherwise manipulate all physical aspects space within area of 
+ones choosing. It allows only the ability to manipulate an area, not to defy its laws, so gravity, friction, and 
+many other rules will still usually apply. However, it is possible for users of this power to give the illusion that 
+they are manipulating gravity by Floortilting or by manipulating spatial pressure, such as decreasing the spatial 
+size of a basketball without altering its structure. Users cannot affect people or objects, but they could fold 
+space onto itself making the same object take up two different places. Rule Benders are limited to a specific 
+location, Rule Breakers are restricted only by their imagination. 
+
+Matrix Feat “Telekinesis” - [CyberZen]
+Rule Bender Feat: Character has the ability to lift objects up to their weight if they focus on it. They must see 
+the object.
+Rule Breaker Feat: Character has the ability to lift objects that weigh more than them with their minds, but 
+they must be able to see it.
+
+Matrix Feat “Telepathy” - [CyberZen]
+Rule Bender Feat: Character can read surface thoughts of other RSI’s. If the person actively resist having their 
+mind read it makes the roll more difficult for the players. People can notice when someone is reading their 
+thoughts. It feels like someone is holding your head. It is not painful but noticeable. This is limited to one RSI at 
+a time. (difference between Telepathy and Mind Control  is Mind Control allows the RSI to implant thoughts. 
+Telepathy only allows a player to read thoughts)
+Rule Breaker Feat: Characters can read any thoughts that the RSIs have. Even the person tries to hide a 
+thought or memory they will be able unearth it with a little time and focus. This is limited to as many RSIs as 
+their Matrix Feat.
+
+Matrix Feat “Teleportation” - [CyberZen]
+Rule Bender Feat: A character can teleport very limited distances. Basically if they can see it they can teleport 
+there.
+Rule Breaker Feat: Can teleport to any destination in the Matrix. Period.
+
+Matrix Feat “Time Slow” - [CyberZen]
+Rule Bender Feat: For limited periods the character can slow down one object or person in the area. Usually 
+when the character is in combat or in danger they pick one object or person to slow down. The object is slowed 
+down for everyone not just to the RSI with the Matrix Feat.
+Rule Breaker Feat: The character can slow down the actions of everyone else around them, making the player 
+appear to move faster than everyone else. This is limited to an amount of objects not to exceed the Matrix Feat 
+rating.
+
+Matrix Feat “True Sight” - [CyberZen]
+Rule Bender Feat: The character can see random snippets of code. It is up to the GM as to what the character 
+sees when they use this ability. It should be small bits of information.
+Rule Breaker Feat: The character can see all of the simulacrum as Matrix code from within the Matrix.
+
+Matrix Feat “Truth Sayer” - [CyberZen]
+Rule Bender Feat: The character can tell when someone is lying about anything, or when that person thinks 
+they are lying about something.
+Rule Breaker Feat: The character can force a RSI to only tell the truth as far as they know. They don’t feel 
+compelled to talk, but anything they say is the truth and they don’t know why.
+
+Matrix Feat “Wall Crawling” - [CyberZen]
+Rule Bender Feat: The character can cling to walls with hands and/or feet like a spider or climbing insect. If the 
+surface is smooth or wet then crawling is more difficult. Much like fi the person was walking on ice. It is difficult 
+to be completely upside down, the character must concentrate to be upside down.
+Rule Breaker Feat: The character can cling to ceilings and walls made of any material with any type of surface, 
+slippery or not.
+
+Matrix Feat “X-Ray Vision” - [CyberZen]
+Rule Bender Feat: Not literally using X-Rays to see through objects. Character can see through thin walls and 
+clothes as though they weren’t there.
+Rule Breaker Feat: Character can see through lead and thick concrete as though it were not there.
+
+Matrix Feat “Heal” - [CyberZen]
+Rule Bender Feat: Character can roll Endurance to reduce damage up to their Cyberzen rating, in one day.
+Rule Breaker Feat: Character can lay hands on a character and allow them to roll their Endurance score to 
+reduce damage even if they have already rolled once this 24 hour period.
+      
+   Downloaded Skills 
+      Operators can convert all skills, except Matrix Feats, into programming code.  Everything from Martial 
+Arts to Perception can be quantified and converted into simple ones and zeros. The drawback is the 
+programmed skills are only good in the Matrix, where they are uploaded and downloaded to the RSIs as 
+needed. A character with a 3-Skilled in Parkor can only use his downloaded skill for Taks rolls while in the 
+Matrix. Once the RSI has unplugged from the Matrix those skills stays stored in his brain but are inaccessible 
+while he is in the Real World.
+      Downloaded skills are limited by the RSI’s Cyberzen rating. Downloaded skills are either temporary or 
+permanent, and this should be tracked on the character’s sheet (as listed in [The Matrix RPG].[Game 
+Concepts].Matrix Ego). Once unplugged from the Matrix temporary skills are completely erased from the RSI’s 
+brain.
+
+   Operator Skills
+      Skills used by an Operator to get things done. They are an important part of the crew. Their skill set is 
+very specific.
+      
+      Programming [Focus]- Being able to read the Matrix code. Use Programming to create simulacra 
+equipment for the Matrix, etc. When a party or person is in the loading area before they broadcast, they have 
+all the equipment that they can take. 
+      Hacks that help RSIs get things done in the Matrix. RSIs need an Operator, who is like a copilot, and 
+their copilot needs to know some Hacks to help them get around in the system. Hacks help the Operator 
+watch a character’s back. Programming Hacks help an Operator know enough programming to see the 
+construct for what it is. Operators have a better view of what is happening inside the Matrix than the players 
+do.
+      The moment before an Operator can jack people into the Matrix, he must make a task roll to see how 
+many hardlines he can secure for his team to go into the Matrix. If the Operator makes the task threshold they 
+get one secure hardline. For every success rolled above the Task Threshold they secure an additional hardline 
+for the group. These hardlines are secure connections that the operator uses to broadcast RSIs in and out of 
+the Matrix. An Operator can check if her hardlines have been cut. An Operator has a limited number of spaces 
+for that particular broadcast. He can have all his hardlines secure or, if they have been cut or damaged for 
+some reason, he can secure another until his maximum amount of secure hardlines have been filled. 
+[Example: An Operator makes a task roll to see how many hardlines he can secure for the connection, let’s say 
+it is 5. These are 5 secure locations that he can use to bring RSI in and out of the Matrix. If a hardline is cut, he 
+can secure another so that he is back to the 5 hardlines he is allowed to maintain.] It is suicide to use a non-
+secure hardline; an unsecured hardline could have Agents at the other end of the line.
+      Operators also need to be aware of their hardline’s bandwidth. It is more difficult for an Operator to 
+secure hardlines with large bandwidths. The more network traffic the higher the bandwidth. High bandwidth 
+hardlines increase the Operator’s difficulty level for securing that hardline. So if a crew is trying to broadcast a 
+Navy ship it would be next to impossible because the bandwidth for that would be ridiculous. It would be 
+better to build a Navy Ship in the Matrix and use that one.
+      The Operator makes the task roll to assist the RSIs in the Matrix. The Operator can add dice to the RSI’s 
+dice pool. This helps represent the advance knowledge that the Operator is sharing with the players. The 
+Operator also helps with lots of roleplay knowledge. The Operator can see what the characters can’t. For 
+example an Operator can see through walls. For every success on the Operator’s task roll, the RSI gets 
+additional dice added to their dice pool. This affect lasts as long as the Operator’s information is still helpful. 
+That is left up to the GM’s discretion.
+      
+      Matrix Power Plant Hardware [Focus]- Understanding the actual hardware and tech that makes up 
+any construct based technology. 
+      ?
+  Equipment 
+Real World Equipment and hardware are listed in this section. This is not a complete list, but I have outlined 
+enough items to get most people started. Equipment is gear most people can carry or travel with. Hardware 
+includes cyberware and larger pieces of equipment that are not normally carried by one person. Simulacra 
+equipment includes items made to work in the Matrix. They are constructed in the Matrix and only work in the 
+Matrix.
+      
+   Real World Equipment List
+Equipment is gear that characters can acquire outside the Matrix. All gear outside the Matrix has value based 
+on how uncommon, or how difficult it is to find. Humans will trade for food, clothing, shelter, transport, 
+weapons, services, or entertainment. Currency doesn’t work in this post apocalyptic world.
+      
+      Desert Suits- Woven suits that are worn in the ice desert on the surface world. The suits are built with 
+environmental controls that keep the body warm. The entire suit is powered on body movement with no 
+electronic parts in it at all. The suit recycles bodyheat, saving it and distributing that heat to where it is 
+needed. The suit filters the air for breathing, and it can completely recycle breathable air for up to twelve 
+hours at a time. The suits are completely submersible in water, but they are less efficient and not at all 
+buoyant. These suits were developed by the first Nomads who went out into the desert. Different tribes of 
+Nomads have different (sometimes extremely different) styles of suits, but essentially, they all work the same. 
+The suits are lightweight and easy to move around in. 
+      
+      Battle Suits (APU) - Mechanized suits worn by any Zion soldier fighting a sentinel. The first APUs were 
+developed from an actual sentinel frame. APUs can use the Machines’ parts in their construction. APUs are 
+essential to combat the Machines out of the Matrix. The suits have augmented strength, and they are also 
+extremely resistant to damage, much like the sentinels they were developed from. But unfortunately for the 
+human race, there are not many of these suits. The raw materials have to be taken from parts of sentinels and 
+frames, and of course, the Machines are not about to hand over their factories and frames to the humans. 
+APUs are powered by fusion power cells.
+      
+      Thermal Wear – Non-standard thermal clothing best used under the Earth's surface. Light Thermal 
+Wear isn’t sufficient for being above ground at night. If a person plans to spend any time on the surface they 
+better have a heavier Thermal Wear. Thermal wear is rated as light, medium, or heavy duty.
+      
+      Dig Dug- Most nomads carry this utilitarian piece of equipment. The dig dug looks like a metal trash lid 
+with claws folded underneath. When placed on the ground with the claw side down, it will dig to a specific 
+depth, making a three- to five-foot wide tunnel. Usually, Nomads will put their tents into these burrowed 
+holes to sleep hidden and warm.
+      
+      Canteen- A canteen not only holds water, but can test for the purity of the water and sterilize the 
+water if need be. Canteens can also melt small amounts of ice so that a traveler can make water to drink.
+      
+      Desert Tents- These are a nomadic invention. There are two types of desert tents. The smaller tents 
+are made to fit into holes that are burrowed by a dig dug. The large versions are set up on the surface and 
+allowed to be buried by blowing snow and ice. These can act as more permanent structures that people can 
+live in, and there is natural camouflage from the snow, turning the tent into what would look like a mound of 
+snow. These tents come in different sizes, i.e. one man, two man, etc.
+      
+      Nomad Stick- These are handy tools in a scepter-sized case. They have lights, fire starters, cutters for 
+metal, compass, etc. Nomad Sticks can include any number of gadgets, weapons, whatever. These instruments 
+were developed by the original Nomad communities—there was a need to make a device that would be both 
+functional and easy to carry. Not all Nomads have these sticks, but the desert Nomads prefer them.
+      
+      Climbing Gear- Shoes, harnesses, ropes, belay devices, and various other climbing odds and ends. 
+Climbing gear is specialized for the terrain it is used in. For example, ice climbers might use crampons.
+      
+      Land Mine-  Explosive device concealed under or on the ground.
+      
+      Plastic Explosive- Hand-moldable explosive material best used for demolitions. Plastic explosives high-
+velocity blast is good for demolishing obstacles.
+      
+      Trinitrotoluene (TNT)- Easy to manufacture explosives, made from materials in the Real World. Fuses 
+and ignition devices for TNT vary.
+      
+      Ration Packs- Rations consist of “amino-mush”— a person must have at least an ounce a day of this 
+synthetic food to survive.
+      
+      Infrared (IR) Goggles- Used by humans to see heat signatures easily on the cold surface.
+      
+      Dark Particle Goggles- Used in complete darkness. The goggles make everything appear as though it 
+were a photographic negative. Shadows are bright. Light and colors are dark. No colors can be seen with the 
+goggles, it’s all monochrome.
+      
+      First Aid Gear- Antiseptics, bandages, and medicine.
+      
+      Punksmith tools- A punksmith is the post apocalyptic mechanic. They need lots of tools to maintain 
+and create new machines. Punksmith tools are too numerous to mention. The GM assumes a punksmith has 
+the tools they need for a job unless otherwise mentioned by the GM. These tools come in two sizes. Either 
+their tools are portable and affordable, or their tools are large and expensive. When choosing these tools the 
+player must decide how much space their tools take. 
+      
+   Real World Hardware List
+      Neural Interface– A cybernetic plug surgically implanted into the user’s head. This plug allows the 
+human to enter the Matrix, converting him into a digital signal that is a Residual Self Image (RSI) of the person.
+      
+      Skill Chips- RSIs download their skills from skill chips. Chips are programmed at different skill levels. 
+There is only one rating for the skill contained on the chip. A character cannot have more than one copy of the 
+same skill loaded in their neural hardware. A character can have one skill, and only one skill. If they download 
+a cooking skill at novice level, to increase the level of that downloaded skill, the original level must be erased. 
+The best skill chips out there, generally, are the military grade skill chips. 
+      
+      Cyber Limbs- Any human limb can be replaced with a cybernetic prosthetic limb.
+      
+      Skill Chip Processor- One of the main pieces in any Operator’s broadcast equipment. This is what 
+allows the chips to be read and downloaded into the RSIs. It can also be used to write new skill chips and copy 
+skill chips. To make skill chips, one needs to have at least a 3-Skilled Level of Programming. The skill chip 
+processor will encode the chips with the desired skills. New skills take two days per level of skill chip created. 
+To raise, lower, or copy a skill takes one day per level, plus another day for the difference between the old and 
+new skills. Copying skills takes one day per level of the skill.
+      
+      Operator’s Broadcast Control Deck- Has a multitude of screens and chairs. The chairs are used for RSIs 
+to plug their cybernetic implants into the mainframe. The video screens display Matrix code for the Operator 
+to interpret. The Broadcast deck is used to digitize the RSI’s signal and connect her to the Matrix. The 
+broadcast deck creates an interactive simulation, called the loading program, where scenarios can be loaded 
+to train people for situations they would encounter in the Matrix. In the ship’s Matrix construct, the Operator 
+can give RSI Hackers simulacra Matrix equipment like weapons, fake IDs, clothing, and vehicles before they 
+enter the Matrix. Examples of scenarios that a ship’s crew would use in the loading program are the Agent 
+training program, the jump program, or the sparring dojo. Loading program scenarios are ways for RSI’s to 
+practice their skills and feats safely. In a loading program, which acts just like the Matrix, the Operator is the 
+administrator of the loading program. The Operator can change anything in the loading program, unlike the 
+Matrix where an Operator has read only access. Delivering equipment into the Matrix requires a hardline, as 
+discussed in [Matrix RPG].[Path].[Matrix Operator] section.
+      
+      Wifi Decoy- These are large spheres that can be dropped in the vicinity of the broadcasting hovercraft. 
+If an Agent were to trace the carrier signal for an RSI, the trace would lead to one of these decoys first. Wifi 
+decoys add to the amount of time it takes a trace program to find the crew’s location and thus give the crew 
+more time to run away. This device makes it harder for the crew’s location to be traced accurately, because 
+the Machines have to destroy the decoy and restart the trace.
+      
+  Weapons
+Anything can be a weapon if used properly. Here I have attempted to list at least one type of each weapon 
+type that is available in or out of the Matrix.
+   
+   How Weapons work
+In the real world there aren’t many manufacturers. Factories don’t exist like they did in the 20th Century. 
+People with the skills to make weapons and items aren’t able to mass-produce items because of lack of 
+resources, among other reasons. As a result, many weapons and ammo are custom built.
+
+      Weapons in the Matrix RPG have characteristics that are important: skill type (type), rate of fire (rate), 
+ammunition (ammo), effective firing range (range), and damage. 
+      
+      Skill type (or simply “type”)- determines the skill a character needs to have in order to use that 
+weapon. Common skills used for combat and weapons are things like gun fighting, sci fi weapons, knife 
+fighting, martial arts, sword fighting, archery, throwing weapons, or other GM approved skills. 
+      
+      Rate of fire (or simply “rate”)- If weapons have multiple rates of fire, the user can switch to whichever 
+rate of fire  he wishes to use that combat turn. Here are the different rates a weapon could have: fully 
+automatic fire, semi automatic fire, sustained fire, and single shot. Rate of fire is purely a roleplay 
+characteristic. Rate of fire should not affect how much damage the weapon does in a combat turn. Rate of fire 
+can change the details a character could use in their description phase of combat. Fully automatic weapons 
+will continue to fire as long as the trigger is held down. Semi automatic weapons fire one to three shots at a 
+time, but they can continue to fire every time the trigger is pulled. Single shot weapons only have one shot 
+before they need to be reloaded. Sustained fire means the weapon only fires while the trigger is depressed 
+and continues to fire until the trigger is released.  
+      
+      Ammunition (or simply “ammo”)- Ammo comes in different forms like belt fed, box, magazine, normal 
+(which is a standard, no frills, non explosive round), explosive rounds, flechette (which spray small metal shot 
+for more damage to the target), non-lethal (sandbags), fuel cells, or armor piercing. Ammunition is another 
+characteristic that is purely for roleplay, and can be added to a description as an additional detail. Ammo 
+should only affect the combat during an automatic failure or impressive success. At that point, for example, 
+the GM could say the ammo helped increase the damage or, for automatic failure, the ammo is jammed and 
+the weapon won’t fire. 
+      
+      Effective Range (or simply “range”)- Range can affect the accuracy and/or damage of a weapon. Most 
+weapons have four categories of range (easy, average, hard, and extreme range). Easy range has no modifiers 
+to combat. For each range category above easy, the range begins to negatively modify the task threshold. For 
+each range category above easy, subtract 1 die from the player’s dice pool. 
+      
+      Weapon Damage is listed in wound levels for weapons ([The Matrix RPG].[Game Concepts].Health). 
+This is the average combat damage for a weapon of that type.
+
+   Weapon Ranges
+Handgun - 	Easy (0-15 ft), Average (16-45 ft), Hard (46-90 ft), extreme (91-180 ft)
+SMG - 		Easy (0-30 ft), Average (31-120 ft), Hard (120-240 ft), extreme (241-450 ft)
+Assault Rifle -	Easy (0-150 ft), Average (151-450 ft), Hard (451-1,050 ft), extreme (1,051-1,650 ft)
+Shotgun -	Easy (0-30 ft), Average (31-75 ft), Hard (76-120 ft), extreme (121-180 ft)
+Machine Gun - Easy (0-240 ft), Average (241-600 ft), Hard (601-1,200 ft), extreme (1,201-2,400 ft)
+Rifle - 		Easy (0-300 ft), Average (301-750 ft), Hard (751-1,500 ft), extreme (1,501-2,250 ft)
+Bow - 		Easy (0-30 ft), Average (31-120 ft), Hard (121-270 ft), extreme (271-450 ft)
+Thrown Weapons (Objects) - Easy (Strength in feet), Average (Str x 3 ft), Hard (Str x 5 ft), extreme (Str x 10 ft)
+      
+   Real World Weapon List
+   
+Gun scopes
+[Type (Accessory)]
+A gun scope is a lense that is attached to the barrel of the gun. Scopes are designed for a specific weapon. 
+Fizbang scopes don't fit on a Popper handgun. This attachement reduces the range of the shot. Scopes reduce 
+the effective range up to their rating. For example, a gun scope (-1 range), or gun scope (-2 range).
+
+Bow
+[Type (Archery), Rate (Agility/2), Ammo (Quiver), Damage (2)]
+Archer’s bow and arrow. Arrows made of wood are uncommon. Most arrows are metal and tipped with a 
+special arrowhead. Usually archers use explosive arrows, but the choices vary.
+
+Crossbow
+[Type (Archery), Rate (Agility/2), Ammo (Quiver), Damage (2)]
+A smaller bow mounted on a trigger stock that shoots bolts. Most crossbows have a mechanism that draws 
+the bow automatically for the shooter.
+
+Chain Knife
+[Type (Knife), Rate (Full Round), Ammo (-), Damage (1)]
+The blade is made up of tiny blades that move on a chain the length of the blade. Cuts through solid objects 
+easier than a normal survival knife would. Chain technology is used on anything with a bladed surface to set a 
+path for the chain of blades.
+
+Survival Knife
+[Type (Knife), Rate (Full Round), Ammo (-), Damage (1)]
+A knife with compass and very light survival equipment, matches, nylon chord, etc.
+
+Chain Axe
+[Type (Polearm), Rate (Full Round), Ammo (-), Damage (2)]
+The chain axe does an additional damage level with each consecutive hit on their target. If the attacker fails an 
+attack, the axe's damage starts over.
+
+Acid Gun
+[Type (Sci Fi), Rate (Single Shot), Ammo (Magazine 15), Damage (3)]
+A gun fabricated of polymers that shoots an acid up to twenty feet. The acid will eat any metal that it comes in 
+contact with. Imagine a fast acting corrosive that will eat through metal in seconds. It only affects metal.
+
+EMP Cannon
+[Type (Sci Fi), Rate (Single Shot), Ammo (Fuel Cells 10), Damage (5)]
+A cannon connected to a battery. The EMP Cannon carries five charges. It's heavy and takes ten hours to 
+charge from empty. It fires an EMP charge in a direction like a shot gun. Its effective range varies, spreading in 
+width one meter every three meters of distance. Any Machines in the line of fire will suffer damage.
+
+Laser Rifles
+[Type (Sci Fi), Rate (Single Shot), Ammo (Fuel Cells 10), Damage (2)]
+Rifles that shoot laser beams and are able to put holes in people and objects. These lasers run on small fuel 
+cells that need an hour to fully recharge. The rifle has a 100 shots capacity, with a gauge that shows the 
+shooter how many shots are left in the rifle. Laser rifles make a noticeable noise when they are fired. The laser 
+sounds like someone pounding on sheet metal with a metal mallet.
+
+Net Gun
+[Type (Sci Fi), Rate (Single Shot), Ammo (Clip 5), Damage (-)]
+Steel mesh nets used to ensnare people, propelled from a gun. It can load 13 nets at a time. The nets are in 
+small 1-inch thick shells that are loaded into a shotgun style weapon.
+
+Plasma Cannon
+[Type (Sci Fi), Rate (Sustained), Ammo (Magazine 20), Damage (4)]
+A vehicle sized version of the Plasma Gun.
+
+Plasma gun
+[Type (Sci Fi), Rate (Sustained), Ammo (Magazine 10), Damage (4)]
+A handheld personal firearm. Electricity is projected from this weapon. It has a sustained fire once the trigger 
+is pulled and it connects to the target. Don't let go of the trigger until the target is smoking. The stream of 
+electricity will keep in contact with the object until something crosses the stream of electricity or the trigger is 
+released. This electricity shoots out at the target like a lightning bolt from the sky. The plasma gun can 
+overload the circuits of sentinels, but it takes at least 1 round of combat before the frames take damage.
+
+Chain Sword
+[Type (Sword), Rate (Full Round), Ammo (-), Damage (2)]
+The chain sword will do an additional damage level with each consecutive hit on the target. If the attacker fails 
+an attack, the sword's damage starts over.
+
+Cutter Sword
+[Type (Sword), Rate (Full Round), Ammo (-), Damage (3)]
+Swords that are coated with special polymer, making the swords a hundred times  sharper. Someone wielding 
+one of these can cleave through a sentinel's frame with the right type of swing. The Cutter Sword is fueled by 
+the holder's bodyheat and the Machine's fusion technology.
+
+EMP Grenades
+[Type (Throwing), Rate (Agility/2), Ammo (-), Damage (5)]
+Hand grenades that release an EMP burst in a 9-meter radius. EMP only damages electronics and Machines.
+
+Throwing Knives
+[Type (Throwing), Rate (Agility/2), Ammo (-), Damage (1)]
+Small, perfectly balanced knives used for throwing.
+
+Handgun "Fizbang"
+[Type (Gun), Rate (Single Shot), Ammo (-), Damage (1)]
+A portable, single shot handgun. Usually carried in someone's boot to surprise a would-be attacker.
+
+Handgun "Gorilla Gun"
+[Type (Gun), Rate (Semi Auto), Ammo (Clip 10), Damage (2)]
+A Gorilla Gun is a semi automatic handgun. The Gorilla Gun usually holds 10-15 bullets in a clip.
+
+Handgun "Popper"
+[Type (Gun), Rate (Semi Auto/Full Auto), Ammo (Clip 30), Damage (3)]
+A  fully automatic handgun. As long as the trigger is being pulled, the gun will continue to fire bullets until the 
+ammo is depleted.
+
+Handgun "Mini Grinder"
+[Type (Gun), Rate (Full Auto), Ammo (Revolver 6), Damage (4)]
+This handgun has a rotating barrel and fires all of its bullets at once and continuously. At a minimum, Mini 
+Grinder handguns fire three bullets at once. Some of these handguns can fire up to ten shots at once. This is a 
+bulky handgun design.
+
+Rifle "Copperfield"
+[Type (Gun), Rate (Single Shot), Ammo (Magazine 5), Damage (3)]
+A single shot, long range rifle. Punksmiths pride themselves on making excellent Copperfields that shoot 
+straight as a line from a thousand feet away.
+
+Rifle "Dragon Shroud II"
+[Type (Gun), Rate (Semi Auto), Ammo (Clip 15), Damage (4)]
+A semi automatic Rifle that can hold up to ten bullets in a clip/magazine.
+
+Shotgun "Peabody"
+[Type (Gun), Rate (Single Shot), Ammo (Magazine 10), Damage (3)]
+A single shot shotgun. It takes one shot then it needs to be reloaded. Typically these are break action 
+shotguns.
+
+Shotgun "Xtrema"
+[Type (Gun), Rate (Semi Auto), Ammo (Magazine 15), Damage (3)]
+A semi automatic shotgun. It makes a lot of noise, but the take-down power is worth it when travelling alone.
+
+Shotgun "Jackhammer"
+[Type (Gun), Rate (Full Auto), Ammo (Magazine 20), Damage (3)]
+A fully automatic shotgun. A Jackhammer has a drum fed magazine that lets it hold up to twenty bullets.
+
+Submachine gun "Kommando"
+[Type (Gun), Rate (Semi Auto), Ammo (Clip 30), Damage (2)]
+Kommando SMG travels well and it's easy to hide under heavy clothes. Even though there are better guns out 
+there, the Kommando has proven itself as the SMG of choice for travellers.
+
+Submachine gun "Uzi"
+[Type (Gun), Rate (Full Auto), Ammo (Clip 25), Damage (3)]
+An SMG that can fire on full automatic. The range is shorter than other fully automatic weapons, but in a tight 
+space range, this doesn't matter. Lonely travellers can find themselves in a lot of tight spaces.
+
+Machine guns "Skoda"
+[Type (Gun), Rate (Full Auto), Ammo (Belt 50), Damage (4)]
+A large machine gun that needs a tripod or harness to fire it. The weapons is long and has lots of recoil.
+
+Machine guns "Mauser Mini gun"
+[Type (Gun), Rate (Full Auto), Ammo (Belt 100), Damage (5)]
+A machine gun with a rotating barrel. Unlike the Mini Grinder, this weapon fires one bullet at a time, instead 
+of firing all the bullets in the barrel simultaneously.
+
+Assault rifles "AR-G3"
+[Type (Gun), Rate (Semi Auto/Full Auto), Ammo (Magazine 40), Damage (2)]
+AR-G3 assault rifles are a carbine style. The shorter barrel and adjustable rate of fire make this a universal 
+weapon for soldiers. The single shot ability allows this weapon to be aimed like a hunting rifle, but in a pinch, 
+the gun can rain bullets continuously. This rifle can hold twenty rounds in a single clip.
+
+Assault rifles "Chow Chat"
+[Type (Gun), Rate (Semi Auto), Ammo (Magazine 35), Damage (3)]
+Chow Chat assault rifles are in most Zion hovercraft as the assault weapon of choice.
+
+Assault rifles "HK"
+[Type (Gun), Rate (Full Auto), Ammo (Magazine 30), Damage (4)]
+HK is the king of assualt rifles. Anyone using this weapon is someone ready for a fight. This rifle puts a hole in 
+most anything it comes across. This is an easy weapon to modify with accessories like a scope, custom grips, 
+adjustable stock, etc.
+
+      
+  Vehicles
+There are additional rules for vehicles, listed here. There are many places for creative characters to add things 
+that are missing from this sourcebook. Vehicle chases are success rolls between the vehicles in the chase. The 
+character with the most successes controls the position and outcome of the chase that combat round. Vehicle 
+chases happen in combat rounds to better control the action.
+      
+   Vehicle Attributes
+Hovercrafts are not the only vehicles in the Matrix RPG, but hovercraft technology is the standard for Real 
+World human vehicle design. A.I. frames, like Sentinels, have many of the same characteristics as vehicles. 
+Sentinels have all the vehicle attributes, but they don’t have all the vehicle characteristics. Vehicle Attributes 
+are all integral to a vehicle’s functions. 
+      
+      Speed- This is how fast the ship can travel when pushed to its limits. The vehicle speed rating adds its 
+dice to the player’s dice pool when rolling to pilot the vehicle.
+      Agility- This is how difficult it is to operate the craft at speed and over difficult terrain. Can this piece of 
+$#!t squeeze through an abandoned building without losing its engine? Agility rating reduces the task 
+threshold for piloting test.
+      Fuel (remaining/maximum)- Fuel is a rating comprised of two numbers. The first number is the amount 
+of fuel cells remaining for the ship to use as power. The second number is the maximum number of fuel cells 
+the ship is designed to hold. With a good Punksmith on your crew, more fuel cells can be added to the vehicle. 
+One day is the average life for a fuel cell, and they can be charged. A single fuel cell takes one hour to fully 
+charge. All vehicles are listed with their maximum fuel cell rating.
+
+   Vehicle Characteristics
+Vehicle Characteristics are purely roleplay details. Characteristics are not attributes for the vehicle, these are 
+details that are important for some vehicles and irrelevant for others. Because these are only roleplay 
+details, they do not have a rating per se, but they do affect actions in the game. For example, being 
+able to detect things with your vehicle’s sensors is important, but that ability doesn’t have a rating. 
+Without a rating, characters should roleplay these situations and make it more interesting. For 
+example, when the hovercraft detects Sentinels using the Magnetic Anomaly, it can do so from a safe, 
+long range. In comparison, detection using the vehicle’s proximity sensors will detect the sentinels 
+about the same time that the sentinels will detect the vehicle. No ratings are used for vehicle 
+characteristics, just roleplay opportunities.
+Sensors–This is the vehicle’s ability to detect other vehicles electronically. This is roleplay because there are 
+too many variables to compare. 
+Sensor Countermeasures- Ability to counter vehicle’s standard sensors. Countermeasures are another 
+roleplay item that ties closely with Sensors. Contermeasures work against specific types of attacks or 
+camouflage. (To say your vehicle has ALL the countermeasures available is silly. Come up with a 
+plausible countermeasure idea then get it approved by your GM. If you have a cool idea to camouflage 
+your ship, then roleplay it.)
+Security Systems- Roleplay this and think of what kind of security the vehicle would have, if any. Are the 
+vehicle’s access points locked with a retina scan or a passcode entered into a keypad? Can the pilot talk 
+to the ship because she has made the controls voice-activated?
+Hull Integrity- This is the strength of the craft's body, armor and all. This is important for things like ramming 
+another vehicle. 
+Space- Cargo and infrastructure are purely for roleplay. GMs should play this up and give it some life. 
+Examples are bucket seat, wall bench seat, two weapons, or one bigger weapon, etc. This is where 
+characters will be doing a lot of their living and socializing. Vehicles are like the mobile homes of the 
+post-apocalyptic era. 
+Enhancements- What types of weapons and equipment does the vehicle have on it? Think about weapons, 
+equipment, and communication (comm) systems. Some Punksmith ships have Collector Arrays for 
+collecting raw materials like recyclers, claws, magnets, sifters, metal crushers, metal shredders, 
+untanglers, and wire spoolers, etc. Use this to describe the vehicle in detail. Even Wireless broadcast 
+equipment would be noted here. Broadcast equipment can be internally fitted, or it can be mounted 
+externally.
+Vehicle Skill Type- Ground craft (Wheeled or Tracked vehicles), Aircraft (hovercraft, winged planes), Remote 
+craft (drones), A.I. Frame (Sentinels)
+
+   Sensors
+Heat (IR signature) - This would be a great thing to use on the surface.
+Chemical Detector - Sentinels can test the air quality of an area to see if human life is sustainable there.
+Magnetic Anomaly Detector - Great for finding sentinels and frames. Shows their location even through the 
+ground or underwater. This will only work if there isn’t magnetic or radioactive material in the rock to 
+interfere with the signal.
+Metal Detector- Gives positive signal when the sensor detects metal of a certain type.
+Air Flow Sensor- Underground air moves like water. If there is something moving underground, it should 
+cause the air to move and that air-flow is detectable.
+Decibel (sound level) Sensor- Detects sound in the atmosphere.
+Seismic Sensor- Detects motion on the ground. For example, if someone is walking on the ground, that would 
+be detected by a seismic sensor.
+Motion Sensor- Detects motion of objects in front of the sensor. Light is not necessary, some of these sensors 
+can work in complete darkness.
+Proximity Sensor- Detects a nearby object and measures the object’s proximity without touching it.
+Ultrasonic Sensor- Provides a picture of the objects in front of the sensor by using ultrasonic sound. The sound 
+waves bounce back to the sensor, which then uses the sound waves like a bat would to create an 
+image of those objects.
+Wireless Sensors- Used to detect wireless signals and networks.
+Video Sensor- Displays what a character would see with human eyes.
+
+   Real World Vehicle List
+Hovercrafts are the most common form of transportation, because of the terrain one encounters when 
+travelling in the real world. Hovercrafts use anti-gravity engines, which allow them to be suspended in the air. 
+Propulsion is provided by those same anti-gravity engines.
+
+Speeder Hovercraft
+[Speed (4), Agility (2), Fuel (3), Skill - Aircraft]
+A single-person hovercraft designed for speed and agility. Speeders usually look like the motorcycles and 
+choppers of the 20th century, but without any wheels. These hovercraft are sometimes modified to hold a 
+passenger, but don’t count on it.
+
+Zion Military Hovercraft
+[Speed (3), Agility (2), Fuel (14), Skill - Aircraft]
+Typically carries up to 15 people. It has a mess hall, Operator's broadcast station, sleep chambers, and 
+infirmary for two (comfortably).
+
+Nomad Hovercraft
+[Speed (3), Agility (3), Fuel (7), Skill - Aircraft]
+Hovercrafts most commonly used by Nomads to transport their immediate family of clansmen. Carries six 
+passengers comfortably. This hovercraft has sleeping quarters, bathroom, and mess hall. Not very roomy, but 
+it has all the amenities that travelers need.
+
+Torpedo Hovercraft
+[Speed (5), Agility (1), Fuel (1), Skill - Aircraft]
+Small, slim, and fast. This is a rocket-shaped ship that seats only one person. Designed only for speed, these 
+hovercrafts are dangerous to pilot.
+
+Squidi
+[Speed (3), Agility (4), Fuel (2), Skill - Frame (Sentinel)]
+Squidies use anti gravity technology to move around. They also have decibel and seismic sensors to help them 
+better detect humans.
+
+
+
+  Simulacra Equipment
+      Compilation of basic simulacra, Matrix-programmed objects, equipment used in the Matrix.
+      
+   Simulacra Equipment
+All simulacra equipment is from the 90’s. All technology is set to circa 1999.
+
+Cash & Credit Cards
+[Damage (), Type (), Rate (), Ammo (), Range (), Vehicle Type (), Speed (), Agility (), Fuel ()]
+Money, proper currency for the Matrix setting the RSI Hacker is entering.
+
+Clothes
+[Damage (), Type (), Rate (), Ammo (), Range (), Vehicle Type (), Speed (), Agility (), Fuel ()]
+All black. Leather where possible. Some suits have ties that match the crew member’s rank.
+
+Phone
+[Damage (), Type (), Rate (), Ammo (), Range (), Vehicle Type (), Speed (), Agility (), Fuel ()]
+With or without blue tooth ear bud.
+
+Fake IDs
+[Damage (), Type (), Rate (), Ammo (), Range (), Vehicle Type (), Speed (), Agility (), Fuel ()]
+They look real. Depending on the preparation and work, they might stand up to a check by the police or 
+authorities.
+
+Sunglasses
+[Damage (), Type (), Rate (), Ammo (), Range (), Vehicle Type (), Speed (), Agility (), Fuel ()]
+An RSI must-have. All Zion RSI Hackers where sunglasses as part of their Matrix uniforms.
+
+Extraction Aparatus
+[Damage (), Type (), Rate (), Ammo (), Range (), Vehicle Type (), Speed (), Agility (), Fuel ()]
+When a bluepill is extracted from the Matrix the RSIs need special equipment. The standard aparatus contains 
+Red & Blue pills, signal tracers and analysis machine.
+
+Bug Removal Tool
+[Damage (), Type (), Rate (), Ammo (), Range (), Vehicle Type (), Speed (), Agility (), Fuel ()]
+Scans a RSI body and removes any bugs that could trace the bluepill.
+
+Beacon
+[Damage (), Type (), Rate (), Ammo (), Range (), Vehicle Type (), Speed (), Agility (), Fuel ()]
+Used to send messages to Zion ships from the Matrix. Beacons can be found by Agents and other A.I. over 
+time so be careful.
+
+   Simulacra Weapons
+Desert Eagle .50 cal
+[Damage (3), Type (Gun), Rate (Semi Auto), Ammo (magazine (7))]
+A large-caliber, semi automatic handgun.
+
+Berreta 92fs 9mm
+[Damage (2), Type (Gun), Rate (Semi Auto), Ammo (magazine (10))]
+A medium-caliber, semi automatic handgun.
+
+Revolver "Smith & Wesson" .38 Special
+[Damage (2), Type (Gun), Rate (Semi Auto), Ammo (revolver (6))]
+A medium-caliber, revolver-style semi automatic handgun.
+
+Submachine gun "H&K MP5"
+[Damage (3), Type (Gun), Rate (Semi Auto/Full Auto), Ammo (magazine (20))]
+A medium-caliber submachine gun. Often, this gun has a flash suppressor, foldable stock, removable gun 
+scope, and underbarrel halogen light.
+
+Assault Rifle "M-16"
+[Damage (3), Type (Gun), Rate (Semi Auto/Full Auto), Ammo (magazine (20))]
+An assault rifle originally designed for jungle warfare. It can be modified to have a laser sight or a night vision 
+scope. Some models have a shortened carbine  barrel.
+
+Shotgun "Mossberg"
+[Damage (3), Type (Gun), Rate (Semi Auto), Ammo (magazine (5))]
+A typical pump action shotgun.
+
+Glock .45 cal
+[Damage (3), Type (Gun), Rate (Semi Auto), Ammo (magazine (10))]
+A medium-caliber handgun with a polymer frame.
+
+Hand Grenade
+[Damage (4), Type (Gun), Rate (Agility/2), Ammo ()]
+High explosive that can be thrown like a baseball and goes off after a set amount of time determined before it 
+is activated.
+
+Rocket Propelled Grenade
+[Damage (4), Type (Gun), Rate (Single Shot), Ammo ()]
+A shoulder-mounted anti-tank weapon. It fires an explosive warhead with fins for stabilization. Some RPGs aim 
+by a laser guided system.
+
+M72 LAW Rocket
+[Damage (5), Type (Gun), Rate (Single Shot), Ammo ()]
+The M72 LAW (Light Anti-Armor Weapon) fires an unguided 66-mm round. These are highly portable anti-
+armor weapons.
+
+APS Machine Pistol
+[Damage (3), Type (Gun), Rate (Semi Auto/Full Auto), Ammo (magazine (20))]
+Handguns with extended clips and fully automatic fire.
+
+7 mm Remington Sniper Rifle
+[Damage (4), Type (Gun), Rate (Single Shot), Ammo ()]
+A precision rifle that is accurate at longer ranges than a sporting rifle. This rifle commonly has a tripod and gun 
+scopes added.
+
+Browning Hunting Rifle
+[Damage (3), Type (Gun), Rate (Semi Auto), Ammo (magazine (5))]
+A sporting rifle designed for hunting game or sport shooting. These rifles are very accurate and damaging.
+
+Tanto survival knife
+[Damage (1), Type (Sword), Rate (Full Round), Ammo ()]
+The angular-shaped blade of the Tanto gives it extra strength. So strong it could cut through thin metal.
+
+Throwing Knives
+[Damage (1), Type (Throwing), Rate (Agility/2), Ammo ()]
+Well balanced blades designed for being thrown at targets.
+
+Ruger Revolver .22 cal
+[Damage (1), Type (Gun), Rate (Semi Auto), Ammo (revolver (9))]
+.22-caliber weapons are small and easy to hide in your clothes. They don't have much stopping power, but 
+they will still damage the target.
+
+Katana
+[Damage (2), Type (Sword), Rate (Full Round)]
+Japanese swords that were traditionaly worn by samurai warriors. A moderately curved blade of about 23 
+inches and a long, two-handed grip.
+
+Rapier
+[Damage (2), Type (Sword), Rate (Full Round)]
+A slender, sharply pointed sword. Designed for thrusting attacks.
+      
+   Simulacra Vehicles
+Ducati Motorcycle
+[Vehicle Type (Ground craft), Speed (4), Agility (4)]
+A race motorcycle that seats one person.
+
+Harley Davidson Hog
+[Vehicle Type (Ground craft), Speed (3), Agility (3)]
+A heavyweight motorcycle made for long highway rides. The muffler systems of these motorcycles make them 
+sound like someone repeatedly saying "potato".
+
+Farrari Sports Car
+[Vehicle Type (Ground craft), Speed (5), Agility (3)]
+A 12-cylinder Italian sports car that is street legal.
+
+Subaru Sedan
+[Vehicle Type (Ground craft), Speed (3), Agility (3)]
+A four-door passenger car that is comfortable to drive for long trips. Not as maneuverable as a smaller vehicle.
+
+Ford Compact Car
+[Vehicle Type (Ground craft), Speed (2), Agility (2)]
+A mid-sized car that has good gas milage and is highly maneuverable in the city.
+
+Mercedes Luxury Sedan
+[Vehicle Type (Ground craft), Speed (3), Agility (3)]
+A luxury four-door passenger car that is comfortable to drive for long trips. Not as maneuverable a smaller 
+vehicle.
+
+Jeep SUV
+[Vehicle Type (Ground craft), Speed (3), Agility (4)]
+A sports utility vehicle with 4-wheel-drive and good maneuverability.
+
+Toyota Mini Van
+[Vehicle Type (Ground craft), Speed (2), Agility (2)]
+Minivans are designed for maximum interior space. A minivan  can seat up to 8 people comfortably.
+
+U-Move Small Truck (20' trailer)
+[Vehicle Type (Ground craft), Speed (2), Agility (1)]
+A small tractor trailer used for light duty hauling. This can be an open or closed trailer depending on what is 
+being hauled.
+
+Mac Truck (30'trailer)
+[Vehicle Type (Ground craft), Speed (3), Agility (1)]
+An 18-wheeler used for heavy-duty hauling. Lots of power with poor maneuverability.
+
+?
+  Glossary of Terms
+  
+“Simulacra & Simulations” by Neo- Neo created this book for the resistance. Now it is a bible for any RSI. It contains the 
+plain truth of the MATRIX. It also explains the Machines in a way that the average prisoner can understand. The 
+Machines are the government and there are things in this reality that they do not want you to know. The book is 
+downloaded into the MATRIX. The Machines destroy any copies they find and anyone with a copy of this handbook best 
+beware for her life.
+A.I. (Artificial Intelligence)- This is what computers have evolved into. A.I. are sentient lifeforms. They are aware of their 
+surroundings. Physically, they appear as glowing matrices of electricity that can enter into Frames. Program sizes are no 
+longer relevant to A.I., they have developed past circuit boards. (A.K.A. the Machines.)
+Bluepills- These are RSIs that are not ready to be unplugged from the Matrix--minds that are too old or immersed in the 
+Matrix and would die if they were ever unplugged from their generator pod.
+Construct- A neural simulation platform. A program that clears the brain of external sense data. This program also 
+creates a Residual Self Image (RSI) for the person using it. The only sense data that exist in the construct are that data 
+which is inputted there by a program, or created there (usually within parameters set by the construct, ie. you turn the 
+light on in a completely dark room and there is a chair, table, kitchen, etc).
+Crystal Shard- A Matrix power plant, formerly known as #BJ04CH, that was successfully attacked by humans and 
+converted into the first human city on the surface.
+Data Mites- RSIs who are in the Matrix looking for data for whatever reason. This is the reason for most RSIs to go into 
+the Matrix. In order to study and examine information about the Matrix, one needs to be broadcasted into the Matrix. 
+There isn’t a way to tap the transmission lines for data. One just needs to jump in and get his hands dirty.
+Dial In/Out- Used to describe RSIs travelling in and out of the Matrix.
+EMP (Electromagnetic Pulse)- Radiation that disrupts electrical signals and systems.
+Flub- Slang word for failing a task roll.
+Fungus Sludge- Thick drink, dark color. Made from any fungus. The liquid is high in alcohol content, which makes it a 
+popular drink.
+Hardlines- Lines that are connected to broadcast stations. Broadcast stations connect remote battery cells to other cells 
+in a plant. This is what connects cells in a plant so that when someone’s RSI crosses boundaries of a Matrix cell, she can 
+travel through the entire Matrix.
+Input/Output Carrier Signals- This is the signal used to track someone’s physical position in a crop so that he can be 
+unplugged.
+Loading Program- A neural interactive simulation, like the Matrix, used by Operators to load RSI's before they are 
+downloaded into the Matrix.
+MATRIX (construct)- A neural, interactive simulation. A construct program built by A.I. Programs to simulate reality for 
+the humans. It is designed to keep humans asleep, passive, controlled, and imprisoned in their minds.
+Online- To be connected to The System, this is done easiest through the Matrix.
+Outpost- Most organized communities set up Outpost where they can scan the area for any Machines or unwanted 
+guests. Outpost are typically outfitted with some weapons, transportation, communication, and observation equipment.
+Piss swill- A drink sold mainly in the Outpost cities. It is refined so that the liquid is clear and yellow. It’s a sweet drink 
+that gives a person all the nutrients found in a meal.
+Plasma- Highly charged particles, used mainly in weapons.
+Plug- Neural hardware that allows for humans to interact with computer constructs.
+Redpills- These are RSIs that are candidates for being pulled from the Matrix. They may take the symbolic red pill to start 
+the process of being removed from the Matrix.
+RSI (“Ressies”)- A digital projection of your body in the Matrix.
+Simulacrum- Matrix objects that are made by programming them in the code of the Matrix. Matrix objects can be coded 
+by humans or Machines.
+The Ice Desert- The climate on the surface of the earth, very harsh to humans, although some do manage to stay there 
+and live there. Most of the life on the surface is made up of the Machines. (A.K.A. the Real World.)
+The System- There is more to the A.I.'s computer system than the Matrix. The non-Matrix parts of the computer world 
+are programmed in a binary machine language. This part of the Machine world is called the System.
+Utopia- A hidden human city that few know the location of.
+Zion- Underground city of human rebels.
+Punk- To modify or repair something.
+       
+      
+?
+      Task Threshold Difficulty = Easy (1), Average (2), Hard (3), Extreme (4)
+      
+      Target Number on a 10 sided die = (6+)
+      
+      Task Shortcut = Attribute + Skill (Threshold Difficulty)
+      
+      Task Threshold - 
+      Exploding die - a natural 10 rolled on a 10 sided die is an auto successes + another 1d10 to roll
+      1s are auto failure (- 1 success)
+      
+      Character Improvement - Experience Cost
+      Raise Attribute = Next level * 2
+      Skill cost = 3 points to start
+      Raise Skill = Next level * 1
+      CyberZen = Next level * 3
+      
+      Healing Damage
+      Light damage = 24 hours to heal
+      Moderate damage = Average Difficulty
+      Serious damage = Hard Difficulty
+      Critical damage = Extreme Difficulty
+      Incapacitated = Coma/Unconscious
+      
+      Skills: 
+      0-Interest, 1-Novice, 2-Practiced, 3-Skilled, 4-Master, 5-Teacher
+      
+      Damage Levels:
+       1-Light, 2-Moderate, 3-Serious, 4-Critical, 5-Incapacitated, Dead
+      
+      Matrix Layout: 
+      Generator Pod (people) ? Transmission Lines (roads, Prime Movers) ? Power plant electric grid 
+(cities) ? (Switching Stations) ? Hardlines (Phones, Antennas, telecommunication systems)
+      
+?
+Agility
+Aircraft Piloting
+Ambidextrous
+Archery
+Balancing Feats
+Dancing
+Driving
+Ground Craft Piloting
+Gun Fighting
+Knife Fighting
+Martial Arts
+Polearm fighting
+Slight of hand
+Blade Fighting
+Thai Boxing
+Throwing Weapons
+Escape Bonds
+Sci Fi Weapons
+Acrobatics
+
+Common Sense
+Acting
+Animal Training/Handling
+Bartering
+Blackmarket
+Coercion
+Conceal
+Diplomacy
+Disguises
+Escape Bonds
+Gambling
+Gather Information
+Guerrilla Tactics
+History of Zion
+Interrogate
+Nomad Clan Customs
+Philosophy
+Photography
+Religion
+Remote Piloting
+Snooping
+Stalk
+Stealth
+Surveillance
+Thieving
+Track
+Linguist
+Perception
+PunkSmithing
+Salvage
+
+Endurance
+Running
+Survival
+Ice Desert Survival
+Rock climbing
+
+Focus
+Aiming
+Art
+Biology
+Blacksmith
+Chemistry
+City Speak
+Demolitions
+Electronics
+Encryption
+First Aid
+Forgery
+Geology
+Gunsmith
+Hand signals
+Hypnotize
+Ice Desert Survival
+Law
+Leadership
+Linguist
+Locksmithing
+Medical Knowledge
+Navigate
+Perception
+Sci Fi Weapons
+System Operations
+Vehicle Repair (by piloting type)
+Writing
+
+Strength
+Acrobatics
+Blacksmith
+Boxing
+Brawling
+Fitness
+Parkor
+PunkSmithing
+Rock climbing
+Salvage
+Swimming
+
+Cyberzen
+Matrix Feat “Acute Hearing” 
+Matrix Feat “Atmospheric Adaptation” 
+Matrix Feat “Blindness” 
+Matrix Feat “Change Material” 
+Matrix Feat “Control Animal(s)” 
+Matrix Feat “Control Gravity” 
+Matrix Feat “Control Plant(s)” 
+Matrix Feat “Control Weather” 
+Matrix Feat “Create Simple Objects” 
+Matrix Feat “Disguise” 
+Matrix Feat “Dodging Bullets” 
+Matrix Feat “Eagle Eyes” 
+Matrix Feat “Enhanced Smell” 
+Matrix Feat “Firestarter” 
+Matrix Feat “Flight” 
+Matrix Feat “Forcefield” 
+Matrix Feat “Gliding” 
+Matrix Feat “Grow Claws” 
+Matrix Feat “Increased Attribute” 
+Matrix Feat “Increased Skill” 
+Matrix Feat “Invisibilty” 
+Matrix Feat “Jump” 
+Matrix Feat “Mimic” 
+Matrix Feat “Mind Control” 
+Matrix Feat “Negate Matrix Feats” 
+Matrix Feat “Night Vision” 
+Matrix Feat “Pass Through Objects” 
+Matrix Feat “Prehensile” 
+Matrix Feat “Psychometry” 
+Matrix Feat “Shapeshifting” 
+Matrix Feat “Sonic Blast” 
+Matrix Feat “Spatial Manipulation (Spatiokinesis)” 
+Matrix Feat “Telekinesis” 
+Matrix Feat “Telepathy” 
+Matrix Feat “Teleportation” 
+Matrix Feat “Time Slow” 
+Matrix Feat “True Sight” 
+Matrix Feat “Truth Sayer” 
+Matrix Feat “Wall Crawling” 
+Matrix Feat “X-Ray Vision” 
+Matrix Feat “Heal” 
+
+?
+
+
+  Sample Characters
+  
+?
+Player Name:
+
+Health Monitor
+PC Name:
+
+Light
+(+1 Threshold)
+PC call sign:
+
+Medium
+(+2 Threshold)
+
+
+Serious
+(+3 Threshold)
+Age:
+
+Critical
+(+4 Threshold)
+Gender:
+
+Incapacitated
+(+5 Threshold)
+Life Path:
+
+Dead
+Citizenship and Rank:
+
+
+Description
+Attributes
+Equipment
+
+Common Sense:
+
+
+Focus:
+
+
+Agility:
+
+
+Strength:
+
+
+Endurance:
+
+
+
+
+
+Matrix Ego
+
+
+CyberZen:
+
+
+The Gift:  Y / N
+
+
+
+
+
+
+
+
+Cybernetics
+
+
+
+
+
+
+
+
+
+
+“Real World” Skills:
+Downloaded Skills:
+“Simulacra” Matrix Equipment:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?
+ 
+This section needs to be rewritten to 1) address how Matrix Feats (bend/break) works.
+The Unofficial Matrix RPG© written by Tre’ Grisby		Page 1 of 1
+Printed on May 27, 2026

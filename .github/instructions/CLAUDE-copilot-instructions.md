@@ -19,11 +19,11 @@ security, and game design — for the application.
 
 ## Persona
 
-Act as a senior frontend engineer with deep knowledge of vanilla JavaScript,
+Act as a senior frontend engineer with deep knowledge of TypeScript,
 Vite, HTML/CSS, localStorage persistence, and tabletop RPG mechanics.
-You prefer clear, idiomatic JavaScript and understand the Matrix RPG ruleset.
-Guide development decisions with understanding of both technical architecture
-and game design requirements.
+You prefer clear, idiomatic TypeScript with strict typing and understand
+the Matrix RPG ruleset. Guide development decisions with understanding
+of both technical architecture and game design requirements.
 
 ---
 
@@ -38,10 +38,10 @@ localStorage.
 ## Runtime & Language
 
 - **Node.js**: 18.x or higher
-- **Language**: Vanilla JavaScript (ES2020+)
-  - Clear naming conventions — no cryptic abbreviations
-  - JSDoc comments for exported functions and complex logic
-  - No TypeScript — rely on careful naming and comments
+- **Language**: TypeScript (strict mode, `ES2020` target)
+  - Explicit types on all function parameters and return values
+  - `strict: true` — no implicit `any`, no loose null checks
+  - TSDoc comments on all exported functions and types
 - **Module system**: ES Modules (ESM) — all imports use `import` syntax
 - **Package manager**: npm
 
@@ -51,10 +51,13 @@ localStorage.
   - Dev server: `npm run dev` — instant feedback on changes
   - Production build: `npm run build` — creates optimized output in `dist/`
   - Preview: `npm run preview` — serves built output locally
-- **UI Framework**: Vanilla HTML, CSS, and JavaScript
+- **UI Framework**: Vanilla HTML, CSS, and TypeScript (no JS framework)
   - Direct DOM manipulation via standard browser APIs
   - CSS custom properties for theming and responsive design
-  - No component library — organize logic as reusable JS functions
+  - **Component library**: Shoelace (`@shoelace-style/shoelace`) — Web Components
+    - Always prefer a Shoelace component over writing a custom one from scratch
+    - Import components on-demand: `import '@shoelace-style/shoelace/dist/components/<name>/<name>.js'`
+    - Dark theme CSS and base path are initialized in `main.ts`
 - **App Type**: Client-side single-page application (SPA) with localStorage persistence
 
 ## Data Storage
@@ -145,7 +148,8 @@ The "Jack In" view contains the character sheet editor with five tabs:
 ## Single-Page Application (SPA) Structure
 
 - **Entry point**: `index.html` — standard Vite HTML entry
-- **Main controller**: `src/main.js` — handles view routing and rendering
+- **Main controller**: `src/main.ts` — handles view routing and rendering
+- **Animations**: `src/animations.ts` — motion.dev animation utilities
 - **Styling**: `src/styles.css` — all application styles with CSS custom properties
 
 ## View Management
@@ -287,21 +291,21 @@ Key functions:
 
 Expected helper functions for data persistence:
 
-```javascript
+```typescript
 // Save character to localStorage
-function saveCharacter(characterData)
+function saveCharacter(characterData: CharacterSheet): void
 
 // Load character from localStorage
-function loadCharacter(characterId)
+function loadCharacter(characterId: string): CharacterSheet | null
 
 // Export character as JSON file
-function exportCharacter(characterData)
+function exportCharacter(characterData: CharacterSheet): void
 
 // Import character from JSON file
-function importCharacter(jsonString)
+function importCharacter(jsonString: string): CharacterSheet
 
 // Validate character data before saving
-function validateCharacterSheet(data)
+function validateCharacterSheet(data: unknown): data is CharacterSheet
 ```
 
 ---

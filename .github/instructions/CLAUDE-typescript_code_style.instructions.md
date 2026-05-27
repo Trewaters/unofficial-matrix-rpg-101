@@ -1,39 +1,43 @@
 ---
-description: This file describes the JavaScript code style for the project.
+description: This file describes the TypeScript code style for the project.
 applyTo: "**"
 ---
 
-# JavaScript Code Style
+# TypeScript Code Style
 
 > This section covers naming conventions, file organization,
 > and code patterns that keep the codebase consistent.
-> The project uses vanilla JavaScript with standard ES2020+ syntax.
+> The project uses TypeScript with strict mode and ES2020+ target.
 
 ## Naming Conventions
 
-| Construct       | Convention                         | Example                                        |
-| --------------- | ---------------------------------- | ---------------------------------------------- |
-| Functions       | camelCase                          | `createCharacterSheet()`, `renderPlayerView()` |
-| Classes         | PascalCase                         | `CharacterBuilder`, `PlayerState`              |
-| Constants       | SCREAMING_SNAKE_CASE               | `MAX_ABILITY_SCORE`, `LOCAL_STORAGE_KEY`       |
-| Objects/Modules | camelCase                          | `characterData`, `uiManager`                   |
-| Files           | lowercase or camelCase             | `main.js`, `characterSheet.js`                 |
-| Test files      | Match source filename + `.test.js` | `characterSheet.test.js`                       |
-| CSS/style files | lowercase                          | `styles.css`, `theme.css`                      |
+| Construct         | Convention                         | Example                                        |
+| ----------------- | ---------------------------------- | ---------------------------------------------- |
+| Functions         | camelCase                          | `createCharacterSheet()`, `renderPlayerView()` |
+| Classes           | PascalCase                         | `CharacterBuilder`, `PlayerState`              |
+| Interfaces/Types  | PascalCase                         | `CharacterSheet`, `SkillEntry`                 |
+| Constants         | SCREAMING_SNAKE_CASE               | `MAX_ABILITY_SCORE`, `LOCAL_STORAGE_KEY`       |
+| Objects/Modules   | camelCase                          | `characterData`, `uiManager`                   |
+| Files             | lowercase or camelCase             | `main.ts`, `characterSheet.ts`                 |
+| Test files        | Match source filename + `.test.ts` | `characterSheet.test.ts`                       |
+| CSS/style files   | lowercase                          | `styles.css`, `theme.css`                      |
 
 ## File & Folder Organization
 
 ```
 unofficial-matrix-rpg-101/
 ├── src/
-│   ├── main.js          # Application entry point and view controller
+│   ├── main.ts          # Application entry point and view controller
+│   ├── animations.ts    # Motion.dev animation utilities
 │   └── styles.css       # All styling
 ├── index.html           # HTML entry point
+├── tsconfig.json        # TypeScript configuration
 ├── docs/                # Documentation or generated docs
-└── vite.config.js       # Build configuration
+└── vite.config.ts       # Build configuration
 ```
 
-- **src/main.js**: Central application logic, view rendering, user interactions
+- **src/main.ts**: Central application logic, view rendering, user interactions
+- **src/animations.ts**: All motion.dev animation functions
 - **src/styles.css**: All application styling using CSS variables for theming
 - **index.html**: Single entry point for the SPA (single-page application)
 - Keep related functionality together in the same file or well-organized functions
@@ -45,34 +49,35 @@ unofficial-matrix-rpg-101/
 - Use ES6 `import` and `export` syntax
 - Keep imports at the top of files
 
-```javascript
+```typescript
 // ✅ correct
-import { characterData } from "./data.js";
-import { renderView } from "./views.js";
+import { characterData } from "./data.ts";
+import { renderView } from "./views.ts";
 
 // ❌ avoid
-const characterData = require("./data.js");
+const characterData = require("./data.ts");
 ```
 
 - No relative import hell — keep files organized logically
 
-```javascript
+```typescript
 // ✅ acceptable
-import { PlayerState } from "./playerState.js";
-import { saveToStorage } from "../utils/storage.js";
+import type { PlayerState } from "./playerState.ts";
+import { saveToStorage } from "../utils/storage.ts";
 ```
 
 ## Exports
 
 - Export functions and utilities as named exports
+- Always include explicit return types
 
-```javascript
+```typescript
   // ✅ correct for utilities
-  export function createCharacterSheet(name) { ... }
-  export const MAX_ABILITY_SCORE = 18
+  export function createCharacterSheet(name: string): CharacterSheet { ... }
+  export const MAX_ABILITY_SCORE = 18 as const
 
   // ✅ acceptable for default exports of primary modules
-  export default function renderPlayerView() { ... }
+  export default function renderPlayerView(): void { ... }
 ```
 
 - Keep exports close to where they're defined
@@ -94,71 +99,91 @@ import { saveToStorage } from "../utils/storage.js";
 - Define constants near where they're used or in a shared constants file
 - Use SCREAMING_SNAKE_CASE for all constant names
 
-## JavaScript Patterns
+## TypeScript Patterns
+
+### Interfaces & Types
+
+```typescript
+// ✅ Define interfaces for all data shapes
+interface CharacterSheet {
+  name: string
+  archetype: string
+  health: number
+  skills: SkillEntry[]
+}
+
+interface SkillEntry {
+  id: string
+  name: string
+  rating: number
+  attribute: string
+}
+
+// ✅ Use type for unions and simple aliases
+type View = 'home' | 'learn' | 'builder'
+type DownloadType = 'hardwired' | 'softcoded' | 'none'
+```
 
 ### Object & Data Structures
 
-```javascript
-// ✅ Clear object destructuring in function parameters
-function createAbility({ name, pointCost, requirements }) { ... }
+```typescript
+// ✅ Clear typed destructuring in function parameters
+function createAbility({ name, pointCost, requirements }: AbilityOptions): Ability { ... }
 
-// ✅ Object literals for configuration
-const CHARACTER_DEFAULTS = {
+// ✅ Typed object literals for configuration
+const CHARACTER_DEFAULTS: Readonly<CharacterSheet> = {
+  name: '',
+  archetype: '',
   health: 10,
-  armor: 0,
-  speed: 4,
+  skills: [],
 }
 
 // ✅ Spread operator for object composition
-const extendedCharacter = { ...baseCharacter, ...customizations }
+const extendedCharacter: CharacterSheet = { ...baseCharacter, ...customizations }
 ```
 
 ### Array Operations
 
-```javascript
-// ✅ Modern array methods
+```typescript
+// ✅ Modern array methods — types infer correctly
 const filteredAbilities = abilities.filter(a => a.category === 'combat')
-const doubled = scores.map(s => s * 2)
+const doubled = scores.map((s: number) => s * 2)
 const total = scores.reduce((sum, s) => sum + s, 0)
-
-// ❌ avoid old patterns
-for (let i = 0; i < abilities.length; i++) { ... }
 ```
 
 ### Async Operations
 
-```javascript
-// ✅ Use async/await for promise handling
-async function loadCharacterSheet(id) {
+```typescript
+// ✅ Use async/await with typed return
+async function loadCharacterSheet(id: string): Promise<CharacterSheet | null> {
   try {
     const data = localStorage.getItem(`character_${id}`)
-    return JSON.parse(data)
-  } catch (error) {
+    return data ? (JSON.parse(data) as CharacterSheet) : null
+  } catch (error: unknown) {
     console.error('Failed to load character:', error)
     return null
   }
 }
-
-// ❌ avoid promise chains
-loadCharacterSheet().then(data => { ... })
 ```
 
 ### DOM Manipulation
 
-```javascript
-// ✅ Use standard DOM APIs
-const element = document.getElementById("player-sheet");
-element.textContent = "New Title";
-element.addEventListener("click", handleClick);
+```typescript
+// ✅ Use typed DOM APIs — assert non-null where safe
+const element = document.getElementById("player-sheet") as HTMLElement
+element.textContent = "New Title"
+element.addEventListener("click", handleClick)
 
 // ✅ Use dataset attributes for storing data
-element.dataset.characterId = id;
-const id = element.dataset.characterId;
+const el = e.target as HTMLElement
+const id = el.dataset.characterId ?? ''
 ```
 
 ## What to Avoid
 
 - No `var` — use `const` by default, `let` when reassignment is needed
+- No `any` — use `unknown` for untrusted data, then narrow with type guards
 - No commented-out code committed to the repository
 - No magic numbers — extract to named constants
 - No unused variables or imports
+- No implicit return types on exported functions

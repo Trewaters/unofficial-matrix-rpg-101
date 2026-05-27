@@ -12,10 +12,10 @@ applyTo: "**"
 ## Runtime & Language
 
 - **Node.js**: 18.x or higher
-- **Language**: JavaScript (vanilla, no transpilation or framework)
-  - Use standard ES2020+ syntax
-  - No TypeScript — prefer clear naming and comments for documentation
-  - No complex type systems — use JSDoc comments where helpful
+- **Language**: TypeScript (strict mode, compiled by Vite)
+  - Use standard ES2020+ target syntax
+  - Explicit types on all function parameters and return values
+  - `strict: true` — no implicit `any`, no loose null checks
 - **Module system**: ES Modules (ESM) — all imports use `import` syntax
 - **Package manager**: npm
 
@@ -25,10 +25,14 @@ applyTo: "**"
   - Dev server: `npm run dev` — provides instant feedback
   - Production build: `npm run build` — creates optimized output in `dist/`
   - Preview: `npm run preview` — serves built output locally
-- **UI Framework**: Vanilla HTML, CSS, and JavaScript (no framework)
+- **UI Framework**: Vanilla HTML, CSS, and TypeScript (no JS framework)
   - Direct DOM manipulation via standard browser APIs
   - CSS with custom properties for theming and responsive design
-  - No component library — write components as organized, reusable JS functions
+  - **Component library**: Shoelace (`@shoelace-style/shoelace`) — Web Components
+    - Import individual components: `import '@shoelace-style/shoelace/dist/components/button/button.js'`
+    - Use dark theme: already imported in `main.ts`
+    - Base path for icons set to `./shoelace/assets` (copied by Vite plugin during build)
+    - Prefer Shoelace components over writing custom ones from scratch
 - **App Type**: Client-side single-page application with local storage persistence
 
 ## Backend
@@ -50,21 +54,25 @@ applyTo: "**"
 
 Minimal dependencies by design. Only `vite` as a dev dependency.
 
-| Purpose             | Status              | Notes                                 |
-| ------------------- | ------------------- | ------------------------------------- |
-| Build & development | Vite 5.x            | Only build tool dependency            |
-| Bundling            | Vite                | Handles all bundling and optimization |
-| Runtime             | Native browser APIs | No frameworks or libraries required   |
+| Purpose             | Library / Tool                    | Notes                                              |
+| ------------------- | --------------------------------- | -------------------------------------------------- |
+| Build & development | Vite 5.x                          | Handles TS compilation and bundling                |
+| Type checking       | TypeScript 5.x                    | `npm run typecheck` — `tsc --noEmit`               |
+| UI components       | Shoelace (`@shoelace-style/shoelace`) | Web Components — use before writing custom ones |
+| View animations     | Motion.dev (`motion`)             | View transitions and interactive animations        |
+| Asset handling      | vite-plugin-static-copy           | Copies Shoelace icons to `dist/shoelace/assets`    |
 
 ## Project Structure
 
 ```
 unofficial-matrix-rpg-101/
 ├── src/
-│   ├── main.js          # Application entry point and view controller
+│   ├── main.ts          # Application entry point and view controller
+│   ├── animations.ts    # Motion.dev animation utilities
 │   └── styles.css       # All styling (no CSS framework)
 ├── index.html           # HTML entry point
-├── vite.config.js       # Vite configuration
+├── tsconfig.json        # TypeScript configuration
+├── vite.config.ts       # Vite configuration
 └── package.json         # Project metadata and scripts
 ```
 
@@ -85,10 +93,11 @@ unofficial-matrix-rpg-101/
 
 ## Tooling
 
-- **Linting**: ESLint (if added) — keep rules minimal for vanilla JS
+- **Type checking**: `npm run typecheck` — runs `tsc --noEmit`
+- **Linting**: ESLint (if added) — use `@typescript-eslint` ruleset
 - **Formatting**: Prettier (if added) — configure to respect code readability
 - **Versioning**: Semantic versioning via manual CHANGELOG updates
-- **Documentation**: JSDoc comments in code — no automated doc generation needed
+- **Documentation**: TSDoc comments on exported functions and types
 
 ## Browser Support Targets
 
