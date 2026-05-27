@@ -6,17 +6,241 @@ import { SKILLS, CATEGORY_ORDER } from './skills.js'
 import { FEATS } from './feats.js'
 import { REAL_WORLD_GEAR, MATRIX_GEAR, VEHICLES_ALL, CONTACT_ROLES, GearCategory } from './gear.js'
 import { PATHS, AFFILIATIONS, ORIGINS, SHIP_TYPES } from './identityData.js'
+import { firebaseConfig } from './firebase-config.js'
+import { initializeApp } from 'firebase/app'
+import { getDatabase, ref as fbRef, set as fbSet, remove as fbRemove, onDisconnect, onChildAdded, onChildChanged, onChildRemoved, onValue } from 'firebase/database'
 
 setBasePath('./shoelace/assets')
 
+// ── Firebase init ────────────────────────────────────────────────────────────
+const FIREBASE_ENABLED = Boolean(firebaseConfig.apiKey && firebaseConfig.databaseURL)
+let fbDb: ReturnType<typeof getDatabase> | null = null
+
+if (FIREBASE_ENABLED) {
+  const app = initializeApp(firebaseConfig)
+  fbDb = getDatabase(app)
+}
+
 const STORAGE_KEY = 'matrix-rpg-characters-v1'
 const validRoutes = ['home', 'learn', 'jack-in'];
-const sheetTabs = ['identity', 'abilities', 'skills', 'loadout', 'notes'];
+const sheetTabs = ['identity', 'abilities', 'skills', 'loadout', 'notes', 'comms'];
 
 const attributeOptions = ['Common Sense', 'Focus', 'Agility', 'Strength', 'Endurance', 'CyberZen'];
 const damageLevels = ['None', 'Light', 'Moderate', 'Serious', 'Critical', 'Incapacitated', 'Dead'];
 const roleOptions = ['RSI Hacker', 'Operator', 'Pilot', 'Captain', 'Crew', 'Nomad', 'Surface Human'];
 const downloadOptions = ['None', 'Temporary', 'Permanent'];
+
+const NFT_API_KEY_STORE = 'matrix-rpg-opensea-key-v1'
+
+interface NftItem {
+  identifier: string
+  contract?: string
+  name?: string
+  image_url?: string
+  display_image_url?: string
+  opensea_url?: string
+  _filter: 'red' | 'blue' | 'base' | 'contract'
+  _chain?: string
+}
+
+interface BookmarkedNft extends NftItem {
+  bookmarkedAt: string
+}
+
+const NFT_COLLECTIONS = [
+  { slug: 'the-matrix-avatars-red-polygon', chain: 'polygon', filter: 'red' as const, label: 'Red Pill' },
+  { slug: 'the-matrix-avatars-blue-polygon', chain: 'polygon', filter: 'blue' as const, label: 'Blue Pill' },
+  { slug: 'the-matrix-avatars', chain: 'ethereum', filter: 'base' as const, label: 'Base Avatar' },
+]
+
+const CONTRACT_TO_FILTER: Record<string, NftItem['_filter']> = {
+  '0xc37d61ad831dbc979469dc48a7f55141e2e27f03': 'red',
+  '0xcc16d5f112d2d6b7d4572eb191a59f22aaf87d02': 'blue',
+  '0x495f947276749ce646f68ac8c248420045cb7b5e': 'base',
+}
+
+const NFT_BOOKMARKS_KEY = 'matrix-rpg-nft-bookmarks-v1'
+const MESSAGES_KEY = 'matrix-rpg-messages-v1'
+
+interface PhoneMessage {
+  id: string
+  from: string          // display handle
+  fromCharId?: string   // character id of sender (for crew reply tracking)
+  to: string            // characterId | '__all__' | '__operator__'
+  shipName: string      // homeShip of sender — scopes message to that ship's crew
+  body: string
+  sentAt: string
+  readBy: string[]      // characterIds that have read it
+}
+
+interface SessionChar {
+  id: string
+  profileName: string
+  callSign: string
+  role: string
+  homeShip: string
+  phoneOn: boolean
+  lastSeen: number  // Date.now() ms
+}
+
+function loadNftApiKey(): string {
+  return localStorage.getItem(NFT_API_KEY_STORE) || ''
+}
+
+function saveNftApiKey(key: string): void {
+  if (key) localStorage.setItem(NFT_API_KEY_STORE, key)
+  else localStorage.removeItem(NFT_API_KEY_STORE)
+}
+
+function loadBookmarks(): BookmarkedNft[] {
+  try { return JSON.parse(localStorage.getItem(NFT_BOOKMARKS_KEY) || '[]') } catch { return [] }
+}
+
+function saveBookmarks(): void {
+  localStorage.setItem(NFT_BOOKMARKS_KEY, JSON.stringify(state.nftBookmarks))
+}
+
+function loadMessages(): PhoneMessage[] {
+  try { return JSON.parse(localStorage.getItem(MESSAGES_KEY) || '[]') } catch { return [] }
+}
+
+function saveMessages(): void {
+  localStorage.setItem(MESSAGES_KEY, JSON.stringify(state.messages))
+  syncCharacterLogs()
+}
+
+function syncCharacterLogs(): void {
+  let changed = false
+  state.characters = state.characters.map(char => {
+    const ship = char.homeShip || ''
+    const relevant = state.messages.filter(msg => {
+      if ((msg.shipName || '') !== ship) return false
+      if (char.role === 'Operator') return true
+      return msg.to === '__all__' || msg.to === char.id || msg.fromCharId === char.id
+    })
+    const log: PhoneMessage[] = char.messageLog || []
+    const newMsgs = relevant.filter(msg => !log.find(m => m.id === msg.id))
+    if (!newMsgs.length) return char
+    changed = true
+    return { ...char, messageLog: [...log, ...newMsgs] }
+  })
+  if (changed) persistCharacters(state.characters)
+}
+
+function nftKey(nft: NftItem): string {
+  return `${nft.contract || ''}:${nft.identifier}`
+}
+
+function isBookmarked(nft: NftItem): boolean {
+  return state.nftBookmarks.some(b => nftKey(b) === nftKey(nft))
+}
+
+function isOperatorChar(charId: string): boolean {
+  return state.characters.find(c => c.id === charId)?.role === 'Operator'
+}
+
+function getMessagesForCharacter(charId: string): PhoneMessage[] {
+  const char = state.characters.find(c => c.id === charId)
+  const ship = char?.homeShip || ''
+  if (isOperatorChar(charId)) {
+    return state.messages.filter(m =>
+      (m.to === '__operator__' || m.to === charId) && (m.shipName || '') === ship
+    )
+  }
+  return state.messages.filter(m =>
+    (m.to === '__all__' || m.to === charId) && (m.shipName || '') === ship
+  )
+}
+
+function getUnreadCount(charId: string): number {
+  return getMessagesForCharacter(charId).filter(m => !m.readBy.includes(charId)).length
+}
+
+function markMessagesRead(charId: string): void {
+  let changed = false
+  const isOp = isOperatorChar(charId)
+  state.messages = state.messages.map(m => {
+    const relevant = isOp
+      ? (m.to === '__operator__' || m.to === charId)
+      : (m.to === '__all__' || m.to === charId)
+    if (relevant && !m.readBy.includes(charId)) {
+      changed = true
+      return { ...m, readBy: [...m.readBy, charId] }
+    }
+    return m
+  })
+  if (changed) saveMessages()
+}
+
+function sendMessage(from: string, fromCharId: string | undefined, to: string, body: string, shipName = ''): void {
+  const msg: PhoneMessage = {
+    id: `msg-${Date.now()}-${Math.random().toString(16).slice(2, 6)}`,
+    from,
+    fromCharId,
+    to,
+    shipName,
+    body,
+    sentAt: new Date().toISOString(),
+    readBy: [],
+  }
+
+  if (FIREBASE_ENABLED && fbDb) {
+    // Optimistically add to local state so the sender sees it immediately
+    state.messages = [...state.messages, msg]
+    render()
+    // Write to Firebase — all connected clients receive it via onChildAdded
+    fbSet(fbRef(fbDb, `matrix-rpg/messages/${msg.id}`), {
+      ...msg,
+      readBy: {},   // Firebase stores readBy as an object, not an array
+    }).catch((err: any) => {
+      console.error('Firebase write failed:', err)
+      state.status = 'Transmission failed — check your connection.'
+      render()
+    })
+    saveMessages() // cache locally too
+  } else {
+    // Local-only fallback
+    state.messages = [...state.messages, msg]
+    saveMessages()
+    render()
+  }
+}
+
+function registerSession(character: any): void {
+  if (!FIREBASE_ENABLED || !fbDb) return
+  const session: SessionChar = {
+    id: character.id,
+    profileName: character.profileName || 'Unknown',
+    callSign: character.callSign || '',
+    role: character.role || '',
+    homeShip: character.homeShip || '',
+    phoneOn: state.phoneOn,
+    lastSeen: Date.now(),
+  }
+  const sessionRef = fbRef(fbDb, `matrix-rpg/sessions/${character.id}`)
+  // Remove this session from Firebase automatically when the browser disconnects
+  onDisconnect(sessionRef).remove()
+  fbSet(sessionRef, session)
+    .catch((err: any) => {
+      console.error('Session register failed:', err)
+      if (String(err).includes('PERMISSION_DENIED')) {
+        state.status = 'Firebase rules block sessions — add "sessions" to your Realtime Database rules (see README).'
+        render()
+      }
+    })
+}
+
+function toggleBookmark(nft: NftItem): void {
+  const key = nftKey(nft)
+  const idx = state.nftBookmarks.findIndex(b => nftKey(b) === key)
+  if (idx >= 0) {
+    state.nftBookmarks = [...state.nftBookmarks.slice(0, idx), ...state.nftBookmarks.slice(idx + 1)]
+  } else {
+    state.nftBookmarks = [...state.nftBookmarks, { ...nft, bookmarkedAt: new Date().toISOString() }]
+  }
+  saveBookmarks()
+  render()
+}
 
 function uid() {
   return `char-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
@@ -85,6 +309,7 @@ function createCharacter() {
       walletAddress: '',
       collectionNotes: '',
     },
+    messageLog: [] as PhoneMessage[],
     updatedAt: new Date().toISOString(),
   };
 }
@@ -115,6 +340,7 @@ function hydrateCharacter(raw = {}) {
     matrixFeats: Array.isArray(raw.matrixFeats) && raw.matrixFeats.length
       ? raw.matrixFeats.map((feat) => ({ ...createFeat(), ...feat, id: feat.id || uid() }))
       : base.matrixFeats,
+    messageLog: Array.isArray(raw.messageLog) ? raw.messageLog : [],
     updatedAt: raw.updatedAt || base.updatedAt,
   };
 }
@@ -150,10 +376,23 @@ function persistCharacters(characters) {
 
 const state = {
   characters: loadCharacters(),
-  selectedId: null,
+  selectedId: null as string | null,
   status: 'Local storage ready.',
   route: getRouteFromHash(),
   sheetTab: 'identity',
+  nftLoading: false,
+  nftItems: [] as NftItem[],
+  nftError: null as string | null,
+  nftFilter: 'all',
+  nftMode: 'wallet' as 'wallet' | 'contract' | 'bookmarks',
+  nftContractItems: [] as NftItem[],
+  nftContractNext: null as string | null,
+  nftContractAddress: '',
+  nftBookmarks: loadBookmarks(),
+  phoneOn: false,
+  messages: loadMessages(),
+  firebaseConnected: false,
+  sessionChars: {} as Record<string, SessionChar>,
 };
 
 state.selectedId = state.characters[0]?.id ?? null;
@@ -165,6 +404,80 @@ window.addEventListener('hashchange', () => {
     render();
   }
 });
+
+// Batch rapid Firebase callbacks into one render frame
+let _fbRenderScheduled = false
+function scheduleRender(scrollPhone = false) {
+  if (!_fbRenderScheduled) {
+    _fbRenderScheduled = true
+    requestAnimationFrame(() => {
+      _fbRenderScheduled = false
+      render()
+      if (scrollPhone && state.phoneOn) {
+        const screen = document.getElementById('phone-screen')
+        if (screen) screen.scrollTop = screen.scrollHeight
+      }
+    })
+  }
+}
+
+if (FIREBASE_ENABLED && fbDb) {
+  // Watch connection state
+  onValue(fbRef(fbDb, '.info/connected'), (snap) => {
+    state.firebaseConnected = snap.val() === true
+    render()
+  })
+
+  // Listen for all messages — fires for existing ones on connect, then new ones live
+  onChildAdded(fbRef(fbDb, 'matrix-rpg/messages'), (snap) => {
+    const data = snap.val()
+    if (!data) return
+    const readBy: string[] = data.readBy ? Object.keys(data.readBy) : []
+    const msg: PhoneMessage = { ...data, id: snap.key!, readBy }
+    if (!state.messages.find(m => m.id === msg.id)) {
+      state.messages = [...state.messages, msg]
+      saveMessages() // keep a local cache so offline reads still work
+      scheduleRender(state.sheetTab === 'comms')
+    }
+  })
+
+  // Track which characters are active across browsers (for Operator crew list)
+  const sessionErrorCallback = (err: Error) => {
+    console.error('Sessions listener denied:', err)
+    state.status = 'Firebase rules block sessions — add "sessions" to your Realtime Database rules (see README).'
+    render()
+  }
+  onChildAdded(fbRef(fbDb, 'matrix-rpg/sessions'), (snap) => {
+    if (snap.key && snap.val()) {
+      state.sessionChars[snap.key] = snap.val() as SessionChar
+      scheduleRender()
+    }
+  }, sessionErrorCallback)
+  onChildChanged(fbRef(fbDb, 'matrix-rpg/sessions'), (snap) => {
+    if (snap.key && snap.val()) {
+      state.sessionChars[snap.key] = snap.val() as SessionChar
+      scheduleRender()
+    }
+  }, sessionErrorCallback)
+  onChildRemoved(fbRef(fbDb, 'matrix-rpg/sessions'), (snap) => {
+    if (snap.key) {
+      delete state.sessionChars[snap.key]
+      scheduleRender()
+    }
+  }, sessionErrorCallback)
+} else {
+  // Same-browser-tab fallback (no Firebase configured)
+  window.addEventListener('storage', (e) => {
+    if (e.key === MESSAGES_KEY) {
+      state.messages = loadMessages()
+      scheduleRender(state.sheetTab === 'comms')
+    }
+    if (e.key === STORAGE_KEY) {
+      state.characters = loadCharacters()
+      render()
+    }
+  })
+}
 
 function getSelectedCharacter() {
   return state.characters.find((character) => character.id === state.selectedId) ?? state.characters[0];
@@ -198,6 +511,11 @@ function setSheetTab(tab) {
   }
 
   state.sheetTab = tab;
+
+  if (tab === 'comms') {
+    registerSession(getSelectedCharacter())
+  }
+
   render();
 }
 
@@ -525,19 +843,22 @@ function renderRoster(character) {
 }
 
 function renderSheetTabs() {
-  const tabLabels = {
+  const character = getSelectedCharacter()
+  const unread = getUnreadCount(character.id)
+  const tabLabels: Record<string, string> = {
     identity: 'Identity',
     abilities: 'Abilities',
     skills: 'Skills',
     loadout: 'Loadout',
     notes: 'Notes',
-  };
+    comms: `Comms${!state.phoneOn && unread > 0 ? ` <span class="tab-badge">${unread}</span>` : ''}`,
+  }
 
   return sheetTabs
     .map(
       (tab) => `<button class="sheet-tab ${state.sheetTab === tab ? 'is-active' : ''}" data-sheet-tab="${tab}">${tabLabels[tab]}</button>`,
     )
-    .join('');
+    .join('')
 }
 
 function renderIdentityTab(character) {
@@ -551,7 +872,7 @@ function renderIdentityTab(character) {
         ${createSimpleSuggestField({ label: 'Path', name: 'path', value: character.path, placeholder: 'RSI Hacker, Mercenary, Punksmith...' })}
         ${createLabeledSelect({ label: 'Role', name: 'role', value: character.role, options: roleOptions })}
         ${createSimpleSuggestField({ label: 'Affiliation', name: 'affiliation', value: character.affiliation, placeholder: 'Zion Resistance, Crystal Shard...' })}
-        ${createSimpleSuggestField({ label: 'Home Ship / Crew', name: 'homeShip', value: character.homeShip, placeholder: 'Speeder Hovercraft, Nomad Hovercraft...' })}
+        ${createSimpleSuggestField({ label: 'Hovership / Crew', name: 'homeShip', value: character.homeShip, placeholder: 'Speeder Hovercraft, Nomad Hovercraft...' })}
         ${createSimpleSuggestField({ label: 'Origin', name: 'origin', value: character.origin, placeholder: 'Pod-born, Surface-born, Freeborn...' })}
         ${createLabeledSelect({ label: 'Choice', name: 'redPillChoice', value: character.redPillChoice, options: ['Red Pill', 'Blue Pill', 'Still Deciding'] })}
         ${createLabeledInput({ label: 'Motivation', name: 'motivation', value: character.motivation, placeholder: 'Why do they keep fighting?' })}
@@ -709,18 +1030,72 @@ function renderLoadoutTab(character) {
 function renderNotesTab(character) {
   return `
     <section class="sheet-card sheet-card-wide">
-      <h3>Campaign Notes And Future NFT Viewer</h3>
-      <div class="field-grid two-up">
-        ${createLabeledTextarea({ label: 'Session Notes', name: 'notes', value: character.notes, rows: 7, placeholder: 'Mission goals, betrayals, unresolved hooks...' })}
-        <div class="nft-card">
-          <p class="eyebrow">Future ETH Hook</p>
-          <h4>Matrix NFT viewing placeholder</h4>
-          <p class="nft-copy">The app already reserves character-level wallet and collection metadata so a later update can plug in wallet connect and read-only NFT display without changing the saved character format.</p>
-          ${createLabeledInput({ label: 'Wallet Address', name: 'nft.walletAddress', value: character.nft.walletAddress, placeholder: '0x...' })}
-          ${createLabeledTextarea({ label: 'Collection Notes', name: 'nft.collectionNotes', value: character.nft.collectionNotes, rows: 3, placeholder: 'Collection name, token IDs, display preferences...' })}
-          <button class="ghost-button" type="button" data-action="nft-placeholder">Prepare NFT Viewer Later</button>
+      <h3>Campaign Notes</h3>
+      ${createLabeledTextarea({ label: 'Session Notes', name: 'notes', value: character.notes, rows: 7, placeholder: 'Mission goals, betrayals, unresolved hooks...' })}
+    </section>
+
+    <section class="sheet-card sheet-card-wide nft-viewer-section">
+      <div class="nft-viewer-head">
+        <div>
+          <p class="eyebrow">Ethereum + Polygon · Warner Bros × Nifty's</p>
+          <h3>Matrix Avatar NFT Viewer</h3>
+        </div>
+        <div class="nft-viewer-links">
+          <a class="ghost-button nft-link-btn" href="https://opensea.io/collection/the-matrix-avatars-red-polygon" target="_blank" rel="noopener">Red Pill ↗</a>
+          <a class="ghost-button nft-link-btn" href="https://opensea.io/collection/the-matrix-avatars-blue-polygon" target="_blank" rel="noopener">Blue Pill ↗</a>
+          <a class="ghost-button nft-link-btn" href="https://opensea.io/collection/the-matrix-avatars" target="_blank" rel="noopener">Base ↗</a>
         </div>
       </div>
+
+      <div class="nft-mode-tabs">
+        <button class="nft-mode-btn${state.nftMode === 'wallet' ? ' is-active' : ''}" data-nft-mode="wallet">My Wallet</button>
+        <button class="nft-mode-btn${state.nftMode === 'contract' ? ' is-active' : ''}" data-nft-mode="contract">Browse Contract</button>
+        <button class="nft-mode-btn${state.nftMode === 'bookmarks' ? ' is-active' : ''}" data-nft-mode="bookmarks">Bookmarks${state.nftBookmarks.length ? ` (${state.nftBookmarks.length})` : ''}</button>
+      </div>
+
+      ${state.nftMode === 'wallet' ? `
+        <div class="field-grid two-up nft-viewer-inputs">
+          ${createLabeledInput({ label: 'Wallet Address', name: 'nft.walletAddress', value: character.nft.walletAddress, placeholder: '0x...' })}
+          <label class="field">
+            <span>OpenSea API Key</span>
+            <input id="nft-api-key" type="password" value="${escapeHtml(loadNftApiKey())}" placeholder="Free key at opensea.io/developers" autocomplete="off" />
+          </label>
+        </div>
+        <div class="nft-controls-row">
+          <div class="nft-filter-bar">
+            ${(['all', 'red', 'blue', 'base'] as const).map(f => `
+              <button class="nft-filter-btn${state.nftFilter === f ? ' is-active' : ''}" data-nft-filter="${f}">
+                ${f === 'all' ? 'All' : f === 'red' ? 'Red Pill' : f === 'blue' ? 'Blue Pill' : 'Base'}
+              </button>
+            `).join('')}
+          </div>
+          <button class="solid-button" data-action="load-nfts"${state.nftLoading ? ' disabled' : ''}>
+            ${state.nftLoading ? 'Loading…' : 'Load NFTs'}
+          </button>
+        </div>
+      ` : ''}
+
+      ${state.nftMode === 'contract' ? `
+        <div class="field-grid two-up nft-viewer-inputs">
+          <label class="field">
+            <span>Contract Address</span>
+            <input id="nft-contract-address" type="text" value="${escapeHtml(state.nftContractAddress)}" placeholder="0x..." autocomplete="off" />
+          </label>
+          <label class="field">
+            <span>OpenSea API Key</span>
+            <input id="nft-api-key" type="password" value="${escapeHtml(loadNftApiKey())}" placeholder="Free key at opensea.io/developers" autocomplete="off" />
+          </label>
+        </div>
+        <div class="nft-controls-row">
+          <button class="solid-button" data-action="browse-contract"${state.nftLoading ? ' disabled' : ''}>
+            ${state.nftLoading ? 'Loading…' : 'Browse Contract'}
+          </button>
+        </div>
+      ` : ''}
+
+      ${renderNftContent()}
+
+      ${createLabeledTextarea({ label: 'Collection Notes', name: 'nft.collectionNotes', value: character.nft.collectionNotes, rows: 3, placeholder: 'Token IDs, display preferences, trades...' })}
     </section>
   `;
 }
@@ -740,6 +1115,10 @@ function renderSheetContent(character, slots) {
 
   if (state.sheetTab === 'loadout') {
     return renderLoadoutTab(character);
+  }
+
+  if (state.sheetTab === 'comms') {
+    return renderCommsTab(character);
   }
 
   return renderNotesTab(character);
@@ -989,6 +1368,482 @@ function setupFeatInputSuggestions(input: HTMLInputElement, featId: string): voi
   })
 }
 
+async function fetchNFTs(wallet: string, apiKey: string): Promise<void> {
+  state.nftLoading = true
+  state.nftError = null
+  state.nftItems = []
+  render()
+
+  try {
+    const fetches = NFT_COLLECTIONS.map(({ slug, chain, filter }) =>
+      fetch(
+        `https://api.opensea.io/api/v2/chain/${chain}/account/${encodeURIComponent(wallet)}/nfts?collection=${slug}&limit=50`,
+        { headers: { 'x-api-key': apiKey, 'accept': 'application/json' } }
+      )
+        .then(r => {
+          if (r.status === 401) throw new Error('Invalid API key — get a free key at opensea.io/developers')
+          if (r.status === 400) throw new Error('Invalid wallet address format')
+          return r.ok ? r.json() : Promise.reject(new Error(`OpenSea error ${r.status}`))
+        })
+        .then((data: any): NftItem[] =>
+          (data.nfts || []).map((n: any): NftItem => ({ ...n, _filter: filter }))
+        )
+        .catch((e: Error) => { state.nftError = e.message; return [] as NftItem[] })
+    )
+
+    const results = await Promise.all(fetches)
+    state.nftItems = results.flat()
+    if (state.nftItems.length === 0 && !state.nftError) {
+      state.nftError = 'No Matrix Avatar NFTs found for this wallet.'
+    }
+  } catch (e: any) {
+    state.nftError = e?.message ?? 'Failed to load. Check API key and wallet address.'
+  }
+
+  state.nftLoading = false
+  render()
+}
+
+async function fetchNftsByContract(address: string, apiKey: string, cursor?: string): Promise<void> {
+  state.nftLoading = true
+  state.nftError = null
+  if (!cursor) { state.nftContractItems = []; state.nftContractNext = null }
+  render()
+
+  const knownFilter = CONTRACT_TO_FILTER[address.toLowerCase()]
+  let resolvedChain = ''
+
+  try {
+    for (const chain of ['polygon', 'ethereum']) {
+      const probe = await fetch(
+        `https://api.opensea.io/api/v2/chain/${chain}/contract/${address}`,
+        { headers: { 'x-api-key': apiKey, 'accept': 'application/json' } }
+      )
+      if (probe.ok) { resolvedChain = chain; break }
+    }
+    if (!resolvedChain) throw new Error('Contract not found on Polygon or Ethereum.')
+
+    const url = new URL(`https://api.opensea.io/api/v2/chain/${resolvedChain}/contract/${address}/nfts`)
+    url.searchParams.set('limit', '50')
+    if (cursor) url.searchParams.set('next', cursor)
+
+    const r = await fetch(url.toString(), {
+      headers: { 'x-api-key': apiKey, 'accept': 'application/json' }
+    })
+    if (r.status === 401) throw new Error('Invalid API key')
+    if (!r.ok) throw new Error(`OpenSea error ${r.status}`)
+
+    const data = await r.json()
+    const items: NftItem[] = (data.nfts || []).map((n: any): NftItem => ({
+      ...n,
+      contract: address,
+      _filter: knownFilter ?? 'contract',
+      _chain: resolvedChain,
+    }))
+
+    state.nftContractItems = cursor ? [...state.nftContractItems, ...items] : items
+    state.nftContractNext = data.next || null
+    state.nftContractAddress = address
+
+    if (state.nftContractItems.length === 0) {
+      state.nftError = `No NFTs found for that contract on ${resolvedChain}.`
+    }
+  } catch (e: any) {
+    state.nftError = e?.message ?? 'Failed to load contract NFTs.'
+  }
+
+  state.nftLoading = false
+  render()
+}
+
+function renderCollectionBadge(filter: NftItem['_filter']): string {
+  if (filter === 'red') return '<span class="nft-badge nft-badge-red">Red Pill</span>'
+  if (filter === 'blue') return '<span class="nft-badge nft-badge-blue">Blue Pill</span>'
+  if (filter === 'base') return '<span class="nft-badge nft-badge-base">Base</span>'
+  return ''
+}
+
+function fullPortraitUrl(url: string | undefined): string | undefined {
+  if (!url) return url
+  return url.includes('seadn.io') ? `${url}?w=600` : url
+}
+
+function renderNftCard(nft: NftItem): string {
+  const name = escapeHtml(nft.name || `#${nft.identifier}`)
+  const img = fullPortraitUrl(nft.display_image_url || nft.image_url)
+  const bookmarked = isBookmarked(nft)
+  const bookmarkKey = escapeHtml(nftKey(nft))
+  return `
+    <div class="nft-token-card">
+      <a class="nft-token-link" href="${escapeHtml(nft.opensea_url || 'https://opensea.io')}" target="_blank" rel="noopener noreferrer">
+        <div class="nft-token-img">
+          ${img
+            ? `<img src="${escapeHtml(img)}" alt="${name}" loading="lazy" />`
+            : `<span class="nft-no-img">No Image</span>`}
+        </div>
+      </a>
+      <div class="nft-token-meta">
+        <span class="nft-token-name">${name}</span>
+        <div class="nft-token-foot">
+          ${renderCollectionBadge(nft._filter)}
+          <button class="nft-bookmark-btn${bookmarked ? ' is-bookmarked' : ''}"
+            data-bookmark-key="${bookmarkKey}"
+            title="${bookmarked ? 'Remove bookmark' : 'Bookmark'}">
+            ${bookmarked ? '★' : '☆'}
+          </button>
+        </div>
+      </div>
+    </div>
+  `
+}
+
+function renderNftStatusOrGrid(items: NftItem[], emptyMsg: string): string {
+  if (state.nftLoading) return `<div class="nft-status-msg">Fetching from OpenSea…</div>`
+  if (state.nftError && !items.length) return `<div class="nft-status-msg nft-status-error">${escapeHtml(state.nftError)}</div>`
+  if (!items.length) return `<div class="nft-status-msg">${escapeHtml(emptyMsg)}</div>`
+  return `<div class="nft-token-grid">${items.map(renderNftCard).join('')}</div>`
+}
+
+function renderNftContent(): string {
+  if (state.nftMode === 'bookmarks') {
+    if (!state.nftBookmarks.length) {
+      return `<div class="nft-status-msg">No bookmarks yet. Browse your wallet or a contract and click ☆ to save NFTs here.</div>`
+    }
+    return `<div class="nft-token-grid">${state.nftBookmarks.map(renderNftCard).join('')}</div>`
+  }
+
+  if (state.nftMode === 'contract') {
+    const content = renderNftStatusOrGrid(state.nftContractItems, 'Enter a contract address and click Browse.')
+    const loadMore = state.nftContractNext && !state.nftLoading
+      ? `<div class="nft-load-more-row">
+           <button class="ghost-button" data-action="load-more-nfts">Load 50 more</button>
+           <span class="nft-count">${state.nftContractItems.length} loaded</span>
+         </div>`
+      : state.nftContractItems.length > 0
+        ? `<div class="nft-count-row"><span class="nft-count">${state.nftContractItems.length} NFTs loaded</span></div>`
+        : ''
+    return content + loadMore
+  }
+
+  // Wallet mode
+  const filtered = state.nftFilter === 'all'
+    ? state.nftItems
+    : state.nftItems.filter(n => n._filter === state.nftFilter)
+
+  if (state.nftLoading) return `<div class="nft-status-msg">Fetching wallet NFTs from OpenSea…</div>`
+  if (state.nftError && !state.nftItems.length) return `<div class="nft-status-msg nft-status-error">${escapeHtml(state.nftError)}</div>`
+  if (!state.nftItems.length) return ''
+  if (!filtered.length) {
+    const label = NFT_COLLECTIONS.find(c => c.filter === state.nftFilter)?.label ?? 'this collection'
+    return `<div class="nft-status-msg">No ${label} NFTs in this wallet.</div>`
+  }
+  return `<div class="nft-token-grid">${filtered.map(renderNftCard).join('')}</div>`
+}
+
+// ── COMMS TAB ──────────────────────────────────────────────────────────────
+
+function renderPhoneScreenOff(charId: string): string {
+  const unread = getUnreadCount(charId)
+  return `
+    <div class="phone-screen-off">
+      <span class="phone-power-icon">⏻</span>
+      <span class="phone-off-label">POWERED OFF</span>
+      ${unread > 0 ? `<span class="phone-unread-badge">${unread} MSG WAITING</span>` : ''}
+    </div>
+  `
+}
+
+function renderPhoneScreenOn(charId: string): string {
+  const msgs = getMessagesForCharacter(charId)
+  if (msgs.length === 0) {
+    return `
+      <div class="phone-screen-on-empty">
+        <span>NO MESSAGES</span>
+        <span>STANDING BY</span>
+      </div>
+    `
+  }
+  return msgs.map((m, i) => {
+    const time = new Date(m.sentAt).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
+    const isNew = !m.readBy.includes(charId)
+    const divider = i > 0 ? `<div class="phone-msg-divider">───────────</div>` : ''
+    return `${divider}
+      <div class="phone-msg${isNew ? ' phone-msg-new' : ''}">
+        <div class="phone-msg-from">FROM:${escapeHtml(m.from.toUpperCase())}<span class="phone-msg-time">${time}</span></div>
+        <div class="phone-msg-body">&gt;${escapeHtml(m.body)}</div>
+      </div>`
+  }).join('')
+}
+
+const PHONE_KEYS = [
+  { top: '1', sub: '' },   { top: '2', sub: 'ABC' }, { top: '3', sub: 'DEF' },
+  { top: '4', sub: 'GHI' }, { top: '5', sub: 'JKL' }, { top: '6', sub: 'MNO' },
+  { top: '7', sub: 'PRS' }, { top: '8', sub: 'TUV' }, { top: '9', sub: 'WXY' },
+  { top: '*', sub: '' },   { top: '0', sub: '+' },   { top: '#', sub: '' },
+]
+
+function renderPhoneDevice(character: any): string {
+  const on = state.phoneOn
+  const screenContent = on
+    ? renderPhoneScreenOn(character.id)
+    : renderPhoneScreenOff(character.id)
+  return `
+    <div class="phone-wrap">
+      <div class="phone-device${on ? ' phone-is-on' : ''}">
+        <div class="phone-antenna"></div>
+        <div class="phone-earpiece"></div>
+        <div class="phone-screen-bezel">
+          <div class="phone-screen">
+            <div class="phone-screen-content" id="phone-screen">
+              ${screenContent}
+            </div>
+          </div>
+        </div>
+        <div class="phone-brand">Z · I · O · N</div>
+        <div class="phone-nav-row">
+          <div class="phone-softkey"></div>
+          <div class="phone-nav-center"><div class="phone-nav-dot"></div></div>
+          <div class="phone-softkey"></div>
+        </div>
+        <div class="phone-keypad">
+          ${PHONE_KEYS.map(k =>
+            `<button class="phone-key" tabindex="-1">${k.top}${k.sub ? `<span class="phone-key-sub">${k.sub}</span>` : ''}</button>`
+          ).join('')}
+        </div>
+        <div class="phone-bottom-row">
+          <button class="phone-power-btn" data-action="phone-toggle" title="${on ? 'Power off' : 'Power on'}">⏻</button>
+        </div>
+      </div>
+      <p class="phone-status-label">${on ? 'ONLINE · ZION MESH' : 'PRESS ⏻ TO POWER ON'}</p>
+    </div>
+  `
+}
+
+// ── Operator Monitor (shown when character role === 'Operator') ──────────
+
+function renderOperatorRig(): string {
+  const screens = [
+    // back row — 7 small
+    { size: 'sm', type: 'orange' }, { size: 'sm', type: 'blue' }, { size: 'sm', type: 'green' },
+    { size: 'sm', type: 'red' },   { size: 'sm', type: 'blue' }, { size: 'sm', type: 'green' },
+    { size: 'sm', type: 'orange' },
+    // front row — 5 larger
+    { size: 'md', type: 'blue' }, { size: 'lg', type: 'green' }, { size: 'xl', type: 'orange' },
+    { size: 'lg', type: 'green' }, { size: 'md', type: 'teal' },
+  ]
+  const backRow  = screens.slice(0, 7)
+  const frontRow = screens.slice(7)
+  const mon = ({ size, type }: { size: string; type: string }) =>
+    `<div class="op-mon ${size}"><div class="op-mon-screen op-scr-${type}"></div></div>`
+  return `
+    <div class="op-rig-display" aria-hidden="true">
+      <div class="op-rig-monitor-wall">
+        <div class="op-rig-row">${backRow.map(mon).join('')}</div>
+        <div class="op-rig-row">${frontRow.map(mon).join('')}</div>
+      </div>
+    </div>
+    <p class="op-rig-caption">OPERATOR STATION · ZION BROADCAST SYSTEM</p>
+  `
+}
+
+function renderOperatorMonitor(character: any): string {
+  const ship = character.homeShip || ''
+  // Use Firebase session data when available so crew on other browsers appear
+  const crew: SessionChar[] = FIREBASE_ENABLED
+    ? Object.values(state.sessionChars).filter(c => c.role !== 'Operator' && (c.homeShip || '') === ship)
+    : state.characters.filter(c => c.role !== 'Operator' && (c.homeShip || '') === ship)
+  const defaultFrom = escapeHtml(character.callSign || character.profileName || 'Operator')
+
+  // Unread replies sent to __operator__ from a specific crew member
+  const unreadFrom = (charId: string) =>
+    state.messages.filter(m => m.to === '__operator__' && m.fromCharId === charId && !m.readBy.includes(character.id)).length
+
+  // Messages Operator sent that the crew member hasn't read yet
+  const unreadSentTo = (charId: string) =>
+    state.messages.filter(m => (m.to === charId || m.to === '__all__') && !m.readBy.includes(charId)).length
+
+  const log = [...(character.messageLog || [])].reverse().slice(0, 30)
+
+  const shipLabel = ship ? escapeHtml(ship) : 'unassigned hovership'
+
+  return `
+    <div class="op-monitor">
+      ${renderOperatorRig()}
+      <div class="op-monitor-head">
+        <p class="eyebrow">Operator · Mission Control</p>
+        <h3>Operator's Console</h3>
+        <p class="comms-phone-desc">Broadcasting on <strong>${shipLabel}</strong>. Only crew assigned to the same hovership will receive your transmissions.</p>
+      </div>
+
+      <div class="op-monitor-body">
+        <div class="op-crew-panel">
+          <p class="op-section-label">Crew Status</p>
+          ${crew.length === 0
+            ? `<p class="op-no-crew">No crew on <em>${shipLabel}</em>. ${FIREBASE_ENABLED ? 'Crew members must open their Comms tab to appear here.' : 'Create characters with a matching Hovership name to connect them to this console.'}</p>`
+            : crew.map(c => {
+                const replies = unreadFrom(c.id)
+                const pending = unreadSentTo(c.id)
+                const online = (c as SessionChar).phoneOn
+                return `
+                  <div class="op-crew-row">
+                    <div class="op-crew-info">
+                      <span class="op-crew-online ${online ? 'is-online' : 'is-offline'}" title="${online ? 'Phone on' : 'Phone off'}">${online ? '◉' : '○'}</span>
+                      <span class="op-crew-name">${escapeHtml(c.profileName || 'Unnamed')}</span>
+                      <span class="op-crew-role">${escapeHtml(c.role || '')}</span>
+                    </div>
+                    <div class="op-crew-status">
+                      ${replies > 0
+                        ? `<span class="op-crew-badge op-crew-badge-reply" title="${replies} unread repl${replies === 1 ? 'y' : 'ies'}">${replies} ←</span>`
+                        : ''}
+                      ${pending > 0
+                        ? `<span class="op-crew-badge op-crew-badge-pending" title="${pending} message${pending === 1 ? '' : 's'} unread">${pending} !</span>`
+                        : ''}
+                      ${replies === 0 && pending === 0 ? `<span class="op-crew-idle">—</span>` : ''}
+                    </div>
+                  </div>`
+              }).join('')
+          }
+        </div>
+
+        <div class="op-compose-panel">
+          <p class="op-section-label">Compose Transmission</p>
+          <div class="field-grid two-up">
+            <label class="field">
+              <span>From (Handle)</span>
+              <input id="op-from" type="text" value="${defaultFrom}" placeholder="Tank, Morpheus…" maxlength="24" />
+            </label>
+            <label class="field">
+              <span>To</span>
+              <select id="op-recipient">
+                <option value="__all__">— ALL CREW —</option>
+                ${crew.map(c =>
+                  `<option value="${c.id}">${escapeHtml(c.profileName || 'Unnamed')}${c.callSign ? ` · ${escapeHtml(c.callSign)}` : ''}</option>`
+                ).join('')}
+              </select>
+            </label>
+          </div>
+          <label class="field">
+            <span>Message <span class="op-char-count" id="op-count">0 / 501</span></span>
+            <textarea id="op-message" rows="3" maxlength="501" placeholder="Transmit a message to connected operatives…"></textarea>
+          </label>
+          <div class="operator-form-actions">
+            <button class="solid-button" data-action="send-operator-message">▶ TRANSMIT</button>
+            ${log.length ? `<button class="ghost-button" data-action="clear-message-log">Clear Log</button>` : ''}
+          </div>
+        </div>
+      </div>
+
+      ${log.length ? `
+        <div class="op-log">
+          <p class="op-section-label">Full Transmission Log</p>
+          ${log.map(m => {
+            const time = new Date(m.sentAt).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
+            const isIncoming = m.to === '__operator__'
+            const toLabel = isIncoming
+              ? '→ OPERATOR'
+              : m.to === '__all__'
+                ? '→ ALL CREW'
+                : `→ ${escapeHtml(String(state.characters.find(c => c.id === m.to)?.profileName ?? m.to))}`
+            return `<div class="op-log-entry${isIncoming ? ' op-log-incoming' : ''}">
+              <div class="op-log-header">
+                <span class="op-log-from">[${escapeHtml(m.from)}]</span>
+                <span class="op-log-meta">${time} ${toLabel}</span>
+              </div>
+              <span class="op-log-body">${escapeHtml(m.body)}</span>
+            </div>`
+          }).join('')}
+        </div>
+      ` : ''}
+    </div>
+  `
+}
+
+// ── Crew reply panel (shown for non-Operator characters) ─────────────────
+
+function renderCrewReplyPanel(character: any): string {
+  return `
+    <div class="crew-reply-panel">
+      <p class="op-section-label">Reply to Operator</p>
+      <p class="comms-phone-desc">Send a message directly to your Operator. They will see it on their console.</p>
+      <label class="field">
+        <span>Message <span class="op-char-count" id="crew-reply-count">0 / 501</span></span>
+        <textarea id="crew-reply-msg" rows="3" maxlength="501" placeholder="Operator, I'm at the hardline…"></textarea>
+      </label>
+      <button class="solid-button" data-action="send-crew-reply" data-char-id="${character.id}">▶ SEND TO OPERATOR</button>
+    </div>
+  `
+}
+
+function renderCrewLog(character: any): string {
+  const msgs = [...(character.messageLog || [])].reverse().slice(0, 30)
+  if (!msgs.length) return ''
+
+  return `
+    <div class="op-log crew-log">
+      <div class="crew-log-header">
+        <p class="op-section-label">Transmission Log</p>
+        <button class="ghost-button ghost-button-sm" data-action="clear-crew-log">Clear Log</button>
+      </div>
+      ${msgs.map(m => {
+        const time = new Date(m.sentAt).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
+        const isMine = m.fromCharId === character.id
+        const dirLabel = isMine
+          ? '→ OPERATOR'
+          : m.to === '__all__' ? '← ALL CREW' : '← YOU'
+        return `<div class="op-log-entry${!isMine ? ' op-log-incoming' : ''}">
+          <div class="op-log-header">
+            <span class="op-log-from">[${escapeHtml(m.from)}]</span>
+            <span class="op-log-meta">${time} ${dirLabel}</span>
+          </div>
+          <span class="op-log-body">${escapeHtml(m.body)}</span>
+        </div>`
+      }).join('')}
+    </div>
+  `
+}
+
+function renderCommsConnectionBanner(): string {
+  if (FIREBASE_ENABLED) {
+    return state.firebaseConnected
+      ? `<div class="comms-conn-banner comms-conn-online">◉ ZION MESH ONLINE — real-time sync active</div>`
+      : `<div class="comms-conn-banner comms-conn-connecting">◎ Connecting to Zion Mesh…</div>`
+  }
+  return `<div class="comms-conn-banner comms-conn-local">
+    ◌ LOCAL MODE — messages stay in this browser only.
+    <a href="https://console.firebase.google.com" target="_blank" rel="noopener" class="comms-conn-link">Set up Firebase</a> and fill in <code>src/firebase-config.ts</code> to enable cross-device play.
+  </div>`
+}
+
+function renderCommsTab(character: any): string {
+  const isOperator = character.role === 'Operator'
+
+  if (isOperator) {
+    return `
+      <section class="sheet-card">
+        ${renderCommsConnectionBanner()}
+        ${renderOperatorMonitor(character)}
+      </section>`
+  }
+
+  return `
+    <section class="sheet-card">
+      ${renderCommsConnectionBanner()}
+      <div class="comms-layout">
+        <div class="comms-phone-col">
+          <p class="eyebrow">Hardline Communications</p>
+          <h3>Field Phone</h3>
+          <p class="comms-phone-desc">Your connection to the Operator. Power on to receive transmissions.</p>
+          ${renderPhoneDevice(character)}
+        </div>
+        <div class="comms-operator-col">
+          ${renderCrewReplyPanel(character)}
+          ${renderCrewLog(character)}
+        </div>
+      </div>
+    </section>
+  `
+}
+
 function render() {
   const character = getSelectedCharacter();
   const slots = computeDownloadSlots(character);
@@ -1192,10 +2047,150 @@ function bindEvents() {
     }
   });
 
-  document.querySelector('[data-action="nft-placeholder"]')?.addEventListener('click', () => {
-    setStatus('NFT viewer placeholder saved. Wallet connect can be wired into this character schema later.');
-    render();
-  });
+  document.querySelectorAll<HTMLButtonElement>('[data-nft-filter]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.nftFilter = btn.dataset.nftFilter!
+      render()
+    })
+  })
+
+  document.querySelectorAll<HTMLButtonElement>('[data-nft-mode]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.nftMode = btn.dataset.nftMode as 'wallet' | 'contract' | 'bookmarks'
+      render()
+    })
+  })
+
+  document.querySelector('[data-action="load-nfts"]')?.addEventListener('click', async () => {
+    const walletEl = document.querySelector<HTMLInputElement>('[data-field="nft.walletAddress"]')
+    const apiKeyEl = document.getElementById('nft-api-key') as HTMLInputElement | null
+    const wallet = walletEl?.value.trim() ?? ''
+    const apiKey = apiKeyEl?.value.trim() ?? ''
+
+    if (!wallet) {
+      state.nftError = 'Enter a Polygon wallet address first.'
+      render()
+      return
+    }
+    if (!apiKey) {
+      state.nftError = 'Enter your OpenSea API key. Get a free one at opensea.io/developers.'
+      render()
+      return
+    }
+
+    saveNftApiKey(apiKey)
+    await fetchNFTs(wallet, apiKey)
+  })
+
+  document.querySelector('[data-action="browse-contract"]')?.addEventListener('click', async () => {
+    const addrEl = document.getElementById('nft-contract-address') as HTMLInputElement | null
+    const apiKeyEl = document.getElementById('nft-api-key') as HTMLInputElement | null
+    const address = addrEl?.value.trim() ?? ''
+    const apiKey = apiKeyEl?.value.trim() ?? ''
+
+    if (!address) {
+      state.nftError = 'Enter a contract address first.'
+      render()
+      return
+    }
+    if (!apiKey) {
+      state.nftError = 'Enter your OpenSea API key. Get a free one at opensea.io/developers.'
+      render()
+      return
+    }
+
+    saveNftApiKey(apiKey)
+    await fetchNftsByContract(address, apiKey)
+  })
+
+  document.querySelector('[data-action="load-more-nfts"]')?.addEventListener('click', async () => {
+    const apiKey = loadNftApiKey()
+    if (!apiKey || !state.nftContractAddress || !state.nftContractNext) return
+    await fetchNftsByContract(state.nftContractAddress, apiKey, state.nftContractNext)
+  })
+
+  document.querySelectorAll<HTMLButtonElement>('[data-bookmark-key]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      const key = btn.dataset.bookmarkKey!
+      const allNfts = [...state.nftItems, ...state.nftContractItems, ...state.nftBookmarks]
+      const nft = allNfts.find(n => nftKey(n) === key)
+      if (nft) toggleBookmark(nft)
+    })
+  })
+
+  // ── Comms / Phone events ──────────────────────────────────────────────────
+
+  document.querySelector('[data-action="phone-toggle"]')?.addEventListener('click', () => {
+    const character = getSelectedCharacter()
+    state.phoneOn = !state.phoneOn
+    if (state.phoneOn) markMessagesRead(character.id)
+    registerSession(character)
+    render()
+    if (state.phoneOn) {
+      const screen = document.getElementById('phone-screen')
+      if (screen) screen.scrollTop = screen.scrollHeight
+    }
+  })
+
+  document.querySelector('[data-action="send-operator-message"]')?.addEventListener('click', () => {
+    const fromEl = document.getElementById('op-from') as HTMLInputElement | null
+    const recipEl = document.getElementById('op-recipient') as HTMLSelectElement | null
+    const msgEl = document.getElementById('op-message') as HTMLTextAreaElement | null
+    const from = fromEl?.value.trim() || 'Operator'
+    const to = recipEl?.value || '__all__'
+    const body = msgEl?.value.trim() || ''
+    if (!body) return
+    const character = getSelectedCharacter()
+    sendMessage(from, character.id, to, body, character.homeShip || '')
+    if (msgEl) msgEl.value = ''
+    const countEl = document.getElementById('op-count')
+    if (countEl) countEl.textContent = '0 / 501'
+  })
+
+  document.querySelector('[data-action="send-crew-reply"]')?.addEventListener('click', () => {
+    const character = getSelectedCharacter()
+    const msgEl = document.getElementById('crew-reply-msg') as HTMLTextAreaElement | null
+    const body = msgEl?.value.trim() || ''
+    if (!body) return
+    const handle = character.callSign || character.profileName || 'Unknown'
+    sendMessage(handle, character.id, '__operator__', body, character.homeShip || '')
+    if (msgEl) msgEl.value = ''
+    const countEl = document.getElementById('crew-reply-count')
+    if (countEl) countEl.textContent = '0 / 501'
+  })
+
+  document.querySelector('[data-action="clear-message-log"]')?.addEventListener('click', () => {
+    if (!confirm('Delete all transmissions from the Operator log?')) return
+    state.messages = []
+    saveMessages()
+    updateSelectedCharacter(c => ({ ...c, messageLog: [] }))
+  })
+
+  document.querySelector('[data-action="clear-crew-log"]')?.addEventListener('click', () => {
+    if (!confirm('Clear your transmission log?')) return
+    updateSelectedCharacter(c => ({ ...c, messageLog: [] }))
+  })
+
+  const msgTextarea = document.getElementById('op-message') as HTMLTextAreaElement | null
+  const charCount = document.getElementById('op-count')
+  if (msgTextarea && charCount) {
+    msgTextarea.addEventListener('input', () => {
+      charCount.textContent = `${msgTextarea.value.length} / 501`
+    })
+  }
+
+  const crewMsgTextarea = document.getElementById('crew-reply-msg') as HTMLTextAreaElement | null
+  const crewCharCount = document.getElementById('crew-reply-count')
+  if (crewMsgTextarea && crewCharCount) {
+    crewMsgTextarea.addEventListener('input', () => {
+      crewCharCount.textContent = `${crewMsgTextarea.value.length} / 501`
+    })
+  }
+
+  const phoneScreen = document.getElementById('phone-screen')
+  if (phoneScreen && state.phoneOn) phoneScreen.scrollTop = phoneScreen.scrollHeight
 }
 
 function handleFieldUpdate(element) {
