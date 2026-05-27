@@ -13,10 +13,6 @@ export function animateViewTransition() {
   const viewShell = document.querySelector('.view-shell')
   if (!viewShell) return
 
-  // Reset any previous animations
-  viewShell.style.opacity = '0'
-  viewShell.style.transform = 'scale(0.95) translateY(10px)'
-
   // Fade in and scale animation
   animate(
     viewShell,
