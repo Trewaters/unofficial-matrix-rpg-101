@@ -24,4 +24,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- Learn and Jack In route animations now play visibly during navigation instead of appearing to skip
+
 ### Security

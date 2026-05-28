@@ -33,6 +33,12 @@ export function animateTimelineCards() {
   animate(cards, { opacity: [0, 1], transform: ['translateX(-30px)', 'translateX(0)'] }, { duration: 0.5, delay: stagger(0.15, { start: 0.2 }), easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' })
 }
 
+export function animateLearnCards() {
+  const cards = document.querySelectorAll('.learn-card')
+  if (!cards.length) return
+  animate(cards, { opacity: [0, 1], transform: ['translateY(28px)', 'translateY(0)'] }, { duration: 0.8, delay: stagger(0.12, { start: 0.18 }), easing: 'cubic-bezier(0.22, 1, 0.36, 1)' })
+}
+
 export function animateActionBanner() {
   const banner = document.querySelector('.action-banner')
   if (!banner) return
@@ -55,6 +61,45 @@ export function animateSheetTabs() {
   const tabs = document.querySelectorAll('.sheet-tab')
   if (!tabs.length) return
   animate(tabs, { opacity: [0, 1], scale: [0.95, 1] }, { duration: 0.3, delay: stagger(0.05), easing: 'ease-out' })
+}
+
+function primeElementState(element: Element | null, styles: Partial<CSSStyleDeclaration>) {
+  if (!(element instanceof HTMLElement)) return
+  Object.assign(element.style, styles)
+}
+
+function primeElementsState(elements: NodeListOf<Element>, styles: Partial<CSSStyleDeclaration>) {
+  elements.forEach((element) => {
+    if (element instanceof HTMLElement) {
+      Object.assign(element.style, styles)
+    }
+  })
+}
+
+export function animateJackInShell() {
+  const hero = document.querySelector('.builder-hero')
+  const panel = document.querySelector('.sheet-panel')
+  const roster = document.querySelector('.save-rail')
+  const cards = document.querySelectorAll('.sheet-card')
+  const tabs = document.querySelectorAll('.sheet-tab')
+
+  primeElementState(hero, { opacity: '0', transform: 'translateY(24px)' })
+  primeElementState(panel, { opacity: '0', transform: 'translateY(24px)' })
+  primeElementState(roster, { opacity: '0', transform: 'translateX(-24px)' })
+  primeElementsState(cards, { opacity: '0' })
+  primeElementsState(tabs, { opacity: '0', transform: 'scale(0.95)' })
+
+  if (hero) {
+    animate(hero, { opacity: [0, 1], transform: ['translateY(24px)', 'translateY(0)'] }, { duration: 0.8, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' })
+  }
+
+  if (panel) {
+    animate(panel, { opacity: [0, 1], transform: ['translateY(24px)', 'translateY(0)'] }, { duration: 0.85, delay: 0.12, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' })
+  }
+
+  if (roster) {
+    animate(roster, { opacity: [0, 1], transform: ['translateX(-24px)', 'translateX(0)'] }, { duration: 0.75, delay: 0.08, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' })
+  }
 }
 
 export function setupButtonAnimations() {
@@ -128,18 +173,23 @@ export function animateGlitchReveal(elements: Element | Element[] | NodeListOf<E
   if (!els.length) return
 
   els.forEach((el, i) => {
-    const delay = delayOffset + i * 0.07
+    const delay = delayOffset + i * 0.08
 
+    // Glitchy fade in
     animate(
       el,
-      { clipPath: ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'], opacity: [0, 1] },
-      { duration: 0.38, delay, easing: [0.22, 1, 0.36, 1] },
+      { 
+        opacity: [0, 0.8, 0.2, 1], 
+        transform: ['translateX(-4px)', 'translateX(2px)', 'translateX(-1px)', 'translateX(0)'] 
+      },
+      { duration: 0.45, delay, easing: 'linear' },
     )
 
+    // Flash green border
     animate(
       el,
       { borderColor: ['rgba(0,255,65,0.8)', 'var(--line)'] },
-      { duration: 0.8, delay: delay + 0.05, easing: 'ease-out' },
+      { duration: 1.0, delay: delay + 0.1, easing: 'ease-out' },
     )
   })
 }
@@ -202,10 +252,42 @@ function setupPillButtonAnimations() {
   }
 }
 
+/**
+ * Large-displacement glitch specifically for h1 headings
+ */
+function glitchH1(element: HTMLElement, intensity = 12) {
+  const frames: { transform: string; opacity: number }[] = []
+  for (let i = 0; i < intensity; i++) {
+    // Larger displacement: ±12px instead of ±4px
+    frames.push({
+      transform: `translateX(${(Math.random() - 0.5) * 24}px)`,
+      opacity: Math.random() > 0.2 ? 1 : 0.85,
+    })
+  }
+  frames.push({ transform: 'translateX(0)', opacity: 1 })
+  animate(element, frames, { duration: 0.3, easing: 'ease-in-out' })
+}
+
+/**
+ * Dramatic glitch on all h1 headings
+ */
+function animateAllH1Glitches() {
+  const headings = document.querySelectorAll('h1')
+  if (!headings.length) return
+
+  headings.forEach((h1, i) => {
+    setTimeout(() => {
+      glitchH1(h1 as HTMLElement, 16)
+      setTimeout(() => glitchH1(h1 as HTMLElement, 12), 350)
+    }, 30 + i * 60)
+  })
+}
+
 // ── Orchestration ─────────────────────────────────────────────────────────────
 
 export function animateCurrentView() {
   animateViewTransition()
+  animateAllH1Glitches()
 
   if (document.querySelector('.hero-panel.hero-view')) {
     animateHeroElements()
@@ -216,17 +298,19 @@ export function animateCurrentView() {
   }
 
   if (document.querySelector('.learn-view')) {
+    animateLearnCards()
     animateTimelineCards()
-    setTimeout(animateActionBanner, 300)
+    setTimeout(animateActionBanner, 450)
     // Decode the learn view headline too
-    const h2 = document.querySelector('.learn-view h2') as HTMLElement | null
-    if (h2) setTimeout(() => animateTextScramble(h2, 700), 200)
+    const h1 = document.querySelector('.learn-view h1') as HTMLElement | null
+    if (h1) setTimeout(() => animateTextScramble(h1, 1200), 260)
   }
 
   if (document.querySelector('.jack-in-view')) {
+    animateJackInShell()
     animateSheetTabs()
     // Glitch reveal instead of plain fade-up
-    setTimeout(() => animateGlitchReveal(document.querySelectorAll('.sheet-card')), 100)
+    setTimeout(() => animateGlitchReveal(document.querySelectorAll('.sheet-card')), 220)
   }
 
   setTimeout(animateRosterCards, 50)

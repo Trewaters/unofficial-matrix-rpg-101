@@ -12,6 +12,26 @@ Local-first web app for creating and saving player character sheets for The Unof
 - Matrix Avatar NFT viewer (OpenSea API — Red Pill, Blue Pill, Base collections)
 - In-game Comms system: Operator console + crew field phones, scoped per hovership
 - Real-time cross-device messaging via Firebase Realtime Database (optional)
+- Matrix-themed sci-fi animations with Motion.js (entrance effects, glitch reveals, connection flashes)
+
+---
+
+## Animations
+
+The app features cinematic Matrix-themed animations built with [motion.dev](https://motion.dev):
+
+| Animation | Trigger | Effect |
+|-----------|---------|--------|
+| **H1 Glitch** | Every view load | All main headings (h1 tags) briefly flicker with horizontal displacement — corrupted digital text effect |
+| **Text Scramble** | Page/view load | Headings cycle through random katakana + symbols before revealing real text — classic Matrix decode effect |
+| **Glitch Reveal** | Tab switch, jack-in view load | Sheet cards sweep in from top via a dramatic horizontal scanline wipe with green border flash |
+| **Phone Boot Flicker** | Crew powers on field phone (⏻) | Phone screen brightness spikes and stutters like a CRT powering up |
+| **Zion Mesh Flash** | Firebase first connects | Connection banner pulses bright green then fades to normal |
+| **New Message Slide** | Message sent (operator or crew) | Newest log entry slides in from the left with a brief green highlight flash |
+| **Red/Blue Pill Glow** | Hover red or blue pill button | Buttons glow with red or blue box-shadow, scale slightly larger |
+| **Entrance Fades** | View/route change | Hero elements, timeline cards, roster cards, and sheet tabs fade in with staggered timing |
+| **Button Hover Scale** | Hover any button | All interactive buttons scale up 1.05× on hover |
+| **Card Border Pulse** | Hover cards | Card borders brighten on hover for interactive feedback |
 
 ---
 

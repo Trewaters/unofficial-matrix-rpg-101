@@ -82,8 +82,7 @@ button {
   box-shadow: var(--shadow);
 }
 
-.hero-panel,
-.builder-hero {
+.hero-panel {
   overflow: hidden;
 }
 

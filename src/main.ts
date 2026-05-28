@@ -747,7 +747,7 @@ function renderHomeView(character) {
 
 function renderLearnView() {
   return `
-    <section class="view-heading">
+    <section class="view-heading learn-view">
       <div>
         <p class="eyebrow">Learn The Rules</p>
         <h1>Fast table reference for players</h1>
@@ -1133,7 +1133,7 @@ function renderSheetContent(character, slots) {
 
 function renderJackInView(character, slots) {
   return `
-    <section class="builder-hero">
+    <section class="builder-hero jack-in-view">
       <div>
         <p class="eyebrow">Jack In</p>
         <h1>${escapeHtml(character.profileName || 'Unnamed Character')}</h1>
@@ -1879,7 +1879,10 @@ function render(shouldAnimate = false) {
   `;
 
   bindEvents();
-  if (shouldAnimate) animateCurrentView();
+  if (shouldAnimate) {
+    // Wait until the new route has painted before starting entrance motion.
+    requestAnimationFrame(() => requestAnimationFrame(() => animateCurrentView()));
+  }
   setupInteractiveAnimations();
 }
 
