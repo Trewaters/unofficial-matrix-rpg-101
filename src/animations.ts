@@ -86,7 +86,7 @@ export function animateJackInShell() {
   primeElementState(hero, { opacity: '0', transform: 'translateY(24px)' })
   primeElementState(panel, { opacity: '0', transform: 'translateY(24px)' })
   primeElementState(roster, { opacity: '0', transform: 'translateX(-24px)' })
-  primeElementsState(cards, { opacity: '0' })
+  primeElementsState(cards, { opacity: '0', clipPath: 'inset(0 0 100% 0)' })
   primeElementsState(tabs, { opacity: '0', transform: 'scale(0.95)' })
 
   if (hero) {
@@ -175,17 +175,12 @@ export function animateGlitchReveal(elements: Element | Element[] | NodeListOf<E
   els.forEach((el, i) => {
     const delay = delayOffset + i * 0.08
 
-    // Glitchy fade in
     animate(
       el,
-      { 
-        opacity: [0, 0.8, 0.2, 1], 
-        transform: ['translateX(-4px)', 'translateX(2px)', 'translateX(-1px)', 'translateX(0)'] 
-      },
-      { duration: 0.45, delay, easing: 'linear' },
+      { clipPath: ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'], opacity: [0, 1] },
+      { duration: 0.65, delay, easing: [0.22, 1, 0.36, 1] },
     )
 
-    // Flash green border
     animate(
       el,
       { borderColor: ['rgba(0,255,65,0.8)', 'var(--line)'] },
@@ -311,6 +306,10 @@ export function animateCurrentView() {
     animateSheetTabs()
     // Glitch reveal instead of plain fade-up
     setTimeout(() => animateGlitchReveal(document.querySelectorAll('.sheet-card')), 220)
+    
+    // Scramble the Jack In heading just like Learn and Home
+    const h1 = document.querySelector('.jack-in-view h1') as HTMLElement | null
+    if (h1) setTimeout(() => animateTextScramble(h1, 1000), 180)
   }
 
   setTimeout(animateRosterCards, 50)
