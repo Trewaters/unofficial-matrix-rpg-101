@@ -103,7 +103,7 @@ export function animateJackInShell() {
 }
 
 export function setupButtonAnimations() {
-  const buttons = document.querySelectorAll('.pill-button, .ghost-button, .solid-button, .danger-button, .route-link, .sheet-tab')
+  const buttons = document.querySelectorAll('.pill-button:not(.no-scale), .ghost-button:not(.no-scale), .solid-button:not(.no-scale), .danger-button:not(.no-scale), .route-link:not(.no-scale), .sheet-tab:not(.no-scale)')
   buttons.forEach((button) => {
     button.addEventListener('mouseenter', () => animate(button, { scale: [1, 1.05] }, { duration: 0.2, easing: 'ease-out' }))
     button.addEventListener('mouseleave', () => animate(button, { scale: [1.05, 1] }, { duration: 0.2, easing: 'ease-out' }))

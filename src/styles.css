@@ -322,6 +322,39 @@ button {
   color: var(--text);
 }
 
+/* Rules link (header) + rules download CTA (Learn view) */
+a.route-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.rules-link {
+  border-color: var(--line-strong);
+  color: var(--green);
+  background: linear-gradient(180deg, rgba(111, 255, 197, 0.14), rgba(8, 15, 15, 0.92));
+}
+
+a.pill-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.rules-pill {
+  background: linear-gradient(180deg, var(--green), #1d7a5a);
+  color: #04130d;
+  box-shadow: 0 16px 30px rgba(111, 255, 197, 0.16);
+}
+
+.action-banner-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .danger-button {
   background: linear-gradient(180deg, rgba(255, 77, 95, 0.24), rgba(68, 20, 29, 0.9));
   color: var(--text);
@@ -666,9 +699,14 @@ button {
   .download-summary,
   .route-nav,
   .builder-hero,
-  .action-banner {
+  .action-banner,
+  .action-banner-actions {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .action-banner-actions {
+    width: 100%;
   }
 
   .sheet-toolbar {
@@ -1834,3 +1872,4 @@ a.nft-link-btn {
 .hero-cta-row {
   will-change: opacity, transform;
 }
+summary::-webkit-details-marker { display: none; }

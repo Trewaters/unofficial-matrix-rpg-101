@@ -6,6 +6,7 @@ import { SKILLS, CATEGORY_ORDER } from './skills.js'
 import { FEATS } from './feats.js'
 import { REAL_WORLD_GEAR, MATRIX_GEAR, VEHICLES_ALL, CONTACT_ROLES, GearCategory } from './gear.js'
 import { PATHS, AFFILIATIONS, ORIGINS, SHIP_TYPES } from './identityData.js'
+import { PREGEN_TEMPLATES } from './templates.js'
 import { firebaseConfig } from './firebase-config.js'
 import { initializeApp } from 'firebase/app'
 import { getDatabase, ref as fbRef, set as fbSet, remove as fbRemove, onDisconnect, onChildAdded, onChildChanged, onChildRemoved, onValue } from 'firebase/database'
@@ -22,6 +23,8 @@ if (FIREBASE_ENABLED) {
 }
 
 const STORAGE_KEY = 'matrix-rpg-characters-v1'
+// Where players read and download the full rulebook (itch.io project page).
+const RULES_URL = 'https://trewaters.itch.io/unofficial-matrix-rpg';
 const validRoutes = ['home', 'learn', 'jack-in'];
 const sheetTabs = ['identity', 'abilities', 'skills', 'loadout', 'notes', 'comms'];
 
@@ -523,7 +526,9 @@ function setSheetTab(tab) {
     registerSession(getSelectedCharacter())
   }
 
-  render(true);
+  // Switching tabs stays within the same view — re-render the panel without
+  // replaying the whole entrance animation (h1 scramble, shell fade, card reveals).
+  render();
 }
 
 function updateSelectedCharacter(updater, shouldRender = true) {
@@ -805,8 +810,12 @@ function renderLearnView() {
       <div>
         <p class="eyebrow">Next Move</p>
         <h2>Ready to build an operative?</h2>
+        <p class="status-line">Read or download the full rulebook on itch.io.</p>
       </div>
-      <button class="pill-button red-pill" data-route="jack-in" data-sheet-tab="identity">Open The Builder</button>
+      <div class="action-banner-actions">
+        <a class="pill-button rules-pill" href="${RULES_URL}" target="_blank" rel="noopener">Download Rules ↗</a>
+        <button class="pill-button red-pill" data-route="jack-in" data-sheet-tab="identity">Open The Builder</button>
+      </div>
     </section>
   `;
 }
@@ -845,6 +854,22 @@ function renderRoster(character) {
         </label>
         <button class="danger-button" data-action="delete-character">Delete</button>
       </div>
+
+      <details class="pregen-section" style="margin-top: 1.5rem;">
+        <summary class="ghost-button no-scale" style="cursor: pointer; list-style: none; outline: none; user-select: none; width: 100%; border: 1px solid var(--line); border-radius: 999px;">
+          Load Template ▾
+        </summary>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem;">
+          ${PREGEN_TEMPLATES.map((tpl, i) => `
+            <button class="ghost-button no-scale" style="justify-content: flex-start; text-align: left;" data-action="load-template" data-template-index="${i}">
+              <div style="display: flex; flex-direction: column;">
+                <span><strong>${escapeHtml(tpl.profileName.replace('Template: ', ''))}</strong></span>
+                <span style="font-size: 0.8em; opacity: 0.7;">${escapeHtml(tpl.role || 'Unknown Role')}</span>
+              </div>
+            </button>
+          `).join('')}
+        </div>
+      </details>
     </aside>
   `;
 }
@@ -1870,7 +1895,10 @@ function render(shouldAnimate = false) {
     <div class="page-shell">
       <header class="site-header">
         <a href="#home" class="brand">The Unofficial Matrix RPG</a>
-        <nav class="route-nav">${renderRouteLinks()}</nav>
+        <nav class="route-nav">
+          ${renderRouteLinks()}
+          <a class="route-link rules-link" href="${RULES_URL}" target="_blank" rel="noopener">Rules ↗</a>
+        </nav>
       </header>
       <main class="view-shell" data-view="${viewClass}">
         ${viewMarkup}
@@ -1880,8 +1908,10 @@ function render(shouldAnimate = false) {
 
   bindEvents();
   if (shouldAnimate) {
-    // Wait until the new route has painted before starting entrance motion.
-    requestAnimationFrame(() => requestAnimationFrame(() => animateCurrentView()));
+    // Prime the hidden/offset states synchronously — BEFORE the browser paints —
+    // so the view never flashes fully-visible for a frame and then jump back to
+    // animate in. (Waiting on rAF here is what caused the load "jump".)
+    animateCurrentView();
   }
   setupInteractiveAnimations();
 }
@@ -1901,7 +1931,9 @@ function bindEvents() {
     button.addEventListener('click', () => {
       state.selectedId = button.dataset.characterId;
       setStatus('Character loaded from local storage.');
-      setRoute('jack-in');
+      // The roster only renders inside the jack-in view, so selecting a character
+      // is an in-view swap — re-render without replaying the full entrance motion.
+      render();
     });
   });
 
@@ -1937,6 +1969,22 @@ function bindEvents() {
     state.sheetTab = 'identity';
     setStatus('New blank sheet created locally.');
     setRoute('jack-in');
+  });
+
+  document.querySelectorAll('[data-action="load-template"]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const idx = parseInt((e.currentTarget as HTMLElement).dataset.templateIndex || '0', 10);
+      const tpl = PREGEN_TEMPLATES[idx];
+      if (!tpl) return;
+      
+      const character = hydrateCharacter(tpl);
+      state.characters = [character, ...state.characters];
+      state.selectedId = character.id;
+      persistCharacters(state.characters);
+      state.sheetTab = 'identity';
+      setStatus(`Loaded template: ${tpl.profileName}`);
+      setRoute('jack-in');
+    });
   });
 
   document.querySelector('[data-action="save-status"]')?.addEventListener('click', () => {

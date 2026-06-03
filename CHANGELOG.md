@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- Pre-generated character templates and selection dropdown on the saved characters roster
 - Firebase real-time Comms system — Operator console and crew field phones for cross-device messaging within a hovership
 - Matrix Avatar NFT viewer with OpenSea API integration (Red Pill, Blue Pill, and Base collections)
 
