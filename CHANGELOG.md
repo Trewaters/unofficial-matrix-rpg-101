@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- Minor code formatting and style updates across main application files
 - Character sheet now includes Comms tab for real-time messaging and incoming notifications
 - README with Firebase setup guide and Comms system documentation
 - staged-commit-workflow skill updated to use [Unreleased] pattern instead of version bumping on every commit

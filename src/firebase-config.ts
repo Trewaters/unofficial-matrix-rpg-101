@@ -14,6 +14,15 @@
 //         It must end in .firebaseio.com or .firebasedatabase.app.
 //
 // Leave apiKey empty ('') to run in local-only mode with no cross-device sync.
+//
+// SECURITY: apiKey here is NOT a secret — it's a public identifier and is safe
+// to commit. Access is controlled by Realtime Database security rules + (below)
+// Anonymous Auth and App Check. See README → "Securing your database".
+//
+// recaptchaSiteKey enables Firebase App Check (reCAPTCHA v3), which ensures only
+// your real deployed app can talk to the database. Leave it '' to skip App Check
+// (Anonymous Auth still works). Get a v3 site key at the reCAPTCHA admin console
+// and register it under Firebase → App Check. See README for the full walkthrough.
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDqcgJnjZGri2lr-9hYYqjEFcXu0m4o3OA',
@@ -24,4 +33,5 @@ export const firebaseConfig = {
   messagingSenderId: '279940726263',
   appId: '1:279940726263:web:b1b1c4353b4f4323ccc2f2',
   measurementId: 'G-8DZ3ZY25WG',
+  recaptchaSiteKey: '', // ← optional: reCAPTCHA v3 site key to enable App Check
 }

@@ -10,16 +10,31 @@ import { PREGEN_TEMPLATES } from './templates.js'
 import { firebaseConfig } from './firebase-config.js'
 import { initializeApp } from 'firebase/app'
 import { getDatabase, ref as fbRef, set as fbSet, remove as fbRemove, onDisconnect, onChildAdded, onChildChanged, onChildRemoved, onValue } from 'firebase/database'
+import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth'
+import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check'
 
 setBasePath('./shoelace/assets')
 
 // ── Firebase init ────────────────────────────────────────────────────────────
 const FIREBASE_ENABLED = Boolean(firebaseConfig.apiKey && firebaseConfig.databaseURL)
 let fbDb: ReturnType<typeof getDatabase> | null = null
+let fbAuth: ReturnType<typeof getAuth> | null = null
 
 if (FIREBASE_ENABLED) {
   const app = initializeApp(firebaseConfig)
+
+  // App Check (reCAPTCHA v3) — attests that requests come from your real app,
+  // not a script hitting the database URL directly. Skipped when no site key
+  // is configured. Must be initialized before other Firebase services are used.
+  if (firebaseConfig.recaptchaSiteKey) {
+    initializeAppCheck(app, {
+      provider: new ReCaptchaV3Provider(firebaseConfig.recaptchaSiteKey),
+      isTokenAutoRefreshEnabled: true,
+    })
+  }
+
   fbDb = getDatabase(app)
+  fbAuth = getAuth(app)
 }
 
 const STORAGE_KEY = 'matrix-rpg-characters-v1'
@@ -84,6 +99,170 @@ interface SessionChar {
   homeShip: string
   phoneOn: boolean
   lastSeen: number  // Date.now() ms
+}
+
+// ── Operator image gallery (Operator-only, saved locally per character) ──────
+const GALLERY_KEY = 'matrix-rpg-gallery-v1'
+
+interface GalleryImage {
+  id: string
+  name: string
+  dataUrl: string   // downscaled JPEG data URL
+  addedAt: string
+}
+
+// The gallery store is kept separate from the character JSON so large base64
+// images never bloat (or get exported with) the main character sheet.
+function loadGalleryStore(): Record<string, GalleryImage[]> {
+  try { return JSON.parse(localStorage.getItem(GALLERY_KEY) || '{}') } catch { return {} }
+}
+
+function getGallery(charId: string): GalleryImage[] {
+  return loadGalleryStore()[charId] || []
+}
+
+function saveGallery(charId: string, images: GalleryImage[]): boolean {
+  const store = loadGalleryStore()
+  if (images.length) store[charId] = images
+  else delete store[charId]
+  try {
+    localStorage.setItem(GALLERY_KEY, JSON.stringify(store))
+    return true
+  } catch {
+    return false   // quota exceeded
+  }
+}
+
+// Read a file, downscale it through a canvas, and return a compressed data URL.
+// Keeps stored images projector-sized so localStorage doesn't fill up instantly.
+function fileToScaledDataUrl(file: File, maxDim = 1600, quality = 0.85): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onerror = () => reject(reader.error)
+    reader.onload = () => {
+      const img = new Image()
+      img.onerror = () => reject(new Error('decode failed'))
+      img.onload = () => {
+        let { width, height } = img
+        if (width > maxDim || height > maxDim) {
+          const scale = maxDim / Math.max(width, height)
+          width = Math.round(width * scale)
+          height = Math.round(height * scale)
+        }
+        const canvas = document.createElement('canvas')
+        canvas.width = width
+        canvas.height = height
+        const ctx = canvas.getContext('2d')
+        if (!ctx) { resolve(reader.result as string); return }
+        ctx.drawImage(img, 0, 0, width, height)
+        resolve(canvas.toDataURL('image/jpeg', quality))
+      }
+      img.src = reader.result as string
+    }
+    reader.readAsDataURL(file)
+  })
+}
+
+async function addGalleryImages(charId: string, files: FileList): Promise<void> {
+  const added: GalleryImage[] = []
+  for (const file of Array.from(files)) {
+    if (!file.type.startsWith('image/')) continue
+    try {
+      const dataUrl = await fileToScaledDataUrl(file)
+      added.push({
+        id: `img-${Date.now()}-${Math.random().toString(16).slice(2, 6)}`,
+        name: file.name.replace(/\.[^.]+$/, '') || 'image',
+        dataUrl,
+        addedAt: new Date().toISOString(),
+      })
+    } catch { /* skip files that can't be read or decoded */ }
+  }
+  if (!added.length) {
+    setStatus('No images could be read from that selection.')
+    render()
+    return
+  }
+  const ok = saveGallery(charId, [...getGallery(charId), ...added])
+  setStatus(ok
+    ? `Added ${added.length} image${added.length === 1 ? '' : 's'} to the gallery.`
+    : 'Storage is full — some images were not saved. Remove a few or use smaller files.')
+  render()
+}
+
+// ── Live presentation broadcast (ephemeral — never persisted in Firebase) ────
+// The Operator pushes the image they're presenting to a self-deleting node so
+// crew on the same ship can view it live. onDisconnect()+explicit remove mean
+// the bytes only live on the server while actively on screen, then vanish — so
+// nothing is stored long-term and Firebase usage stays in the free tier.
+interface Presentation {
+  charId: string     // operator's character id (also the node key)
+  imageId: string
+  name: string
+  dataUrl: string    // small broadcast copy
+  from: string       // operator handle
+  shipName: string
+  sentAt: number
+}
+
+// Re-encode a stored gallery image down to a lighter "broadcast" copy so we move
+// as few bytes as possible over the wire.
+function rescaleDataUrl(dataUrl: string, maxDim = 1280, quality = 0.7): Promise<string> {
+  return new Promise((resolve) => {
+    const img = new Image()
+    img.onerror = () => resolve(dataUrl)
+    img.onload = () => {
+      let { width, height } = img
+      if (width > maxDim || height > maxDim) {
+        const scale = maxDim / Math.max(width, height)
+        width = Math.round(width * scale)
+        height = Math.round(height * scale)
+      }
+      const canvas = document.createElement('canvas')
+      canvas.width = width
+      canvas.height = height
+      const ctx = canvas.getContext('2d')
+      if (!ctx) { resolve(dataUrl); return }
+      ctx.drawImage(img, 0, 0, width, height)
+      resolve(canvas.toDataURL('image/jpeg', quality))
+    }
+    img.src = dataUrl
+  })
+}
+
+async function broadcastImage(character: any, image: GalleryImage): Promise<void> {
+  if (!FIREBASE_ENABLED || !fbDb) return
+  const dataUrl = await rescaleDataUrl(image.dataUrl)
+  const node = fbRef(fbDb, `matrix-rpg/presentations/${character.id}`)
+  // Auto-remove if the Operator's browser drops, so nothing is left behind.
+  onDisconnect(node).remove()
+  fbSet(node, {
+    charId: character.id,
+    imageId: image.id,
+    name: image.name,
+    dataUrl,
+    from: character.callSign || character.profileName || 'Operator',
+    shipName: character.homeShip || '',
+    sentAt: Date.now(),
+  }).catch((err: any) => {
+    console.error('Broadcast failed:', err)
+    if (String(err).includes('PERMISSION_DENIED')) {
+      state.status = 'Firebase rules block presentations — add "presentations" to your Realtime Database rules (see README).'
+      render()
+    }
+  })
+}
+
+function stopBroadcast(charId: string): void {
+  if (!FIREBASE_ENABLED || !fbDb) return
+  fbRemove(fbRef(fbDb, `matrix-rpg/presentations/${charId}`)).catch(() => {})
+}
+
+// The active presentation a given crew member should be offered (same ship,
+// and they're not the Operator doing the broadcasting).
+function getActivePresentationForChar(character: any): Presentation | null {
+  if (!character || character.role === 'Operator') return null
+  const ship = character.homeShip || ''
+  return Object.values(state.presentations).find(p => (p.shipName || '') === ship) || null
 }
 
 function loadNftApiKey(): string {
@@ -396,6 +575,8 @@ const state = {
   messages: loadMessages(),
   firebaseConnected: false,
   sessionChars: {} as Record<string, SessionChar>,
+  presentations: {} as Record<string, Presentation>,
+  dismissedPresentationId: null as string | null,
 };
 
 state.selectedId = state.characters[0]?.id ?? null;
@@ -424,9 +605,19 @@ function scheduleRender(scrollPhone = false) {
   }
 }
 
-if (FIREBASE_ENABLED && fbDb) {
+// Only render images that are genuine inline data URLs. A presentation node is
+// world-writable in spirit (any authenticated client can write it), so this
+// guards against a spoofed node pointing <img src> at an arbitrary external URL.
+function isSafeImageDataUrl(value: unknown): value is string {
+  return typeof value === 'string' && /^data:image\/(png|jpe?g|gif|webp|avif);base64,/.test(value)
+}
+
+function setupRealtimeListeners() {
+  const db = fbDb
+  if (!db) return
+
   // Watch connection state
-  onValue(fbRef(fbDb, '.info/connected'), (snap) => {
+  onValue(fbRef(db, '.info/connected'), (snap) => {
     const wasConnected = state.firebaseConnected
     state.firebaseConnected = snap.val() === true
     render()
@@ -439,7 +630,7 @@ if (FIREBASE_ENABLED && fbDb) {
   })
 
   // Listen for all messages — fires for existing ones on connect, then new ones live
-  onChildAdded(fbRef(fbDb, 'matrix-rpg/messages'), (snap) => {
+  onChildAdded(fbRef(db, 'matrix-rpg/messages'), (snap) => {
     const data = snap.val()
     if (!data) return
     const readBy: string[] = data.readBy ? Object.keys(data.readBy) : []
@@ -457,24 +648,69 @@ if (FIREBASE_ENABLED && fbDb) {
     state.status = 'Firebase rules block sessions — add "sessions" to your Realtime Database rules (see README).'
     render()
   }
-  onChildAdded(fbRef(fbDb, 'matrix-rpg/sessions'), (snap) => {
+  onChildAdded(fbRef(db, 'matrix-rpg/sessions'), (snap) => {
     if (snap.key && snap.val()) {
       state.sessionChars[snap.key] = snap.val() as SessionChar
       scheduleRender()
     }
   }, sessionErrorCallback)
-  onChildChanged(fbRef(fbDb, 'matrix-rpg/sessions'), (snap) => {
+  onChildChanged(fbRef(db, 'matrix-rpg/sessions'), (snap) => {
     if (snap.key && snap.val()) {
       state.sessionChars[snap.key] = snap.val() as SessionChar
       scheduleRender()
     }
   }, sessionErrorCallback)
-  onChildRemoved(fbRef(fbDb, 'matrix-rpg/sessions'), (snap) => {
+  onChildRemoved(fbRef(db, 'matrix-rpg/sessions'), (snap) => {
     if (snap.key) {
       delete state.sessionChars[snap.key]
       scheduleRender()
     }
   }, sessionErrorCallback)
+
+  // Live image presentations — ephemeral, auto-removed when the Operator
+  // stops sharing or disconnects.
+  const presentationErrorCallback = (err: Error) => {
+    console.error('Presentations listener denied:', err)
+    state.status = 'Firebase rules block presentations — add "presentations" to your Realtime Database rules (see README).'
+    render()
+  }
+  const upsertPresentation = (snap: any) => {
+    const val = snap.val()
+    // Drop spoofed/malformed nodes: only accept genuine inline image data URLs.
+    if (snap.key && val && isSafeImageDataUrl(val.dataUrl)) {
+      state.presentations[snap.key] = val as Presentation
+      refreshOpenViewer()
+      scheduleRender()
+    }
+  }
+  onChildAdded(fbRef(db, 'matrix-rpg/presentations'), upsertPresentation, presentationErrorCallback)
+  onChildChanged(fbRef(db, 'matrix-rpg/presentations'), upsertPresentation, presentationErrorCallback)
+  onChildRemoved(fbRef(db, 'matrix-rpg/presentations'), (snap) => {
+    if (snap.key) {
+      delete state.presentations[snap.key]
+      closeViewerIfEnded(snap.key)
+      scheduleRender()
+    }
+  }, presentationErrorCallback)
+}
+
+if (FIREBASE_ENABLED && fbDb && fbAuth) {
+  // Sign in anonymously so security rules can require `auth != null`. This is
+  // invisible to players (no login screen) but blocks unauthenticated abuse of
+  // the database. Listeners attach only once a user token exists, so the
+  // auth-gated rules never reject the initial reads.
+  let listenersReady = false
+  onAuthStateChanged(fbAuth, (user) => {
+    if (user && !listenersReady) {
+      listenersReady = true
+      setupRealtimeListeners()
+    }
+  })
+  signInAnonymously(fbAuth).catch((err: any) => {
+    console.error('Anonymous sign-in failed:', err)
+    state.status = 'Comms sign-in failed — enable Anonymous Authentication in the Firebase console (see README).'
+    render()
+  })
 } else {
   // Same-browser-tab fallback (no Firebase configured)
   window.addEventListener('storage', (e) => {
@@ -516,7 +752,7 @@ function setRoute(route, options = {}) {
 }
 
 function setSheetTab(tab) {
-  if (!sheetTabs.includes(tab)) {
+  if (!sheetTabs.includes(tab) && tab !== 'gallery') {
     return;
   }
 
@@ -877,6 +1113,7 @@ function renderRoster(character) {
 function renderSheetTabs() {
   const character = getSelectedCharacter()
   const unread = getUnreadCount(character.id)
+  const galleryCount = character.role === 'Operator' ? getGallery(character.id).length : 0
   const tabLabels: Record<string, string> = {
     identity: 'Identity',
     abilities: 'Abilities',
@@ -884,9 +1121,13 @@ function renderSheetTabs() {
     loadout: 'Loadout',
     notes: 'Notes',
     comms: `Comms${!state.phoneOn && unread > 0 ? ` <span class="tab-badge">${unread}</span>` : ''}`,
+    gallery: `Gallery${galleryCount > 0 ? ` <span class="tab-badge">${galleryCount}</span>` : ''}`,
   }
 
-  return sheetTabs
+  // Gallery is an Operator-only tool, so only Operators get the extra tab.
+  const tabs = character.role === 'Operator' ? [...sheetTabs, 'gallery'] : sheetTabs
+
+  return tabs
     .map(
       (tab) => `<button class="sheet-tab ${state.sheetTab === tab ? 'is-active' : ''}" data-sheet-tab="${tab}">${tabLabels[tab]}</button>`,
     )
@@ -1151,6 +1392,10 @@ function renderSheetContent(character, slots) {
 
   if (state.sheetTab === 'comms') {
     return renderCommsTab(character);
+  }
+
+  if (state.sheetTab === 'gallery') {
+    return renderGalleryTab(character);
   }
 
   return renderNotesTab(character);
@@ -1876,8 +2121,372 @@ function renderCommsTab(character: any): string {
   `
 }
 
+// ── Gallery tab (Operator-only) ──────────────────────────────────────────
+
+function renderGalleryTab(character: any): string {
+  const images = getGallery(character.id)
+  return `
+    <section class="sheet-card gallery-card">
+      <div class="gallery-head">
+        <div>
+          <p class="eyebrow">Operator · Visual Feed</p>
+          <h3>Image Gallery</h3>
+          <p class="comms-phone-desc">Stage art, maps, NPC portraits, or Matrix code stills, then project any image full-screen. Uploads are saved locally on this device only; open one and hit <strong>Share with crew</strong> to push it live to players on your hovership (the image is never stored on the server).</p>
+        </div>
+        <div class="gallery-actions">
+          <input type="file" id="gallery-upload" accept="image/*" multiple hidden />
+          <button class="solid-button" data-action="gallery-upload">＋ Upload Images</button>
+          ${images.length ? `<button class="ghost-button" data-action="gallery-present">▶ Present</button>` : ''}
+        </div>
+      </div>
+      ${images.length === 0
+        ? `<div class="gallery-empty">
+             <p>No images staged yet.</p>
+             <p class="gallery-empty-sub">Upload one or more images, then click a thumbnail to reveal it full-screen with a thematic Matrix wipe.</p>
+           </div>`
+        : `<div class="gallery-grid">
+            ${images.map((img, idx) => `
+              <figure class="gallery-tile" data-gallery-open="${idx}" tabindex="0" role="button" aria-label="Project ${escapeHtml(img.name)}">
+                <img src="${img.dataUrl}" alt="${escapeHtml(img.name)}" loading="lazy" />
+                <figcaption>${escapeHtml(img.name)}</figcaption>
+                <button class="gallery-tile-del" data-gallery-del="${img.id}" title="Remove image" aria-label="Remove ${escapeHtml(img.name)}">✕</button>
+              </figure>`).join('')}
+          </div>`
+      }
+    </section>
+  `
+}
+
+// ── Full-screen projector overlay ────────────────────────────────────────
+// Lives directly on <body>, outside #app, so a re-render never tears it down.
+// Two modes:
+//   'operator' — local preview of the Operator's own gallery, with a "Go Live"
+//                toggle that broadcasts the current image to crew.
+//   'viewer'   — a crew member watching the Operator's live broadcast; updates
+//                in place as the Operator navigates, and closes when they stop.
+interface ProjectorState {
+  mode: 'operator' | 'viewer'
+  charId: string   // operator: own id; viewer: broadcasting operator's id
+  index: number
+  live: boolean
+}
+let projector: ProjectorState | null = null
+let projectorKeyHandler: ((e: KeyboardEvent) => void) | null = null
+let projectorZoom: { zoomByStep: (dir: number) => void; reset: () => void } | null = null
+
+function mountProjector(): HTMLElement {
+  closeProjector()
+  const overlay = document.createElement('div')
+  overlay.className = 'gallery-projector'
+  overlay.id = 'gallery-projector'
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeProjector() })
+  document.body.appendChild(overlay)
+  document.body.style.overflow = 'hidden'
+  projectorKeyHandler = (e) => {
+    if (e.key === 'Escape') closeProjector()
+    else if (e.key === '+' || e.key === '=') projectorZoom?.zoomByStep(1)
+    else if (e.key === '-' || e.key === '_') projectorZoom?.zoomByStep(-1)
+    else if (e.key === '0') projectorZoom?.reset()
+    else if (projector?.mode === 'operator' && e.key === 'ArrowRight') stepProjector(1)
+    else if (projector?.mode === 'operator' && e.key === 'ArrowLeft') stepProjector(-1)
+  }
+  window.addEventListener('keydown', projectorKeyHandler)
+  return overlay
+}
+
+function openProjector(charId: string, index: number): void {
+  if (!getGallery(charId).length) return
+  mountProjector()
+  projector = { mode: 'operator', charId, index, live: false }
+  renderOperatorProjector()
+}
+
+function renderOperatorProjector(): void {
+  const overlay = document.getElementById('gallery-projector')
+  if (!overlay || projector?.mode !== 'operator') return
+  const images = getGallery(projector.charId)
+  if (!images.length) { closeProjector(); return }
+  const i = ((projector.index % images.length) + images.length) % images.length
+  projector.index = i
+  const img = images[i]
+  const multi = images.length > 1
+  const canBroadcast = FIREBASE_ENABLED
+  overlay.innerHTML = `
+    <button class="gallery-proj-close" data-proj="close" aria-label="Close projector">✕</button>
+    ${projector.live ? `<div class="gallery-proj-live" aria-hidden="true">● LIVE TO CREW</div>` : ''}
+    ${multi ? `<button class="gallery-proj-nav gallery-proj-prev" data-proj="prev" aria-label="Previous image">‹</button>` : ''}
+    <div class="gallery-proj-stage">
+      <img class="gallery-proj-img" src="${img.dataUrl}" alt="${escapeHtml(img.name)}" />
+      <div class="gallery-proj-scan" aria-hidden="true"></div>
+    </div>
+    ${multi ? `<button class="gallery-proj-nav gallery-proj-next" data-proj="next" aria-label="Next image">›</button>` : ''}
+    <div class="gallery-proj-meta">
+      <span class="gallery-proj-name">${escapeHtml(img.name)}</span>
+      <span class="gallery-proj-count">${i + 1} / ${images.length}</span>
+      ${canBroadcast
+        ? `<button class="gallery-proj-broadcast ${projector.live ? 'is-live' : ''}" data-proj="broadcast">${projector.live ? '■ Stop sharing' : '📡 Share with crew'}</button>`
+        : `<span class="gallery-proj-offline" title="Configure Firebase to share with crew">offline · local only</span>`}
+    </div>
+  `
+  overlay.querySelector('[data-proj="close"]')?.addEventListener('click', closeProjector)
+  overlay.querySelector('[data-proj="prev"]')?.addEventListener('click', () => stepProjector(-1))
+  overlay.querySelector('[data-proj="next"]')?.addEventListener('click', () => stepProjector(1))
+  overlay.querySelector('[data-proj="broadcast"]')?.addEventListener('click', toggleBroadcast)
+  setupZoomPan(overlay)
+}
+
+function stepProjector(delta: number): void {
+  if (projector?.mode !== 'operator') return
+  projector.index += delta
+  renderOperatorProjector()
+  // While live, broadcasting follows the projector so crew see what the Operator sees.
+  if (projector.live) broadcastCurrent()
+}
+
+function broadcastCurrent(): void {
+  if (projector?.mode !== 'operator') return
+  const character = state.characters.find(c => c.id === projector!.charId)
+  const img = getGallery(projector.charId)[projector.index]
+  if (character && img) broadcastImage(character, img)
+}
+
+function toggleBroadcast(): void {
+  if (projector?.mode !== 'operator') return
+  projector.live = !projector.live
+  if (projector.live) {
+    broadcastCurrent()
+    setStatus('Sharing live with crew on your hovership.')
+  } else {
+    stopBroadcast(projector.charId)
+    setStatus('Stopped sharing.')
+  }
+  renderOperatorProjector()
+}
+
+// ── Crew viewer (tap-to-view of the Operator's live broadcast) ───────────
+function openViewer(presentation: Presentation): void {
+  mountProjector()
+  projector = { mode: 'viewer', charId: presentation.charId, index: 0, live: false }
+  state.dismissedPresentationId = presentation.imageId   // hide the notice while watching
+  renderViewer()
+  render()
+}
+
+function renderViewer(): void {
+  const overlay = document.getElementById('gallery-projector')
+  if (!overlay || projector?.mode !== 'viewer') return
+  const p = state.presentations[projector.charId]
+  if (!p) { closeProjector(); return }
+  overlay.innerHTML = `
+    <button class="gallery-proj-close" data-proj="close" aria-label="Close viewer">✕</button>
+    <div class="gallery-proj-live gallery-proj-live-incoming" aria-hidden="true">● LIVE · ${escapeHtml(p.from)}</div>
+    <div class="gallery-proj-stage">
+      <img class="gallery-proj-img" src="${p.dataUrl}" alt="${escapeHtml(p.name)}" />
+      <div class="gallery-proj-scan" aria-hidden="true"></div>
+    </div>
+    <div class="gallery-proj-meta">
+      <span class="gallery-proj-name">${escapeHtml(p.name)}</span>
+    </div>
+  `
+  overlay.querySelector('[data-proj="close"]')?.addEventListener('click', closeProjector)
+  setupZoomPan(overlay)
+}
+
+// Called when a presentation node changes — keep an open viewer in sync.
+function refreshOpenViewer(): void {
+  if (projector?.mode !== 'viewer') return
+  const p = state.presentations[projector.charId]
+  if (p) {
+    state.dismissedPresentationId = p.imageId
+    renderViewer()
+  }
+}
+
+// Called when a presentation node is removed — close any viewer watching it.
+function closeViewerIfEnded(charId: string): void {
+  if (projector?.mode === 'viewer' && projector.charId === charId) {
+    closeProjector()
+    setStatus('The Operator stopped sharing.')
+  }
+}
+
+function closeProjector(): void {
+  // An Operator closing their projector while live must stop the broadcast so
+  // the ephemeral node is removed and the crew notice clears.
+  if (projector?.mode === 'operator' && projector.live) stopBroadcast(projector.charId)
+  const wasOpen = Boolean(projector)
+  projector = null
+  projectorZoom = null
+  document.getElementById('gallery-projector')?.remove()
+  document.body.style.overflow = ''
+  if (projectorKeyHandler) {
+    window.removeEventListener('keydown', projectorKeyHandler)
+    projectorKeyHandler = null
+  }
+  // Re-render so the crew "View shared image" button reappears after a viewer
+  // closes (the notice is suppressed while the viewer is open).
+  if (wasOpen) render()
+}
+
+// Zoom + pan for the projected image so it's legible on any screen size.
+// Works with wheel/trackpad, pinch (touch), drag-to-pan, double-tap, the
+// on-screen +/−/reset buttons, and the +/-/0 keys. Transforms the whole stage
+// (image + scanline overlay together) so the effect stays visually aligned.
+// All listeners attach to elements that the next render() replaces, so there's
+// nothing to clean up between image changes.
+function setupZoomPan(overlay: HTMLElement): void {
+  const stage = overlay.querySelector<HTMLElement>('.gallery-proj-stage')
+  if (!stage) { projectorZoom = null; return }
+
+  const MIN = 1, MAX = 6
+  let scale = MIN, tx = 0, ty = 0
+  const pointers = new Map<number, { x: number; y: number }>()
+  let pinchStartDist = 0, pinchStartScale = 1
+  let panStart: { x: number; y: number; tx: number; ty: number } | null = null
+
+  const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v))
+
+  function constrainPan() {
+    if (scale <= MIN) { tx = 0; ty = 0; return }
+    // Keep the (scaled) image from being dragged entirely off the viewport.
+    const maxX = Math.max(0, (stage!.clientWidth * scale - window.innerWidth) / 2)
+    const maxY = Math.max(0, (stage!.clientHeight * scale - window.innerHeight) / 2)
+    tx = clamp(tx, -maxX, maxX)
+    ty = clamp(ty, -maxY, maxY)
+  }
+
+  function apply() {
+    scale = clamp(scale, MIN, MAX)
+    constrainPan()
+    stage!.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`
+    stage!.classList.toggle('is-zoomed', scale > MIN)
+    const lvl = overlay.querySelector('[data-zoom="reset"]')
+    if (lvl) lvl.textContent = `${Math.round(scale * 100)}%`
+  }
+
+  // Zoom while keeping the focal point (offset vx,vy from the stage centre) put.
+  function zoomTo(next: number, vx: number, vy: number) {
+    const s0 = scale
+    const s1 = clamp(next, MIN, MAX)
+    if (s1 === s0) return
+    tx = vx - s1 * (vx - tx) / s0
+    ty = vy - s1 * (vy - ty) / s0
+    scale = s1
+    apply()
+  }
+
+  function focal(clientX: number, clientY: number) {
+    const r = stage!.getBoundingClientRect()
+    return { vx: clientX - (r.left + r.width / 2), vy: clientY - (r.top + r.height / 2) }
+  }
+
+  stage.addEventListener('wheel', (e) => {
+    e.preventDefault()
+    const { vx, vy } = focal(e.clientX, e.clientY)
+    zoomTo(scale * (e.deltaY < 0 ? 1.15 : 1 / 1.15), vx, vy)
+  }, { passive: false })
+
+  stage.addEventListener('dblclick', (e) => {
+    const { vx, vy } = focal(e.clientX, e.clientY)
+    zoomTo(scale > MIN ? MIN : 2.5, vx, vy)
+  })
+
+  stage.addEventListener('pointerdown', (e) => {
+    stage.setPointerCapture(e.pointerId)
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY })
+    if (pointers.size === 2) {
+      const [a, b] = [...pointers.values()]
+      pinchStartDist = Math.hypot(a.x - b.x, a.y - b.y)
+      pinchStartScale = scale
+      panStart = null
+    } else if (pointers.size === 1 && scale > MIN) {
+      panStart = { x: e.clientX, y: e.clientY, tx, ty }
+    }
+  })
+
+  stage.addEventListener('pointermove', (e) => {
+    if (!pointers.has(e.pointerId)) return
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY })
+    const pts = [...pointers.values()]
+    if (pts.length === 2 && pinchStartDist > 0) {
+      const dist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y)
+      const { vx, vy } = focal((pts[0].x + pts[1].x) / 2, (pts[0].y + pts[1].y) / 2)
+      zoomTo(pinchStartScale * (dist / pinchStartDist), vx, vy)
+    } else if (pts.length === 1 && panStart) {
+      tx = panStart.tx + (e.clientX - panStart.x)
+      ty = panStart.ty + (e.clientY - panStart.y)
+      apply()
+    }
+  })
+
+  const endPointer = (e: PointerEvent) => {
+    pointers.delete(e.pointerId)
+    if (pointers.size < 2) pinchStartDist = 0
+    if (pointers.size === 0) {
+      panStart = null
+    } else if (pointers.size === 1 && scale > MIN) {
+      const p = [...pointers.values()][0]
+      panStart = { x: p.x, y: p.y, tx, ty }
+    }
+  }
+  stage.addEventListener('pointerup', endPointer)
+  stage.addEventListener('pointercancel', endPointer)
+
+  // On-screen zoom controls (centre-anchored zoom).
+  const controls = document.createElement('div')
+  controls.className = 'gallery-proj-zoom'
+  controls.innerHTML = `
+    <button class="gallery-proj-zoom-btn" data-zoom="out" aria-label="Zoom out" title="Zoom out (−)">−</button>
+    <button class="gallery-proj-zoom-level" data-zoom="reset" aria-label="Reset zoom" title="Reset zoom (0)">100%</button>
+    <button class="gallery-proj-zoom-btn" data-zoom="in" aria-label="Zoom in" title="Zoom in (+)">+</button>
+  `
+  overlay.appendChild(controls)
+  const reset = () => { scale = MIN; tx = 0; ty = 0; apply() }
+  controls.querySelector('[data-zoom="in"]')?.addEventListener('click', () => zoomTo(scale * 1.4, 0, 0))
+  controls.querySelector('[data-zoom="out"]')?.addEventListener('click', () => zoomTo(scale / 1.4, 0, 0))
+  controls.querySelector('[data-zoom="reset"]')?.addEventListener('click', reset)
+
+  projectorZoom = {
+    zoomByStep: (dir) => zoomTo(scale * (dir > 0 ? 1.4 : 1 / 1.4), 0, 0),
+    reset,
+  }
+
+  apply()
+}
+
+// Floating, non-intrusive "tap to view" notice shown to crew anywhere in the
+// app whenever their Operator is sharing an image they haven't opened/dismissed.
+function renderPresentationNotice(character: any): string {
+  const p = getActivePresentationForChar(character)
+  if (!p) return ''
+  if (projector?.mode === 'viewer') return ''   // already watching it
+
+  // Once dismissed (or after opening it once and closing), collapse to a small
+  // persistent button so crew can always re-open the image while the Operator
+  // is still sharing it.
+  if (state.dismissedPresentationId === p.imageId) {
+    return `
+      <button class="presentation-pill" data-action="open-presentation" title="${escapeHtml(p.from)} is sharing an image">
+        <span class="presentation-notice-dot">📡</span>
+        <span class="presentation-pill-label">View shared image</span>
+      </button>
+    `
+  }
+
+  return `
+    <div class="presentation-notice" role="status">
+      <button class="presentation-notice-open" data-action="open-presentation">
+        <span class="presentation-notice-dot">📡</span>
+        <span class="presentation-notice-text"><strong>${escapeHtml(p.from)}</strong> is sharing an image — tap to view</span>
+      </button>
+      <button class="presentation-notice-dismiss" data-action="dismiss-presentation" aria-label="Dismiss">✕</button>
+    </div>
+  `
+}
+
 function render(shouldAnimate = false) {
   const character = getSelectedCharacter();
+  if (state.sheetTab === 'gallery' && character.role !== 'Operator') state.sheetTab = 'identity';
   const slots = computeDownloadSlots(character);
 
   let viewMarkup = renderHomeView(character);
@@ -1903,6 +2512,7 @@ function render(shouldAnimate = false) {
       <main class="view-shell" data-view="${viewClass}">
         ${viewMarkup}
       </main>
+      ${renderPresentationNotice(character)}
     </div>
   `;
 
@@ -2258,6 +2868,53 @@ function bindEvents() {
 
   const phoneScreen = document.getElementById('phone-screen')
   if (phoneScreen && state.phoneOn) phoneScreen.scrollTop = phoneScreen.scrollHeight
+
+  // ── Gallery events ────────────────────────────────────────────────────────
+
+  const galleryInput = document.getElementById('gallery-upload') as HTMLInputElement | null
+  document.querySelector('[data-action="gallery-upload"]')?.addEventListener('click', () => galleryInput?.click())
+  galleryInput?.addEventListener('change', async () => {
+    if (galleryInput.files?.length) {
+      await addGalleryImages(getSelectedCharacter().id, galleryInput.files)
+    }
+  })
+
+  document.querySelector('[data-action="gallery-present"]')?.addEventListener('click', () => {
+    openProjector(getSelectedCharacter().id, 0)
+  })
+
+  document.querySelectorAll<HTMLElement>('[data-gallery-open]').forEach((tile) => {
+    const open = () => openProjector(getSelectedCharacter().id, parseInt(tile.dataset.galleryOpen || '0', 10))
+    tile.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('[data-gallery-del]')) return
+      open()
+    })
+    tile.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open() }
+    })
+  })
+
+  document.querySelectorAll<HTMLButtonElement>('[data-gallery-del]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation()
+      const charId = getSelectedCharacter().id
+      const next = getGallery(charId).filter((im) => im.id !== btn.dataset.galleryDel)
+      saveGallery(charId, next)
+      setStatus('Image removed from gallery.')
+      render()
+    })
+  })
+
+  document.querySelector('[data-action="open-presentation"]')?.addEventListener('click', () => {
+    const p = getActivePresentationForChar(getSelectedCharacter())
+    if (p) openViewer(p)
+  })
+
+  document.querySelector('[data-action="dismiss-presentation"]')?.addEventListener('click', () => {
+    const p = getActivePresentationForChar(getSelectedCharacter())
+    if (p) state.dismissedPresentationId = p.imageId
+    render()
+  })
 }
 
 function handleFieldUpdate(element) {
